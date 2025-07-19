@@ -6,15 +6,17 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
+import Link from "next/link"
 
 interface FurnitureCardProps {
   name: string
   images: string[]
   description: string
+  linkHref: string
   onDetailsClick: () => void
 }
 
-export function FurnitureCard({ name, images, description, onDetailsClick }: FurnitureCardProps) {
+export function FurnitureCard({ name, images, description, linkHref, onDetailsClick }: FurnitureCardProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   return (
@@ -58,11 +60,13 @@ export function FurnitureCard({ name, images, description, onDetailsClick }: Fur
         <h3 className="text-xl font-semibold mb-2 text-purple-900">{name}</h3>
         <p className="text-gray-500 mb-4 text-sm flex-grow">{description}</p>
         <div className="mt-auto">
+          <Link href={linkHref}>
           <Button
             className="w-full bg-purple-300 hover:bg-purple-400 text-purple-900"
           >
             Узнать подробнее <ArrowRight className="w-4 h-4 ml-2 text-purple-900" />
           </Button>
+          </Link>
         </div>
       </CardContent>
     </Card>

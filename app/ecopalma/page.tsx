@@ -30,7 +30,14 @@ import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import Script from "next/script"
 
+// Добавляем типы для глобального окна
+declare global {
+  interface Window {
+    clickAmoButton?: () => void;
+  }
+}
 
 const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 24 24" fill="currentColor">
@@ -295,11 +302,59 @@ export default function EcopalmaPage() {
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && window.clickAmoButton) {
+                      window.clickAmoButton();
+                    }
+                  }}
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
                   Заказать со скидкой
                 </Button>
+                <Script
+                  id="amoforms_script_1572670"
+                  src="https://forms.amocrm.ru/forms/assets/js/amoforms.js?1752873171"
+                  async
+                  strategy="afterInteractive"
+                />
+                <Script
+                  id="amoforms_script"
+                  strategy="afterInteractive"
+                  dangerouslySetInnerHTML={{
+                    __html: `!function(a,m,o,c,r,m){a[o+c]=a[o+c]||{setMeta:function(p){this.params=(this.params||[]).concat([p])}},a[o+r]=a[o+r]||function(f){a[o+r].f=(a[o+r].f||[]).concat([f])},a[o+r]({id:"1572670",hash:"e2904c885a56624d2292fd178d837c58",locale:"ru"}),a[o+m]=a[o+m]||function(f,k){a[o+m].f=(a[o+m].f||[]).concat([[f,k]])}}(window,0,"amo_forms_","params","load","loaded");`,
+                  }}
+                />
+                <Script
+                  id="move_button"
+                  strategy="afterInteractive"
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                      function moveButton() {
+                        const btn = document.getElementById('amoforms_action_btn');
+                        const target = document.getElementById('amocrm_btn');
+                        if (btn && target) {
+                          target.appendChild(btn);
+                          // Скрываем кнопку
+                          btn.style.display = 'none';
+                        } else {
+                          setTimeout(moveButton, 500);
+                        }
+                      }
+                      setTimeout(moveButton, 1000);
+
+                      // Функция для клика по кнопке AmoCRM
+                      window.clickAmoButton = function() {
+                        const amoButton = document.getElementById('amoforms_action_btn');
+                        if (amoButton) {
+                          amoButton.click();
+                        }
+                      }
+                    `
+                  }}
+                />
               </div>
+
+              <div id="amocrm_btn"></div>
             </motion.div>
           </div>
         </section>
@@ -356,6 +411,11 @@ export default function EcopalmaPage() {
                       <div className="text-2xl font-bold text-green-600 mb-4">{palm.price}</div>
                       <Button
                         className="w-full bg-green-600 hover:bg-green-700 text-white"
+                        onClick={() => {
+                          if (typeof window !== 'undefined' && window.clickAmoButton) {
+                            window.clickAmoButton();
+                          }
+                        }}
                       >
                         Заказать <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
@@ -547,6 +607,11 @@ export default function EcopalmaPage() {
               <Button
                 size="lg"
                 className="bg-green-600 hover:bg-green-700 px-12 py-4 text-lg text-white"
+                onClick={() => {
+                  if (typeof window !== 'undefined' && window.clickAmoButton) {
+                    window.clickAmoButton();
+                  }
+                }}
               >
                 Получить консультацию
               </Button>
@@ -647,7 +712,6 @@ export default function EcopalmaPage() {
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   )

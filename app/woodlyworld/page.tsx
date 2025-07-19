@@ -544,11 +544,10 @@ export default function WoodlyworldPage() {
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                    activeCategory === category
+                  className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeCategory === category
                       ? "bg-orange-500 text-white shadow-lg"
                       : "bg-white text-gray-600 hover:bg-orange-100"
-                  }`}
+                    }`}
                 >
                   {category}
                 </button>
@@ -681,9 +680,8 @@ export default function WoodlyworldPage() {
                     <button
                       key={index}
                       onClick={() => setCurrentTestimonialIndex(index)}
-                      className={`w-3 h-3 rounded-full transition-all ${
-                        index === currentTestimonialIndex ? "bg-orange-600 scale-125" : "bg-gray-300"
-                      }`}
+                      className={`w-3 h-3 rounded-full transition-all ${index === currentTestimonialIndex ? "bg-orange-600 scale-125" : "bg-gray-300"
+                        }`}
                     />
                   ))}
                 </div>
@@ -813,9 +811,8 @@ export default function WoodlyworldPage() {
                     <button
                       key={index}
                       onClick={() => setCurrentGalleryIndex(index * 3)}
-                      className={`w-3 h-3 rounded-full transition-all ${
-                        Math.floor(currentGalleryIndex / 3) === index ? "bg-orange-600 scale-125" : "bg-gray-300"
-                      }`}
+                      className={`w-3 h-3 rounded-full transition-all ${Math.floor(currentGalleryIndex / 3) === index ? "bg-orange-600 scale-125" : "bg-gray-300"
+                        }`}
                     />
                   ))}
                 </div>

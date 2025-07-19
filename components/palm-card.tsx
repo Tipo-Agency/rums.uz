@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
+import Link from "next/link"
 
 interface PalmCardProps {
   name: string
@@ -59,11 +60,13 @@ export function PalmCard({ name, images, description, linkHref, onDetailsClick }
         <h3 className="text-xl font-semibold mb-2 text-gray-900">{name}</h3>
         <p className="text-gray-500 mb-4 text-sm flex-grow">{description}</p>
         <div className="mt-auto">
+          <Link href={linkHref}>
           <Button
             className="w-full bg-green-600 hover:bg-green-700 text-white"
           >
             Узнать подробнее <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
+          </Link>
         </div>
       </CardContent>
     </Card>

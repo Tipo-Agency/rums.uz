@@ -162,14 +162,14 @@ export function Header() {
               )}
             </div>
           </div>
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="lg:flex items-center gap-6">
             <a
               href={`tel:${getPhoneNumber().replace(/\s/g, "")}`}
               className="flex items-center gap-2 text-gray-600 hover:text-green-600 font-medium transition-colors"
             >
               <Phone className="w-4 h-4" /> {getPhoneNumber()}
             </a>
-            <div className="flex gap-3 relative">
+            <div className=" gap-3 relative hidden lg:flex">
               {/* Instagram */}
               <div className="relative" ref={instagramRef}>
                 <a
@@ -244,10 +244,11 @@ export function Header() {
                   </div>
                 )}
               </div>
-            </div>
-            <button className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors">
+              {/* <button className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors">
               Ru
-            </button>
+            </button> */}
+            </div>
+
           </div>
           <button 
             className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors" 
@@ -276,16 +277,7 @@ export function Header() {
                 </Link>
                 
                 {/* Products Dropdown */}
-                <div className="px-4">
-                  <button
-                    className="flex items-center justify-between w-full py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                    onClick={() => setProductsOpen(!isProductsOpen)}
-                  >
-                    <span>Продукты</span>
-                    <ChevronDown className={`w-4 h-4 transition-transform ${isProductsOpen ? "rotate-180" : ""}`} />
-                  </button>
-                  {isProductsOpen && (
-                    <div className="mt-2 ml-4 space-y-2">
+                    <div className="mt-2 space-y-2">
                       <Link
                         href="/ecopalma"
                         className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors"
@@ -326,8 +318,6 @@ export function Header() {
                         </div>
                       </Link>
                     </div>
-                  )}
-                </div>
               </div>
 
               {/* Contact Info */}
@@ -363,11 +353,11 @@ export function Header() {
               </div>
 
               {/* Language Selector */}
-              <div className="px-4 py-3 border-t border-gray-100">
+              {/* <div className="px-4 py-3 border-t border-gray-100">
                 <button className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors">
                   Ru
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         )}

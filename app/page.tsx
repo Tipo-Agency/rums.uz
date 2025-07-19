@@ -101,6 +101,7 @@ export default function PalkarMePage() {
         "/tower-7.jpeg",
       ],
       description: "Помогает ребёнку безопасно участвовать в домашних делах на уровне взрослых.",
+      linkHref: "/babyjoy",
     },
     {
       name: "Растущий стол-стул",
@@ -113,6 +114,7 @@ export default function PalkarMePage() {
         "/desk-chair-6.jpeg",
       ],
       description: "Адаптируется под рост ребёнка, обеспечивая комфорт на долгие годы.",
+      linkHref: "/babyjoy",
     },
     {
       name: "Треугольник Пиклера",
@@ -126,16 +128,19 @@ export default function PalkarMePage() {
         "/pikler-7.jpeg",
       ],
       description: "Развивает моторику и координацию, стимулируя физическую активность.",
+      linkHref: "/babyjoy",
     },
     {
       name: "Детская тележка",
       images: ["/cart-1.jpeg", "/cart-2.jpeg", "/cart-3.jpeg"],
       description: "Идеально подходит для хранения игрушек и развития навыков самостоятельности.",
+      linkHref: "/babyjoy",
     },
     {
       name: "Двухэтажная кроватка",
       images: ["/bunk-bed-1.jpeg", "/bunk-bed-2.jpeg"],
       description: "Функциональная двухэтажная кроватка с встроенными ящиками и рабочим местом.",
+      linkHref: "/babyjoy",
     },
   ]
 
@@ -322,13 +327,15 @@ export default function PalkarMePage() {
                 ))}
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="tel:+998950824446">
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
-                  Купить сейчас
+                  Связаться с менеджером
                 </Button>
+                </a>
               </div>
             </motion.div>
           </div>
@@ -533,6 +540,7 @@ export default function PalkarMePage() {
                       name={item.name}
                       images={item.images}
                       description={item.description}
+                      linkHref={item.linkHref}
                       onDetailsClick={() => handleFurnitureDetailsClick(item)}
                     />
                   </motion.div>
