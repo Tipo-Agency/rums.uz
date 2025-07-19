@@ -636,7 +636,7 @@ export default function WoodlyworldPage() {
                       </div>
 
                       <Button
-                        className="w-full bg-orange-600 hover:bg-orange-700"
+                        className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold"
                         onClick={() => {
                           const amoButton = document.getElementById('amoforms_action_btn');
                           if (amoButton) {
@@ -644,7 +644,7 @@ export default function WoodlyworldPage() {
                           }
                         }}
                       >
-                        Заказать <ArrowRight className="w-4 h-4 ml-2" />
+                        Узнать подробнее <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </CardContent>
                   </Card>
@@ -829,10 +829,10 @@ export default function WoodlyworldPage() {
         <section className="py-24 bg-gray-100">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8">Получить консультацию</h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-8 ">Получить консультацию</h2>
               <Button
                 size="lg"
-                className="bg-orange-600 hover:bg-orange-700 px-12 py-4 text-lg"
+                className="bg-orange-600 hover:bg-orange-700 px-12 py-4 text-lg text-white font-semibold"
                 onClick={() => {
                   const amoButton = document.getElementById('amoforms_action_btn');
                   if (amoButton) {
@@ -840,7 +840,7 @@ export default function WoodlyworldPage() {
                   }
                 }}
               >
-                Получить консультацию
+                Оставить заявку на консультацию
               </Button>
             </div>
           </div>

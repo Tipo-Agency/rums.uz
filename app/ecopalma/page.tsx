@@ -410,14 +410,14 @@ export default function EcopalmaPage() {
                       <p className="text-gray-600 mb-4 text-sm flex-grow">{palm.description}</p>
                       <div className="text-2xl font-bold text-green-600 mb-4">{palm.price}</div>
                       <Button
-                        className="w-full bg-green-600 hover:bg-green-700 text-white"
+                        className="w-full bg-green-600 hover:bg-green-700 text-white font-bold"
                         onClick={() => {
                           if (typeof window !== 'undefined' && window.clickAmoButton) {
                             window.clickAmoButton();
                           }
                         }}
                       >
-                        Заказать <ArrowRight className="w-4 h-4 ml-2" />
+                        Узнать подробнее <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </CardContent>
                   </Card>
@@ -613,7 +613,7 @@ export default function EcopalmaPage() {
                   }
                 }}
               >
-                Получить консультацию
+                Оставить заявку на консультацию
               </Button>
             </div>
           </div>
