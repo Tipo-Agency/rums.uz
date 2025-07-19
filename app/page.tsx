@@ -32,7 +32,7 @@ import { PalmDetailModal } from "@/components/palm-detail-modal"
 import { MapInquiryModal } from "@/components/map-inquiry-modal"
 import { FurnitureCard } from "@/components/furniture-card"
 import { FurnitureInquiryModal } from "@/components/furniture-inquiry-modal"
-import Script from "next/script"
+import { useAmoForms } from "@/hooks/use-amo-forms"
 
 
 interface MapData {
@@ -45,6 +45,13 @@ interface Maps {
 }
 
 export default function PalkarMePage() {
+  // Инициализируем AmoCRM для Woodlyworld секции
+  useAmoForms({
+    id: "1572666",
+    hash: "7e3787568500d57ca5f700f4498c35b3",
+    scriptUrl: "https://forms.amocrm.ru/forms/assets/js/amoforms.js?1752885451"
+  })
+
   const [timeLeft, setTimeLeft] = useState({ days: 2, hours: 14, minutes: 32, seconds: 45 })
   const [activeMap, setActiveMap] = useState("3D Карты")
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
@@ -417,48 +424,6 @@ export default function PalkarMePage() {
                   Оставить заявку
                 </Button>
                 <div id="amocrm_btn"></div>
-                <Script
-                  id="amoforms_script_1572666"
-                  src="https://forms.amocrm.ru/forms/assets/js/amoforms.js?1752885451"
-                  async
-                  strategy="afterInteractive"
-                />
-                <Script
-                  id="amoforms_script"
-                  strategy="afterInteractive"
-                  dangerouslySetInnerHTML={{
-                    __html: `!function(a,m,o,c,r,m){a[o+c]=a[o+c]||{setMeta:function(p){this.params=(this.params||[]).concat([p])}},a[o+r]=a[o+r]||function(f){a[o+r].f=(a[o+r].f||[]).concat([f])},a[o+r]({id:"1572666",hash:"7e3787568500d57ca5f700f4498c35b3",locale:"ru"}),a[o+m]=a[o+m]||function(f,k){a[o+m].f=(a[o+m].f||[]).concat([[f,k]])}}(window,0,"amo_forms_","params","load","loaded");`
-                  }}
-                />
-                <Script
-                  id="move_button"
-                  strategy="afterInteractive"
-                  dangerouslySetInnerHTML={{
-                    __html: `
-                      function moveButton() {
-                        const btn = document.getElementById('amoforms_action_btn');
-                        const target = document.getElementById('amocrm_btn');
-                        if (btn && target) {
-                          target.appendChild(btn);
-                          btn.style.display = 'none';
-                        } else {
-                          setTimeout(moveButton, 500);
-                        }
-                      }
-                      setTimeout(moveButton, 1000);
-                    `
-                  }}
-                />
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="text-white border-white hover:bg-white hover:text-gray-900 bg-transparent"
-                >
-                  <Link href="/woodlyworld">
-                    Смотреть все карты <ArrowRight className="w-4 h-4 ml-2" />
-                  </Link>
-                </Button>
               </div>
             </motion.div>
             <motion.div

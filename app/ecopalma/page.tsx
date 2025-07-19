@@ -30,7 +30,7 @@ import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import Script from "next/script"
+import { useAmoForms } from "@/hooks/use-amo-forms"
 
 // Добавляем типы для глобального окна
 declare global {
@@ -46,6 +46,13 @@ const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
 )
 
 export default function EcopalmaPage() {
+  // Инициализируем AmoCRM
+  useAmoForms({
+    id: "1572670",
+    hash: "e2904c885a56624d2292fd178d837c58",
+    scriptUrl: "https://forms.amocrm.ru/forms/assets/js/amoforms.js?1752873171"
+  })
+
   const [timeLeft, setTimeLeft] = useState({ days: 12, hours: 14, minutes: 32, seconds: 45 })
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0)
   const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0)
@@ -311,50 +318,8 @@ export default function EcopalmaPage() {
                   <ShoppingCart className="w-5 h-5 mr-2" />
                   Заказать со скидкой
                 </Button>
-                <Script
-                  id="amoforms_script_1572670"
-                  src="https://forms.amocrm.ru/forms/assets/js/amoforms.js?1752873171"
-                  async
-                  strategy="afterInteractive"
-                />
-                <Script
-                  id="amoforms_script"
-                  strategy="afterInteractive"
-                  dangerouslySetInnerHTML={{
-                    __html: `!function(a,m,o,c,r,m){a[o+c]=a[o+c]||{setMeta:function(p){this.params=(this.params||[]).concat([p])}},a[o+r]=a[o+r]||function(f){a[o+r].f=(a[o+r].f||[]).concat([f])},a[o+r]({id:"1572670",hash:"e2904c885a56624d2292fd178d837c58",locale:"ru"}),a[o+m]=a[o+m]||function(f,k){a[o+m].f=(a[o+m].f||[]).concat([[f,k]])}}(window,0,"amo_forms_","params","load","loaded");`,
-                  }}
-                />
-                <Script
-                  id="move_button"
-                  strategy="afterInteractive"
-                  dangerouslySetInnerHTML={{
-                    __html: `
-                      function moveButton() {
-                        const btn = document.getElementById('amoforms_action_btn');
-                        const target = document.getElementById('amocrm_btn');
-                        if (btn && target) {
-                          target.appendChild(btn);
-                          // Скрываем кнопку
-                          btn.style.display = 'none';
-                        } else {
-                          setTimeout(moveButton, 500);
-                        }
-                      }
-                      setTimeout(moveButton, 1000);
-
-                      // Функция для клика по кнопке AmoCRM
-                      window.clickAmoButton = function() {
-                        const amoButton = document.getElementById('amoforms_action_btn');
-                        if (amoButton) {
-                          amoButton.click();
-                        }
-                      }
-                    `
-                  }}
-                />
+                <div id="amocrm_btn"></div>
               </div>
-
-              <div id="amocrm_btn"></div>
             </motion.div>
           </div>
         </section>

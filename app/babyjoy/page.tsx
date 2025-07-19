@@ -33,7 +33,7 @@ import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import Script from "next/script"
+import { useAmoForms } from "@/hooks/use-amo-forms"
 
 
 const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -43,6 +43,13 @@ const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
 )
 
 export default function BabyjoyPage() {
+  // Инициализируем AmoCRM
+  useAmoForms({
+    id: "1572674",
+    hash: "ca9417663fe415ec439626c3b90bb6ff",
+    scriptUrl: "https://forms.amocrm.ru/forms/assets/js/amoforms.js?1752886975"
+  })
+
   const [timeLeft, setTimeLeft] = useState({ days: 12, hours: 14, minutes: 32, seconds: 45 })
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0)
   const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0)
@@ -365,38 +372,6 @@ export default function BabyjoyPage() {
                   Заказать со скидкой
                 </Button>
                 <div id="amocrm_btn"></div>
-                <Script
-                  id="amoforms_script_1572674"
-                  src="https://forms.amocrm.ru/forms/assets/js/amoforms.js?1752886975"
-                  async
-                  strategy="afterInteractive"
-                />
-                <Script
-                  id="amoforms_script"
-                  strategy="afterInteractive"
-                  dangerouslySetInnerHTML={{
-                    __html: `!function(a,m,o,c,r,m){a[o+c]=a[o+c]||{setMeta:function(p){this.params=(this.params||[]).concat([p])}},a[o+r]=a[o+r]||function(f){a[o+r].f=(a[o+r].f||[]).concat([f])},a[o+r]({id:"1572674",hash:"ca9417663fe415ec439626c3b90bb6ff",locale:"ru"}),a[o+m]=a[o+m]||function(f,k){a[o+m].f=(a[o+m].f||[]).concat([[f,k]])}}(window,0,"amo_forms_","params","load","loaded");`
-                  }}
-                />
-                <Script
-                  id="move_button"
-                  strategy="afterInteractive"
-                  dangerouslySetInnerHTML={{
-                    __html: `
-                      function moveButton() {
-                        const btn = document.getElementById('amoforms_action_btn');
-                        const target = document.getElementById('amocrm_btn');
-                        if (btn && target) {
-                          target.appendChild(btn);
-                          btn.style.display = 'none';
-                        } else {
-                          setTimeout(moveButton, 500);
-                        }
-                      }
-                      setTimeout(moveButton, 1000);
-                    `
-                  }}
-                />
               </div>
             </motion.div>
           </div>
