@@ -29,7 +29,7 @@ export function Footer() {
             <p className="text-gray-400">
               Создаём уют и комфорт для вашего дома с помощью качественных растений и мебели.
             </p>
-            <div className="flex gap-4 mt-6">
+            {/* <div className="flex gap-4 mt-6">
               <a
                 href="https://www.instagram.com/ecopalma.uz/?igsh=MWxvMnd4ZnoyeTFjaA%3D%3D"
                 target="_blank"
@@ -46,7 +46,7 @@ export function Footer() {
               >
                 <TelegramIcon className="w-6 h-6" />
               </a>
-            </div>
+            </div> */}
           </div>
           <div>
             <h4 className="font-bold text-lg mb-4">Навигация</h4>
@@ -73,7 +73,7 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          <div>
+          {/* <div>
             <h4 className="font-bold text-lg mb-4">Информация</h4>
             <ul className="space-y-2">
               <li>
@@ -97,7 +97,7 @@ export function Footer() {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
           <div>
             <h4 className="font-bold text-lg mb-4">Контакты</h4>
             <ul className="space-y-3 text-gray-400">
@@ -107,11 +107,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-green-500" />
-                <span>+998 95 082 44 46</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-green-500" />
-                <span>info@palkarme.uz</span>
+                <span>+998 77-300-78-90</span>
               </li>
             </ul>
           </div>

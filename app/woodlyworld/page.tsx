@@ -511,8 +511,8 @@ export default function WoodlyworldPage() {
                 className="grid grid-cols-2 gap-4"
               >
                 <Image
-                  src="/team-1.png"
-                  alt="Клиент с фото-картой мира"
+                  src="/our_team.png"
+                  alt="Наша команда"
                   width={300}
                   height={400}
                   className="rounded-2xl shadow-lg w-full object-cover"

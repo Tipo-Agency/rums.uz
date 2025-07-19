@@ -403,7 +403,7 @@ export default function BabyjoyPage() {
         </section>
 
         {/* Features Section */}
-        <section className="py-24 bg-white">
+        <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature, i) => (
@@ -427,7 +427,7 @@ export default function BabyjoyPage() {
         </section>
 
         {/* Our Team Section */}
-        <section className="py-24 bg-gray-50">
+        {/* <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <motion.div
@@ -485,7 +485,7 @@ export default function BabyjoyPage() {
               </motion.div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Unique Features */}
         <section className="py-24 bg-white">

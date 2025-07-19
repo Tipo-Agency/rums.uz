@@ -32,6 +32,7 @@ import { PalmDetailModal } from "@/components/palm-detail-modal"
 import { MapInquiryModal } from "@/components/map-inquiry-modal"
 import { FurnitureCard } from "@/components/furniture-card"
 import { FurnitureInquiryModal } from "@/components/furniture-inquiry-modal"
+import Script from "next/script"
 
 
 interface MapData {
@@ -327,7 +328,7 @@ export default function PalkarMePage() {
                 ))}
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="tel:+998950824446">
+                <a href="tel:+998773007890">
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
@@ -405,11 +406,49 @@ export default function PalkarMePage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   size="lg"
-                  className="bg-orange-500 hover:bg-orange-600"
+                  className="bg-orange-600 hover:bg-orange-700 text-white"
+                  onClick={() => {
+                    const amoButton = document.getElementById('amoforms_action_btn');
+                    if (amoButton) {
+                      amoButton.click();
+                    }
+                  }}
                 >
-                  <Send className="w-4 h-4 mr-2" />
                   Оставить заявку
                 </Button>
+                <div id="amocrm_btn"></div>
+                <Script
+                  id="amoforms_script_1572666"
+                  src="https://forms.amocrm.ru/forms/assets/js/amoforms.js?1752885451"
+                  async
+                  strategy="afterInteractive"
+                />
+                <Script
+                  id="amoforms_script"
+                  strategy="afterInteractive"
+                  dangerouslySetInnerHTML={{
+                    __html: `!function(a,m,o,c,r,m){a[o+c]=a[o+c]||{setMeta:function(p){this.params=(this.params||[]).concat([p])}},a[o+r]=a[o+r]||function(f){a[o+r].f=(a[o+r].f||[]).concat([f])},a[o+r]({id:"1572666",hash:"7e3787568500d57ca5f700f4498c35b3",locale:"ru"}),a[o+m]=a[o+m]||function(f,k){a[o+m].f=(a[o+m].f||[]).concat([[f,k]])}}(window,0,"amo_forms_","params","load","loaded");`
+                  }}
+                />
+                <Script
+                  id="move_button"
+                  strategy="afterInteractive"
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                      function moveButton() {
+                        const btn = document.getElementById('amoforms_action_btn');
+                        const target = document.getElementById('amocrm_btn');
+                        if (btn && target) {
+                          target.appendChild(btn);
+                          btn.style.display = 'none';
+                        } else {
+                          setTimeout(moveButton, 500);
+                        }
+                      }
+                      setTimeout(moveButton, 1000);
+                    `
+                  }}
+                />
                 <Button
                   asChild
                   size="lg"

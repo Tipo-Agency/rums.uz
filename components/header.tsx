@@ -4,6 +4,11 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Phone, Instagram, ChevronDown, Menu, X } from "lucide-react"
+import Image from "next/image"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+import { Facebook, Youtube } from "lucide-react"
 
 const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 24 24" fill="currentColor">
@@ -15,6 +20,7 @@ export function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isProductsOpen, setProductsOpen] = useState(false)
   const [hoveredSocial, setHoveredSocial] = useState<"instagram" | "telegram" | null>(null)
+  const [expandedSocial, setExpandedSocial] = useState<"instagram" | "telegram" | null>(null)
   const pathname = usePathname()
 
   const productsRef = useRef<HTMLDivElement>(null)
@@ -23,10 +29,16 @@ export function Header() {
 
   // Dynamic phone numbers based on current page
   const getPhoneNumber = () => {
-    if (pathname === "/ecopalma") return "+998 99 810 48 80"
-    if (pathname === "/woodlyworld") return "+998 95 086 44 46"
-    if (pathname === "/babyjoy") return "+998 95 822 77 15"
-    return "+998 95 082 44 46" // Default PalkarMe number
+    if (pathname === "/ecopalma") return "+998 77-300-78-90"
+    if (pathname === "/woodlyworld") return "+998 77-300-78-90"
+    if (pathname === "/babyjoy") return "+998 77-300-78-90"
+    return "+998 77-300-78-90" // Default PalkarMe number
+  }
+
+  const getLogo = () => {
+    if (pathname === "/ecopalma") return <Image src="logo/ecopalma.png" alt="Ecopalma" width={90} height={90} />
+    if (pathname === "/woodlyworld") return <Image src="logo/woodlyworld.png" alt="Woodlyworld" width={90} height={90} />
+    return <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-orange-500 rounded-xl flex items-center justify-center text-white font-bold text-xl">P</div>
   }
 
   const socialBrands = {
@@ -97,9 +109,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4">
         <nav className="flex items-center justify-between h-[70px]">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-orange-500 rounded-xl flex items-center justify-center text-white font-bold text-xl">
-              P
-            </div>
+            {getLogo()}
             <div className="hidden sm:flex flex-col">
               <div className="text-2xl font-bold text-gray-900 leading-none">PalKarMe</div>
               <div className="text-[11px] text-gray-500 mt-0.5">Пальмы • Карты • Мебель</div>
@@ -124,9 +134,7 @@ export function Header() {
                     className="flex items-center gap-3 px-4 py-3 hover:translate-x-2 transition-all duration-300"
                     onClick={() => setProductsOpen(false)}
                   >
-                    <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                      <span className="text-green-600 text-sm font-bold">🌴</span>
-                    </div>
+                    <Image src="logo/ecopalma.png" alt="Ecopalma" width={64} height={64} />
                     <div>
                       <div className="font-semibold text-gray-900">Пальмы</div>
                       <div className="text-xs text-gray-500">Искусственные пальмы Ecopalma</div>
@@ -137,9 +145,7 @@ export function Header() {
                     className="flex items-center gap-3 px-4 py-3 hover:translate-x-2 transition-all duration-300"
                     onClick={() => setProductsOpen(false)}
                   >
-                    <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-                      <span className="text-orange-600 text-sm font-bold">🗺️</span>
-                    </div>
+                    <Image src="logo/woodlyworld.png" alt="Woodlyworld" width={64} height={64} />
                     <div>
                       <div className="font-semibold text-gray-900">Карты</div>
                       <div className="text-xs text-gray-500">Деревянные карты Woodlyworld</div>
@@ -150,7 +156,7 @@ export function Header() {
                     className="flex items-center gap-3 px-4 py-3 hover:translate-x-2 transition-all duration-300"
                     onClick={() => setProductsOpen(false)}
                   >
-                    <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <div className="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center">
                       <span className="text-purple-600 text-sm font-bold">👶</span>
                     </div>
                     <div>
@@ -283,9 +289,7 @@ export function Header() {
                         className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                          <span className="text-green-600 text-sm font-bold">🌴</span>
-                        </div>
+                        <Image src="logo/ecopalma.png" alt="Ecopalma" width={64} height={64} />
                         <div>
                           <div className="font-semibold text-gray-900">Пальмы</div>
                           <div className="text-xs text-gray-500">Искусственные пальмы Ecopalma</div>
@@ -296,9 +300,7 @@ export function Header() {
                         className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-                          <span className="text-orange-600 text-sm font-bold">🗺️</span>
-                        </div>
+                        <Image src="logo/woodlyworld.png" alt="Woodlyworld" width={64} height={64} />
                         <div>
                           <div className="font-semibold text-gray-900">Карты</div>
                           <div className="text-xs text-gray-500">Деревянные карты Woodlyworld</div>
@@ -309,7 +311,7 @@ export function Header() {
                         className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                        <div className="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center">
                           <span className="text-purple-600 text-sm font-bold">👶</span>
                         </div>
                         <div>
@@ -324,7 +326,7 @@ export function Header() {
               <div className="px-4 py-3 border-t border-gray-100">
                 <a
                   href={`tel:${getPhoneNumber().replace(/\s/g, "")}`}
-                  className="flex items-center gap-2 text-gray-700 font-medium"
+                  className="flex items-center gap-2 text-gray-700 font-medium mt-4 ml-4"
                 >
                   <Phone className="w-4 h-4" /> {getPhoneNumber()}
                 </a>
@@ -332,23 +334,74 @@ export function Header() {
 
               {/* Social Links */}
               <div className="px-4 py-3 border-t border-gray-100">
-                <div className="flex gap-4">
-                  <a
-                    href={socialBrands.instagram[0].href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 flex items-center justify-center text-white"
-                  >
-                    <Instagram className="w-5 h-5" />
-                  </a>
-                  <a
-                    href={socialBrands.telegram[0].href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white"
-                  >
-                    <TelegramIcon className="w-5 h-5" />
-                  </a>
+                <div className="space-y-2">
+                  {/* Instagram */}
+                  <div>
+                    <button
+                      onClick={() => setExpandedSocial(expandedSocial === "instagram" ? null : "instagram")}
+                      className="flex items-center justify-between w-full px-3 py-2 hover:bg-gray-50 rounded-lg transition-colors"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 flex items-center justify-center">
+                          <Instagram className="w-4 h-4 text-white" />
+                        </div>
+                        <span className="text-gray-700 font-medium">Instagram</span>
+                      </div>
+                      <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${expandedSocial === "instagram" ? "rotate-180" : ""}`} />
+                    </button>
+                    {expandedSocial === "instagram" && (
+                      <div className="mt-2 ml-11 space-y-2">
+                        {socialBrands.instagram.map((brand) => (
+                          <a
+                            key={brand.name}
+                            href={brand.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-3 px-3 py-2 hover:bg-gray-50 rounded-lg transition-colors"
+                          >
+                            <div className={`w-6 h-6 rounded-full bg-gradient-to-r ${brand.color} flex items-center justify-center`}>
+                              <Instagram className="w-3 h-3 text-white" />
+                            </div>
+                            <span className="text-gray-600 text-sm">{brand.name}</span>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Telegram */}
+                  <div>
+                    <button
+                      onClick={() => setExpandedSocial(expandedSocial === "telegram" ? null : "telegram")}
+                      className="flex items-center justify-between w-full px-3 py-2 hover:bg-gray-50 rounded-lg transition-colors"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
+                          <TelegramIcon className="w-4 h-4 text-white" />
+                        </div>
+                        <span className="text-gray-700 font-medium">Telegram</span>
+                      </div>
+                      <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${expandedSocial === "telegram" ? "rotate-180" : ""}`} />
+                    </button>
+                    {expandedSocial === "telegram" && (
+                      <div className="mt-2 ml-11 space-y-2">
+                        {socialBrands.telegram.map((brand) => (
+                          <a
+                            key={brand.name}
+                            href={brand.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-3 px-3 py-2 hover:bg-gray-50 rounded-lg transition-colors"
+                          >
+                            <div className={`w-6 h-6 rounded-full bg-gradient-to-r ${brand.color} flex items-center justify-center`}>
+                              <TelegramIcon className="w-3 h-3 text-white" />
+                            </div>
+                            <span className="text-gray-600 text-sm">{brand.name}</span>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
 
