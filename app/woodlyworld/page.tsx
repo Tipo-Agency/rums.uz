@@ -90,24 +90,55 @@ export default function WoodlyworldPage() {
     "3D Карты": {
       items: [
         {
-          name: "Карта мира 3D Классик",
-          image: "/map-3d-1.jpeg",
-          price: "от 1,536,000",
-          oldPrice: "2,559,000",
+          name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА NATURAL",
+          image: "woodyworld/3d/1.jpg",
+          price: "от 1,181,000",
+          oldPrice: "1,969,000",
           description: "Объемная деревянная карта мира с естественной текстурой дерева.",
         },
         {
-          name: "Карта мира 3D Премиум",
-          image: "/map-3d-2.jpeg",
-          price: "от 1,536,000",
-          oldPrice: "2,559,000",
+          name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА BLACK WITCH",
+          image: "woodyworld/3d/8.jpg",
+          price: "от 1,181,000",
+          oldPrice: "1,969,000",
           description: "Премиальная версия с детализированными границами стран.",
         },
         {
-          name: "Карта мира 3D Мини",
-          image: "/map-3d-3.jpeg",
-          price: "от 1,536,000",
-          oldPrice: "2,559,000",
+          name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА MACCHIATO",
+          image: "woodyworld/3d/9.jpg",
+          price: "от 1,181,000",
+          oldPrice: "1,969,000",
+          description: "Компактная версия для рабочего стола или небольших помещений.",
+        },
+        {
+          name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА ELEGANT",
+          image: "woodyworld/3d/10.jpg",
+          price: "от 1,181,000",
+          oldPrice: "1,969,000",
+          description: "Компактная версия для рабочего стола или небольших помещений.",
+        },        {
+          name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА MARSHMALLOW",
+          image: "woodyworld/3d/11.jpg",
+          price: "от 1,181,000",
+          oldPrice: "1,969,000",
+          description: "Компактная версия для рабочего стола или небольших помещений.",
+        },        {
+          name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА MIAMI",
+          image: "woodyworld/3d/12.jpg",
+          price: "от 1,181,000",
+          oldPrice: "1,969,000",
+          description: "Компактная версия для рабочего стола или небольших помещений.",
+        },        {
+          name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА EXOTIC",
+          image: "woodyworld/3d/13.jpg",
+          price: "от 1,181,000",
+          oldPrice: "1,969,000",
+          description: "Компактная версия для рабочего стола или небольших помещений.",
+        },        {
+          name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА CARAMEL",
+          image: "woodyworld/3d/14.jpg",
+          price: "от 1,181,000",
+          oldPrice: "1,969,000",
           description: "Компактная версия для рабочего стола или небольших помещений.",
         },
       ],
@@ -116,14 +147,47 @@ export default function WoodlyworldPage() {
       items: [
         {
           name: "LED Карта Северное сияние",
-          image: "/map-led-1.jpeg",
+          image: "woodyworld/map-led-1.jpeg",
           price: "от 1,536,000",
           oldPrice: "2,559,000",
           description: "Карта с LED-подсветкой в стиле северного сияния.",
         },
         {
           name: "LED Карта Золотой час",
-          image: "/map-led-2.jpeg",
+          image: "woodyworld/map-led-2.jpeg",
+          price: "от 1,536,000",
+          oldPrice: "2,559,000",
+          description: "Теплая золотистая подсветка создает уютную атмосферу.",
+        },
+        {
+          name: "3D LED ДЕРЕВЯННАЯ КАРТА МИРА BLUE",
+          image: "woodyworld/led/1.jpg",
+          price: "от 1,536,000",
+          oldPrice: "2,559,000",
+          description: "Теплая золотистая подсветка создает уютную атмосферу.",
+        },
+        {
+          name: "3D LED ДЕРЕВЯННАЯ КАРТА МИРА GREEN",
+          image: "woodyworld/led/3.jpg",
+          price: "от 1,536,000",
+          oldPrice: "2,559,000",
+          description: "Теплая золотистая подсветка создает уютную атмосферу.",
+        },
+        {
+          name: "3D LED ДЕРЕВЯННАЯ КАРТА МИРА UNIQUE",
+          image: "woodyworld/led/4.jpg",
+          price: "от 1,536,000",
+          oldPrice: "2,559,000",
+          description: "Теплая золотистая подсветка создает уютную атмосферу.",
+        },        {
+          name: "3D LED ДЕРЕВЯННАЯ КАРТА МИРА NATURAL",
+          image: "woodyworld/led/5.jpg",
+          price: "от 1,536,000",
+          oldPrice: "2,559,000",
+          description: "Теплая золотистая подсветка создает уютную атмосферу.",
+        },        {
+          name: "3D LED ДЕРЕВЯННАЯ КАРТА МИРА BLACK WITCH",
+          image: "woodyworld/led/6.jpg",
           price: "от 1,536,000",
           oldPrice: "2,559,000",
           description: "Теплая золотистая подсветка создает уютную атмосферу.",
@@ -134,46 +198,58 @@ export default function WoodlyworldPage() {
       items: [
         {
           name: "Фото-карта Путешественника",
-          image: "/map-photo-1.png",
+          image: "woodyworld/photo/1.jpg",
           price: "от 1,536,000",
           oldPrice: "2,559,000",
           description: "Карта с держателями для фотографий из ваших путешествий.",
-        },
-        {
-          name: "Фото-карта Семейная",
-          image: "/map-photo-2.png",
-          price: "от 1,536,000",
-          oldPrice: "2,559,000",
-          description: "Семейная карта воспоминаний с местами особых моментов.",
         },
       ],
     },
     "2D Карты": {
       items: [
         {
-          name: "2D Карта Классик",
-          image: "/map-2d-1.jpeg",
-          price: "от 1,181,000",
-          oldPrice: "1,969,000",
-          description: "Классические плоские карты, идеально вписывающиеся в любой современный интерьер.",
+          name: "2D EKO ДЕРЕВЯННАЯ КАРТА МИРА LIGHT",
+          image: "woodyworld/2d/1.jpg",
+          price: "от 866,250",
+          oldPrice: "1,443,750",
+          description: "Если вы чувствуете, что вашему дому или рабочему месту не хватает центральной части - вот оно. 3D Wooden World Map LIGHT изготовлена ​​из качественной березовой фанеры с безупречной гравировкой. Это прекрасный предмет декора стен для любого интерьера: минималистичный, многозначительный и действительно вдохновляющий! Прекрасный подарок как для путешественников, так и для тех, кто любит уединяться.",
         },
+        {
+          name: "2D EKO ДЕРЕВЯННАЯ КАРТА МИРА BLACK",
+          image: "woodyworld/2d/2.jpg",
+          price: "от 866,250",
+          oldPrice: "1,443,750",
+          description: "Если вы чувствуете, что вашему дому или рабочему месту не хватает центральной части - вот оно. 3D Wooden World Map BLACK изготовлена ​​из качественной березовой фанеры с безупречной гравировкой. Это прекрасный предмет декора стен для любого интерьера: минималистичный, многозначительный и действительно вдохновляющий! Прекрасный подарок как для путешественников, так и для тех, кто любит уединяться.",
+        }
       ],
     },
     Принадлежности: {
       items: [
         {
-          name: "Набор флажков стран",
-          image: "/map-flags.jpeg",
-          price: "от 450,000",
-          oldPrice: "750,000",
-          description: "Набор из 100 флажков для отметки посещенных стран.",
+          name: "Premium Флажки",
+          image: "woodyworld/prin/country_tag.jpg",
+          price: "от 546,000",
+          oldPrice: "910,000",
+          description: "",
         },
         {
-          name: "Подарочная упаковка",
-          image: "/map-package.png",
-          price: "от 250,000",
-          oldPrice: "420,000",
-          description: "Элегантная подарочная упаковка для карт.",
+          name: "Standard Флажки",
+          image: "woodyworld/prin/1.jpg",
+          price: "от 312,000",
+          oldPrice: "520,000",
+          description: "",
+        },        {
+          name: "Деревянные часы",
+          image: "woodyworld/prin/2.jpg",
+          price: "от 248,000",
+          oldPrice: "413,000",
+          description: "",
+        },        {
+          name: "Нажимные Флажки Всех Стран",
+          image: "woodyworld/prin/3.jpg",
+          price: "от 268,000",
+          oldPrice: "440,000",
+          description: "",
         },
       ],
     },
@@ -260,22 +336,22 @@ export default function WoodlyworldPage() {
     {
       name: "Михаил Л.",
       text: "Отлично смотрится на офисной стене, идеально вписывающейся в пространство. Качественно и хорошо упаковано!",
-      image: "/map-3d-1.jpeg",
+      image: "woodyworld/map-3d-1.jpeg",
     },
     {
       name: "Шезрод А.",
       text: "Качественная работа, сотрудники вежливые и понимают с двух слов. Сделали за 3 дня и доставили бесплатно.",
-      image: "/map-led-1.jpeg",
+      image: "woodyworld/map-led-1.jpeg",
     },
     {
       name: "Мафтуна",
       text: "Это такой красивый и действительно качественный продукт! Очень рекомендую ваш товар!!",
-      image: "/map-photo-1.png",
+      image: "woodyworld/map-photo-1.png",
     },
     {
       name: "Laylo",
       text: "Все супер! Карта выглядит потрясающе, LED подсветка создает невероятную атмосферу в комнате.",
-      image: "/map-led-2.jpeg",
+      image: "woodyworld/map-led-2.jpeg",
     },
   ]
 
@@ -331,14 +407,12 @@ export default function WoodlyworldPage() {
   ]
 
   const galleryImages = [
-    "/map-3d-1.jpeg",
-    "/map-led-1.jpeg",
-    "/map-photo-1.png",
-    "/map-3d-2.jpeg",
-    "/map-led-2.jpeg",
-    "/map-photo-2.png",
-    "/map-flags.jpeg",
-    "/map-package.png",
+    "woodyworld/map-3d-1.jpeg",
+    "woodyworld/map-led-1.jpeg",
+    "woodyworld/map-photo-1.png",
+    "woodyworld/map-3d-2.jpeg",
+    "woodyworld/map-led-2.jpeg",
+    "woodyworld/map-photo-2.png",
   ]
 
   const nextTestimonial = () => {
@@ -366,7 +440,7 @@ export default function WoodlyworldPage() {
         <section className="relative h-[calc(100vh-70px)] flex flex-col justify-center items-center text-white overflow-hidden">
           <div className="absolute inset-0">
             <Image
-              src="/miami-2.jpg"
+              src="woodyworld/miami-2.jpg"
               alt="Beautiful wooden world maps with LED lighting"
               fill
               className="object-cover"
@@ -484,28 +558,28 @@ export default function WoodlyworldPage() {
                 className="grid grid-cols-2 gap-4"
               >
                 <Image
-                  src="/our_team.png"
+                  src="woodyworld/our_team.png"
                   alt="Наша команда"
                   width={300}
                   height={400}
                   className="rounded-2xl shadow-lg w-full object-cover"
                 />
                 <Image
-                  src="/team-2.jpg"
+                  src="woodyworld/team-2.jpg"
                   alt="Команда Woodlyworld с упаковкой"
                   width={300}
                   height={400}
                   className="rounded-2xl shadow-lg w-full object-cover"
                 />
                 <Image
-                  src="/team-3.png"
+                  src="woodyworld/team-3.png"
                   alt="Сотрудник с заказом"
                   width={300}
                   height={400}
                   className="rounded-2xl shadow-lg w-full object-cover"
                 />
                 <Image
-                  src="/team-4.png"
+                  src="woodyworld/team-4.png"
                   alt="Процесс размещения фотографий на карте"
                   width={300}
                   height={400}
