@@ -43,6 +43,7 @@ interface MapItem {
   price: string;
   oldPrice: string;
   description: string;
+  gallery?: string[];
 }
 
 interface MapCategory {
@@ -71,6 +72,9 @@ export default function WoodlyworldPage() {
   const [activeCategory, setActiveCategory] = useState("3D Карты")
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0)
   const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0)
+  const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false)
+  const [currentProductGallery, setCurrentProductGallery] = useState<string[]>([])
+  const [currentGalleryImageIndex, setCurrentGalleryImageIndex] = useState(0)
 
   // Timer countdown to end of July
   useEffect(() => {
@@ -95,6 +99,13 @@ export default function WoodlyworldPage() {
           price: "от 1,181,000",
           oldPrice: "1,969,000",
           description: "Объемная деревянная карта мира с естественной текстурой дерева.",
+          gallery: [
+            "woodyworld/3d/1.jpg",
+            "woodyworld/3d/2.jpg",
+            "woodyworld/3d/3.jpg",
+            "woodyworld/3d/4.jpg",
+            "woodyworld/3d/5.jpg"
+          ]
         },
         {
           name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА BLACK WITCH",
@@ -102,6 +113,13 @@ export default function WoodlyworldPage() {
           price: "от 1,181,000",
           oldPrice: "1,969,000",
           description: "Премиальная версия с детализированными границами стран.",
+          gallery: [
+            "woodyworld/3d/8.jpg",
+            "woodyworld/3d/9.jpg",
+            "woodyworld/3d/10.jpg",
+            "woodyworld/3d/11.jpg",
+            "woodyworld/3d/12.jpg"
+          ]
         },
         {
           name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА MACCHIATO",
@@ -109,6 +127,13 @@ export default function WoodlyworldPage() {
           price: "от 1,181,000",
           oldPrice: "1,969,000",
           description: "Компактная версия для рабочего стола или небольших помещений.",
+          gallery: [
+            "woodyworld/3d/9.jpg",
+            "woodyworld/3d/10.jpg",
+            "woodyworld/3d/11.jpg",
+            "woodyworld/3d/12.jpg",
+            "woodyworld/3d/13.jpg"
+          ]
         },
         {
           name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА ELEGANT",
@@ -116,30 +141,65 @@ export default function WoodlyworldPage() {
           price: "от 1,181,000",
           oldPrice: "1,969,000",
           description: "Компактная версия для рабочего стола или небольших помещений.",
+          gallery: [
+            "woodyworld/3d/10.jpg",
+            "woodyworld/3d/11.jpg",
+            "woodyworld/3d/12.jpg",
+            "woodyworld/3d/13.jpg",
+            "woodyworld/3d/14.jpg"
+          ]
         },        {
           name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА MARSHMALLOW",
           image: "woodyworld/3d/11.jpg",
           price: "от 1,181,000",
           oldPrice: "1,969,000",
           description: "Компактная версия для рабочего стола или небольших помещений.",
+          gallery: [
+            "woodyworld/3d/11.jpg",
+            "woodyworld/3d/12.jpg",
+            "woodyworld/3d/13.jpg",
+            "woodyworld/3d/14.jpg",
+            "woodyworld/3d/1.jpg"
+          ]
         },        {
           name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА MIAMI",
           image: "woodyworld/3d/12.jpg",
           price: "от 1,181,000",
           oldPrice: "1,969,000",
           description: "Компактная версия для рабочего стола или небольших помещений.",
+          gallery: [
+            "woodyworld/3d/12.jpg",
+            "woodyworld/3d/13.jpg",
+            "woodyworld/3d/14.jpg",
+            "woodyworld/3d/1.jpg",
+            "woodyworld/3d/2.jpg"
+          ]
         },        {
           name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА EXOTIC",
           image: "woodyworld/3d/13.jpg",
           price: "от 1,181,000",
           oldPrice: "1,969,000",
           description: "Компактная версия для рабочего стола или небольших помещений.",
+          gallery: [
+            "woodyworld/3d/13.jpg",
+            "woodyworld/3d/14.jpg",
+            "woodyworld/3d/1.jpg",
+            "woodyworld/3d/2.jpg",
+            "woodyworld/3d/3.jpg"
+          ]
         },        {
           name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА CARAMEL",
           image: "woodyworld/3d/14.jpg",
           price: "от 1,181,000",
           oldPrice: "1,969,000",
           description: "Компактная версия для рабочего стола или небольших помещений.",
+          gallery: [
+            "woodyworld/3d/14.jpg",
+            "woodyworld/3d/1.jpg",
+            "woodyworld/3d/2.jpg",
+            "woodyworld/3d/3.jpg",
+            "woodyworld/3d/4.jpg"
+          ]
         },
       ],
     },
@@ -151,6 +211,13 @@ export default function WoodlyworldPage() {
           price: "от 1,536,000",
           oldPrice: "2,559,000",
           description: "Карта с LED-подсветкой в стиле северного сияния.",
+          gallery: [
+            "woodyworld/map-led-1.jpeg",
+            "woodyworld/led/1.jpg",
+            "woodyworld/led/2.jpg",
+            "woodyworld/led/3.jpg",
+            "woodyworld/led/4.jpg"
+          ]
         },
         {
           name: "LED Карта Золотой час",
@@ -158,6 +225,13 @@ export default function WoodlyworldPage() {
           price: "от 1,536,000",
           oldPrice: "2,559,000",
           description: "Теплая золотистая подсветка создает уютную атмосферу.",
+          gallery: [
+            "woodyworld/map-led-2.jpeg",
+            "woodyworld/led/5.jpg",
+            "woodyworld/led/6.jpg",
+            "woodyworld/led/1.jpg",
+            "woodyworld/led/2.jpg"
+          ]
         },
         {
           name: "3D LED ДЕРЕВЯННАЯ КАРТА МИРА BLUE",
@@ -165,6 +239,13 @@ export default function WoodlyworldPage() {
           price: "от 1,536,000",
           oldPrice: "2,559,000",
           description: "Теплая золотистая подсветка создает уютную атмосферу.",
+          gallery: [
+            "woodyworld/led/1.jpg",
+            "woodyworld/led/2.jpg",
+            "woodyworld/led/3.jpg",
+            "woodyworld/led/4.jpg",
+            "woodyworld/led/5.jpg"
+          ]
         },
         {
           name: "3D LED ДЕРЕВЯННАЯ КАРТА МИРА GREEN",
@@ -172,6 +253,13 @@ export default function WoodlyworldPage() {
           price: "от 1,536,000",
           oldPrice: "2,559,000",
           description: "Теплая золотистая подсветка создает уютную атмосферу.",
+          gallery: [
+            "woodyworld/led/3.jpg",
+            "woodyworld/led/4.jpg",
+            "woodyworld/led/5.jpg",
+            "woodyworld/led/6.jpg",
+            "woodyworld/led/1.jpg"
+          ]
         },
         {
           name: "3D LED ДЕРЕВЯННАЯ КАРТА МИРА UNIQUE",
@@ -179,18 +267,39 @@ export default function WoodlyworldPage() {
           price: "от 1,536,000",
           oldPrice: "2,559,000",
           description: "Теплая золотистая подсветка создает уютную атмосферу.",
+          gallery: [
+            "woodyworld/led/4.jpg",
+            "woodyworld/led/5.jpg",
+            "woodyworld/led/6.jpg",
+            "woodyworld/led/1.jpg",
+            "woodyworld/led/2.jpg"
+          ]
         },        {
           name: "3D LED ДЕРЕВЯННАЯ КАРТА МИРА NATURAL",
           image: "woodyworld/led/5.jpg",
           price: "от 1,536,000",
           oldPrice: "2,559,000",
           description: "Теплая золотистая подсветка создает уютную атмосферу.",
+          gallery: [
+            "woodyworld/led/5.jpg",
+            "woodyworld/led/6.jpg",
+            "woodyworld/led/1.jpg",
+            "woodyworld/led/2.jpg",
+            "woodyworld/led/3.jpg"
+          ]
         },        {
           name: "3D LED ДЕРЕВЯННАЯ КАРТА МИРА BLACK WITCH",
           image: "woodyworld/led/6.jpg",
           price: "от 1,536,000",
           oldPrice: "2,559,000",
           description: "Теплая золотистая подсветка создает уютную атмосферу.",
+          gallery: [
+            "woodyworld/led/6.jpg",
+            "woodyworld/led/1.jpg",
+            "woodyworld/led/2.jpg",
+            "woodyworld/led/3.jpg",
+            "woodyworld/led/4.jpg"
+          ]
         },
       ],
     },
@@ -202,6 +311,13 @@ export default function WoodlyworldPage() {
           price: "от 1,536,000",
           oldPrice: "2,559,000",
           description: "Карта с держателями для фотографий из ваших путешествий.",
+          gallery: [
+            "woodyworld/photo/1.jpg",
+            "woodyworld/photo/2.jpg",
+            "woodyworld/photo/4.jpg",
+            "woodyworld/photo/5.jpg",
+            "woodyworld/photo/6.jpg"
+          ]
         },
       ],
     },
@@ -213,6 +329,13 @@ export default function WoodlyworldPage() {
           price: "от 866,250",
           oldPrice: "1,443,750",
           description: "Если вы чувствуете, что вашему дому или рабочему месту не хватает центральной части - вот оно. 3D Wooden World Map LIGHT изготовлена ​​из качественной березовой фанеры с безупречной гравировкой. Это прекрасный предмет декора стен для любого интерьера: минималистичный, многозначительный и действительно вдохновляющий! Прекрасный подарок как для путешественников, так и для тех, кто любит уединяться.",
+          gallery: [
+            "woodyworld/2d/1.jpg",
+            "woodyworld/2d/2.jpg",
+            "woodyworld/3d/1.jpg",
+            "woodyworld/3d/2.jpg",
+            "woodyworld/3d/3.jpg"
+          ]
         },
         {
           name: "2D EKO ДЕРЕВЯННАЯ КАРТА МИРА BLACK",
@@ -220,6 +343,13 @@ export default function WoodlyworldPage() {
           price: "от 866,250",
           oldPrice: "1,443,750",
           description: "Если вы чувствуете, что вашему дому или рабочему месту не хватает центральной части - вот оно. 3D Wooden World Map BLACK изготовлена ​​из качественной березовой фанеры с безупречной гравировкой. Это прекрасный предмет декора стен для любого интерьера: минималистичный, многозначительный и действительно вдохновляющий! Прекрасный подарок как для путешественников, так и для тех, кто любит уединяться.",
+          gallery: [
+            "woodyworld/2d/2.jpg",
+            "woodyworld/2d/1.jpg",
+            "woodyworld/3d/4.jpg",
+            "woodyworld/3d/5.jpg",
+            "woodyworld/3d/6.jpg"
+          ]
         }
       ],
     },
@@ -231,6 +361,13 @@ export default function WoodlyworldPage() {
           price: "от 546,000",
           oldPrice: "910,000",
           description: "",
+          gallery: [
+            "woodyworld/prin/country_tag.jpg",
+            "woodyworld/prin/country_tag2.jpg",
+            "woodyworld/prin/1.jpg",
+            "woodyworld/prin/2.jpg",
+            "woodyworld/prin/3.jpg"
+          ]
         },
         {
           name: "Standard Флажки",
@@ -238,18 +375,39 @@ export default function WoodlyworldPage() {
           price: "от 312,000",
           oldPrice: "520,000",
           description: "",
+          gallery: [
+            "woodyworld/prin/1.jpg",
+            "woodyworld/prin/2.jpg",
+            "woodyworld/prin/3.jpg",
+            "woodyworld/prin/country_tag.jpg",
+            "woodyworld/prin/country_tag2.jpg"
+          ]
         },        {
           name: "Деревянные часы",
           image: "woodyworld/prin/2.jpg",
           price: "от 248,000",
           oldPrice: "413,000",
           description: "",
+          gallery: [
+            "woodyworld/prin/2.jpg",
+            "woodyworld/prin/3.jpg",
+            "woodyworld/prin/country_tag.jpg",
+            "woodyworld/prin/country_tag2.jpg",
+            "woodyworld/prin/1.jpg"
+          ]
         },        {
           name: "Нажимные Флажки Всех Стран",
           image: "woodyworld/prin/3.jpg",
           price: "от 268,000",
           oldPrice: "440,000",
           description: "",
+          gallery: [
+            "woodyworld/prin/3.jpg",
+            "woodyworld/prin/country_tag.jpg",
+            "woodyworld/prin/country_tag2.jpg",
+            "woodyworld/prin/1.jpg",
+            "woodyworld/prin/2.jpg"
+          ]
         },
       ],
     },
@@ -430,6 +588,52 @@ export default function WoodlyworldPage() {
   const prevGallerySlide = () => {
     setCurrentGalleryIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length)
   }
+
+  const openGalleryModal = (gallery: string[], initialIndex: number = 0) => {
+    setCurrentProductGallery(gallery)
+    setCurrentGalleryImageIndex(initialIndex)
+    setIsGalleryModalOpen(true)
+  }
+
+  const closeGalleryModal = () => {
+    setIsGalleryModalOpen(false)
+    setCurrentProductGallery([])
+    setCurrentGalleryImageIndex(0)
+  }
+
+  const nextGalleryImage = () => {
+    setCurrentGalleryImageIndex((prev) => (prev + 1) % currentProductGallery.length)
+  }
+
+  const prevGalleryImage = () => {
+    setCurrentGalleryImageIndex((prev) => (prev - 1 + currentProductGallery.length) % currentProductGallery.length)
+  }
+
+  const selectGalleryImage = (index: number) => {
+    setCurrentGalleryImageIndex(index)
+  }
+
+  // Keyboard navigation for gallery
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!isGalleryModalOpen) return
+      
+      switch (event.key) {
+        case 'Escape':
+          closeGalleryModal()
+          break
+        case 'ArrowLeft':
+          prevGalleryImage()
+          break
+        case 'ArrowRight':
+          nextGalleryImage()
+          break
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [isGalleryModalOpen, currentProductGallery.length])
 
   return (
     <div className="bg-white text-gray-800">
@@ -658,13 +862,52 @@ export default function WoodlyworldPage() {
                       <Badge className="bg-red-500 text-white font-bold px-3 py-1 text-sm shadow-lg">-40%</Badge>
                     </div>
 
-                    <div className="relative h-72 overflow-hidden">
+                    {/* Gallery Indicator */}
+                    {item.gallery && item.gallery.length > 1 && (
+                      <div className="absolute top-4 right-4 z-10">
+                        <Badge className="bg-black/70 text-white font-bold px-3 py-1 text-sm shadow-lg backdrop-blur-md">
+                          {item.gallery.length} фото
+                        </Badge>
+                      </div>
+                    )}
+
+                    <div className="relative h-72 overflow-hidden cursor-pointer" onClick={() => item.gallery && openGalleryModal(item.gallery)}>
                       <Image
                         src={item.image || "/placeholder.svg"}
                         alt={item.name}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
                       />
+                      {/* Gallery Navigation Arrows */}
+                      {item.gallery && item.gallery.length > 1 && (
+                        <>
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
+                          <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <Button
+                              size="sm"
+                              variant="secondary"
+                              className="w-10 h-10 rounded-full bg-white/90 text-gray-800 hover:bg-white shadow-lg"
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                // Здесь можно добавить логику для переключения изображений в карточке
+                              }}
+                            >
+                              <ChevronLeft className="w-5 h-5" />
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="secondary"
+                              className="w-10 h-10 rounded-full bg-white/90 text-gray-800 hover:bg-white shadow-lg"
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                // Здесь можно добавить логику для переключения изображений в карточке
+                              }}
+                            >
+                              <ChevronRight className="w-5 h-5" />
+                            </Button>
+                          </div>
+                        </>
+                      )}
                     </div>
                     <CardContent className="p-6 flex flex-col flex-grow bg-white">
                       <h3 className="text-xl font-bold mb-2 text-gray-900">{item.name}</h3>
@@ -993,6 +1236,86 @@ export default function WoodlyworldPage() {
           </div>
         </section>
       </main>
+
+      {/* Gallery Modal */}
+      {isGalleryModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm">
+          <div className="relative w-full h-full flex flex-col">
+            {/* Close Button */}
+            <button
+              onClick={closeGalleryModal}
+              className="absolute top-4 right-4 z-10 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Main Image */}
+            <div className="flex-1 flex items-center justify-center p-4">
+              <div className="relative max-w-4xl max-h-full">
+                <Image
+                  src={currentProductGallery[currentGalleryImageIndex] || "/placeholder.svg"}
+                  alt={`Gallery image ${currentGalleryImageIndex + 1}`}
+                  width={800}
+                  height={600}
+                  className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                />
+                
+                {/* Navigation Arrows */}
+                {currentProductGallery.length > 1 && (
+                  <>
+                    <button
+                      onClick={prevGalleryImage}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+                    <button
+                      onClick={nextGalleryImage}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+
+            {/* Thumbnail Navigation */}
+            {currentProductGallery.length > 1 && (
+              <div className="h-24 bg-black/50 backdrop-blur-md flex items-center justify-center gap-2 p-4">
+                {currentProductGallery.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => selectGalleryImage(index)}
+                    className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                      index === currentGalleryImageIndex
+                        ? "border-orange-500 scale-110"
+                        : "border-white/30 hover:border-white/60"
+                    }`}
+                  >
+                    <Image
+                      src={image}
+                      alt={`Thumbnail ${index + 1}`}
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Image Counter */}
+            {currentProductGallery.length > 1 && (
+              <div className="absolute bottom-32 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium">
+                {currentGalleryImageIndex + 1} / {currentProductGallery.length}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
