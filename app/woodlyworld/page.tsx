@@ -613,6 +613,45 @@ export default function WoodlyworldPage() {
     setCurrentGalleryImageIndex(index)
   }
 
+  // Для превью в карточках
+  const [cardImageIndexes, setCardImageIndexes] = useState<number[]>(() => Object.values(mapCategories).flatMap(cat => cat.items.map(() => 0)))
+  
+  const getCardIndex = (catIdx: number, itemIdx: number) => {
+    // Получить индекс в общем массиве для flatMap
+    let idx = 0
+    let i = 0
+    for (const [catName, cat] of Object.entries(mapCategories)) {
+      if (i === catIdx) break
+      idx += cat.items.length
+      i++
+    }
+    return idx + itemIdx
+  }
+  
+  const handleCardPrev = (catIdx: number, itemIdx: number, gallery: string[] = []) => {
+    setCardImageIndexes(prev => {
+      const copy = [...prev]
+      const idx = getCardIndex(catIdx, itemIdx)
+      copy[idx] = (copy[idx] - 1 + gallery.length) % gallery.length
+      return copy
+    })
+  }
+  
+  const handleCardNext = (catIdx: number, itemIdx: number, gallery: string[] = []) => {
+    setCardImageIndexes(prev => {
+      const copy = [...prev]
+      const idx = getCardIndex(catIdx, itemIdx)
+      copy[idx] = (copy[idx] + 1) % gallery.length
+      return copy
+    })
+  }
+  
+  const handleCardOpenModal = (gallery: string[] = [], imgIdx: number = 0) => {
+    setCurrentProductGallery(gallery)
+    setCurrentGalleryImageIndex(imgIdx)
+    setIsGalleryModalOpen(true)
+  }
+
   // Keyboard navigation for gallery
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -849,7 +888,11 @@ export default function WoodlyworldPage() {
 
             {/* Products Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {mapCategories[activeCategory].items.map((item, i) => (
+              {mapCategories[activeCategory].items.map((item, i) => {
+                const catIdx = Object.keys(mapCategories).indexOf(activeCategory)
+                const idx = getCardIndex(catIdx, i)
+                const gallery = item.gallery && item.gallery.length > 0 ? item.gallery : [item.image]
+                return (
                 <motion.div
                   key={item.name}
                   initial={{ opacity: 0, y: 20 }}
@@ -871,37 +914,57 @@ export default function WoodlyworldPage() {
                       </div>
                     )}
 
-                    <div className="relative h-72 overflow-hidden cursor-pointer" onClick={() => item.gallery && openGalleryModal(item.gallery)}>
+                    <div className="relative h-72 overflow-hidden cursor-pointer select-none">
                       <Image
-                        src={item.image || "/placeholder.svg"}
+                        src={gallery[cardImageIndexes[idx]] || "/placeholder.svg"}
                         alt={item.name}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        onClick={() => handleCardOpenModal(gallery, cardImageIndexes[idx])}
                       />
+                      
+                      {/* Image Indicators */}
+                      {gallery.length > 1 && (
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 z-20">
+                          {gallery.map((_, dotIndex) => (
+                            <button
+                              key={dotIndex}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setCardImageIndexes(prev => {
+                                  const copy = [...prev];
+                                  copy[idx] = dotIndex;
+                                  return copy;
+                                });
+                              }}
+                              className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                                dotIndex === cardImageIndexes[idx]
+                                  ? "bg-orange-500 scale-125"
+                                  : "bg-white/60 hover:bg-white/80"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      )}
+                      
                       {/* Gallery Navigation Arrows */}
-                      {item.gallery && item.gallery.length > 1 && (
+                      {gallery.length > 1 && (
                         <>
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-                          <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 pointer-events-none" />
+                          <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                             <Button
                               size="sm"
                               variant="secondary"
-                              className="w-10 h-10 rounded-full bg-white/90 text-gray-800 hover:bg-white shadow-lg"
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                // Здесь можно добавить логику для переключения изображений в карточке
-                              }}
+                              className="w-10 h-10 rounded-full bg-white/90 text-gray-800 hover:bg-white shadow-lg pointer-events-auto"
+                              onClick={e => { e.stopPropagation(); handleCardPrev(catIdx, i, gallery); }}
                             >
                               <ChevronLeft className="w-5 h-5" />
                             </Button>
                             <Button
                               size="sm"
                               variant="secondary"
-                              className="w-10 h-10 rounded-full bg-white/90 text-gray-800 hover:bg-white shadow-lg"
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                // Здесь можно добавить логику для переключения изображений в карточке
-                              }}
+                              className="w-10 h-10 rounded-full bg-white/90 text-gray-800 hover:bg-white shadow-lg pointer-events-auto"
+                              onClick={e => { e.stopPropagation(); handleCardNext(catIdx, i, gallery); }}
                             >
                               <ChevronRight className="w-5 h-5" />
                             </Button>
@@ -939,7 +1002,8 @@ export default function WoodlyworldPage() {
                     </CardContent>
                   </Card>
                 </motion.div>
-              ))}
+                )
+              })}
             </div>
           </div>
         </section>

@@ -262,6 +262,31 @@ export default function EcopalmaPage() {
   const [currentProductGallery, setCurrentProductGallery] = useState<string[]>([])
   const [currentGalleryImageIndex, setCurrentGalleryImageIndex] = useState(0)
 
+  // Для превью в карточках
+  const [cardImageIndexes, setCardImageIndexes] = useState<number[]>(() => palms.map(() => 0))
+  
+  const handleCardPrev = (idx: number, images: string[]) => {
+    setCardImageIndexes(prev => {
+      const copy = [...prev]
+      copy[idx] = (copy[idx] - 1 + images.length) % images.length
+      return copy
+    })
+  }
+  
+  const handleCardNext = (idx: number, images: string[]) => {
+    setCardImageIndexes(prev => {
+      const copy = [...prev]
+      copy[idx] = (copy[idx] + 1) % images.length
+      return copy
+    })
+  }
+  
+  const handleCardOpenModal = (images: string[], imgIdx: number = 0) => {
+    setCurrentProductGallery(images)
+    setCurrentGalleryImageIndex(imgIdx)
+    setIsGalleryModalOpen(true)
+  }
+
   const openGalleryModal = (gallery: string[], initialIndex: number = 0) => {
     setCurrentProductGallery(gallery)
     setCurrentGalleryImageIndex(initialIndex)
@@ -419,31 +444,58 @@ export default function EcopalmaPage() {
                         </Badge>
                       </div>
                     )}
-                    <div className="relative h-72 overflow-hidden cursor-pointer" onClick={() => palm.images && openGalleryModal(palm.images)}>
+                    <div className="relative h-72 overflow-hidden cursor-pointer select-none">
                       <Image
-                        src={palm.images[0] || "/placeholder.svg"}
+                        src={palm.images[cardImageIndexes[i]] || "/placeholder.svg"}
                         alt={palm.name}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        onClick={() => handleCardOpenModal(palm.images, cardImageIndexes[i])}
+                        style={{ cursor: 'pointer' }}
                       />
+                      
+                      {/* Image Indicators */}
+                      {palm.images && palm.images.length > 1 && (
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 z-20">
+                          {palm.images.map((_, dotIndex) => (
+                            <button
+                              key={dotIndex}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setCardImageIndexes(prev => {
+                                  const copy = [...prev];
+                                  copy[i] = dotIndex;
+                                  return copy;
+                                });
+                              }}
+                              className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                                dotIndex === cardImageIndexes[i]
+                                  ? "bg-green-500 scale-125"
+                                  : "bg-white/60 hover:bg-white/80"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      )}
+                      
                       {/* Gallery Navigation Arrows */}
                       {palm.images && palm.images.length > 1 && (
                         <>
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-                          <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 pointer-events-none" />
+                          <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                             <Button
                               size="sm"
                               variant="secondary"
-                              className="w-10 h-10 rounded-full bg-white/90 text-gray-800 hover:bg-white shadow-lg"
-                              onClick={e => { e.stopPropagation(); }}
+                              className="w-10 h-10 rounded-full bg-white/90 text-gray-800 hover:bg-white shadow-lg pointer-events-auto"
+                              onClick={e => { e.stopPropagation(); handleCardPrev(i, palm.images); }}
                             >
                               <ChevronLeft className="w-5 h-5" />
                             </Button>
                             <Button
                               size="sm"
                               variant="secondary"
-                              className="w-10 h-10 rounded-full bg-white/90 text-gray-800 hover:bg-white shadow-lg"
-                              onClick={e => { e.stopPropagation(); }}
+                              className="w-10 h-10 rounded-full bg-white/90 text-gray-800 hover:bg-white shadow-lg pointer-events-auto"
+                              onClick={e => { e.stopPropagation(); handleCardNext(i, palm.images); }}
                             >
                               <ChevronRight className="w-5 h-5" />
                             </Button>

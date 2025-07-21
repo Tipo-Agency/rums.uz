@@ -72,26 +72,30 @@ export default function PalkarMePage() {
   const palms = [
     {
       name: "Майами",
-      images: ["/cocktail-1.jpg", "/miami-2.jpg"],
+      images: ["/ecopalma/mayami/1.jpg", "/ecopalma/mayami/2.jpg", "/ecopalma/mayami/3.jpg", "/ecopalma/mayami/4.jpg", "/ecopalma/mayami/5.jpg"],
       description: "Реалистичный ствол и листья премиум-качества.",
+      price: "от $850",
       linkHref: "/ecopalma",
     },
     {
       name: "Пляжный коктейль",
-      images: ["/miami-1.jpg", "/cocktail-3.png", "/cocktail-2.jpg"],
+      images: ["/ecopalma/coctail/1.jpg", "/ecopalma/coctail/2.jpg", "/ecopalma/coctail/3.jpg", "/ecopalma/coctail/4.jpg", "/ecopalma/coctail/5.jpg"],
       description: "Пышная пальма с густой кроной, создающая атмосферу тропического оазиса.",
+      price: "от $850",
       linkHref: "/ecopalma",
     },
     {
       name: "Экзотик",
-      images: ["/exotic-palm.png", "/style-interior.jpg"],
+      images: ["/ecopalma/exotic/1.jpg", "/ecopalma/exotic/2.jpg", "/ecopalma/exotic/3.jpg", "/ecopalma/exotic/4.jpg", "/ecopalma/exotic/5.jpg", "/ecopalma/exotic/6.jpg", "/ecopalma/exotic/7.jpg", "/ecopalma/exotic/8.jpg"],
       description: "Уникальная веерная пальма с необычной формой листьев для ценителей экзотики.",
+      price: "от $850",
       linkHref: "/ecopalma",
     },
     {
       name: "Баунти",
-      images: ["/bounty-1.png", "/bounty-2.png", "/bounty-3.png", "/bounty-4.png"],
+      images: ["/ecopalma/bounty/1.jpg", "/ecopalma/bounty/2.jpg", "/ecopalma/bounty/3.jpg", "/ecopalma/bounty/4.jpg", "/ecopalma/bounty/5.jpg"],
       description: "Элегантная пальма средних размеров, которая гармонично впишется в любой интерьер.",
+      price: "от $780",
       linkHref: "/ecopalma",
     },
   ]
@@ -154,20 +158,51 @@ export default function PalkarMePage() {
 
   const maps: Maps = {
     "3D Карты": {
-      images: ["/map-3d-1.jpeg", "/map-3d-2.jpeg", "/map-3d-3.jpeg"],
+      images: [
+        "woodyworld/3d/1.jpg",
+        "woodyworld/3d/2.jpg",
+        "woodyworld/3d/3.jpg",
+        "woodyworld/3d/4.jpg",
+        "woodyworld/3d/5.jpg",
+        "woodyworld/3d/6.jpg",
+        "woodyworld/3d/7.jpg",
+        "woodyworld/3d/8.jpg",
+        "woodyworld/3d/9.jpg",
+        "woodyworld/3d/10.jpg",
+        "woodyworld/3d/11.jpg",
+        "woodyworld/3d/12.jpg",
+        "woodyworld/3d/13.jpg",
+        "woodyworld/3d/14.jpg"
+      ],
       description: "Объемные карты с потрясающей детализацией, создающие эффект присутствия.",
     },
+    "LED Карты": {
+      images: [
+        "woodyworld/led/1.jpg",
+        "woodyworld/led/2.jpg",
+        "woodyworld/led/3.jpg",
+        "woodyworld/led/4.jpg",
+        "woodyworld/led/5.jpg",
+        "woodyworld/led/6.jpg"
+      ],
+      description: "Карты с LED-подсветкой, создающие уютную и футуристичную атмосферу в комнате.",
+    },
     "Фото-Карты": {
-      images: ["/map-photo-1.png", "/map-photo-2.png", "/map-flags.jpeg"],
+      images: [
+        "woodyworld/photo/1.jpg",
+        "woodyworld/photo/2.jpg",
+        "woodyworld/photo/4.jpg",
+        "woodyworld/photo/5.jpg",
+        "woodyworld/photo/6.jpg"
+      ],
       description: "Персонализированные карты, на которых можно размещать свои фотографии из путешествий.",
     },
     "2D Карты": {
-      images: ["/map-2d-1.jpeg", "/map-package.png"],
+      images: [
+        "woodyworld/2d/1.jpg",
+        "woodyworld/2d/2.jpg"
+      ],
       description: "Классические плоские карты, идеально вписывающиеся в любой современный интерьер.",
-    },
-    "LED Карты": {
-      images: ["/map-led-1.jpeg", "/map-led-2.jpeg"],
-      description: "Карты с LED-подсветкой, создающие уютную и футуристичную атмосферу в комнате.",
     },
   }
 
@@ -376,6 +411,7 @@ export default function PalkarMePage() {
                     name={palm.name}
                     images={palm.images}
                     description={palm.description}
+                    price={palm.price}
                     linkHref={palm.linkHref}
                     onDetailsClick={() => handlePalmDetailsClick(palm)}
                   />
