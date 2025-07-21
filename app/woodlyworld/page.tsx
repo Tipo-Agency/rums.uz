@@ -1252,14 +1252,19 @@ export default function WoodlyworldPage() {
             </button>
 
             {/* Main Image */}
-            <div className="flex-1 flex items-center justify-center p-4">
-              <div className="relative max-w-4xl max-h-full">
+            <div className="flex-1 flex items-center justify-center p-2 sm:p-4">
+              <div className="relative w-full flex items-center justify-center" style={{minHeight: '0'}}>
                 <Image
                   src={currentProductGallery[currentGalleryImageIndex] || "/placeholder.svg"}
                   alt={`Gallery image ${currentGalleryImageIndex + 1}`}
-                  width={800}
-                  height={600}
-                  className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                  width={1200}
+                  height={900}
+                  priority
+                  className="mx-auto rounded-lg shadow-2xl bg-white max-w-full max-h-[calc(100vh-160px)] w-auto h-auto object-contain"
+                  style={{
+                    maxWidth: '100vw',
+                    maxHeight: 'calc(100vh - 120px)',
+                  }}
                 />
                 
                 {/* Navigation Arrows */}
