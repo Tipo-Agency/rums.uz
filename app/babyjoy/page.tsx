@@ -324,7 +324,7 @@ export default function BabyjoyPage() {
 
           <div className="relative z-10 text-center max-w-4xl mx-auto px-4 flex-grow flex flex-col justify-center">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-              <Badge className="mb-6 bg-red-500/90 text-white border-red-400 backdrop-blur-md shadow-lg text-lg px-4 py-2">
+              <Badge className="mb-6 bg-red-600 hover:bg-red-500/50 text-white border-red-400 backdrop-blur-md shadow-lg text-lg px-4 py-2">
                 <Gift className="w-5 h-5 mr-2" />
                 СКИДКА 30% + Бесплатная консультация педагога
               </Badge>

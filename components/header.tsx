@@ -37,8 +37,28 @@ export function Header() {
 
   const getLogo = () => {
     if (pathname === "/ecopalma") return <Image src="logo/ecopalma.png" alt="Ecopalma" width={90} height={90} />
-    if (pathname === "/woodlyworld") return <Image src="logo/woodlyworld.png" alt="Woodlyworld" width={90} height={90} />
+    if (pathname === "/woodlyworld") return <Image src="logo/woodlyworld.png" alt="Woodlyworld" width={60} height={60} />
+    if (pathname === "/babyjoy") return <Image src="logo/babyjoy.png" alt="Babyjoy" width={90} height={90} />
     return <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-orange-500 rounded-xl flex items-center justify-center text-white font-bold text-xl">P</div>
+  }
+
+  const getSiteInfo = () => {
+    if (pathname === "/ecopalma") return {
+      name: "Ecopalma",
+      description: "Искусственные пальмы"
+    }
+    if (pathname === "/woodlyworld") return {
+      name: "Woodlyworld", 
+      description: "Деревянные карты"
+    }
+    if (pathname === "/babyjoy") return {
+      name: "Babyjoy",
+      description: "Детская мебель"
+    }
+    return {
+      name: "PalkarMe",
+      description: "Пальмы • Карты • Мебель"
+    }
   }
 
   const socialBrands = {
@@ -111,8 +131,8 @@ export function Header() {
           <Link href="/" className="flex items-center gap-3">
             {getLogo()}
             <div className="hidden sm:flex flex-col">
-              <div className="text-2xl font-bold text-gray-900 leading-none">PalKarMe</div>
-              <div className="text-[11px] text-gray-500 mt-0.5">Пальмы • Карты • Мебель</div>
+              <div className="text-2xl font-bold text-gray-900 leading-none">{getSiteInfo().name}</div>
+              <div className="text-[11px] text-gray-500 mt-0.5">{getSiteInfo().description}</div>
             </div>
           </Link>
           <div className="hidden lg:flex items-center gap-8">
@@ -145,8 +165,8 @@ export function Header() {
                     className="flex items-center gap-3 px-4 py-3 hover:translate-x-2 transition-all duration-300"
                     onClick={() => setProductsOpen(false)}
                   >
-                    <Image src="logo/woodlyworld.png" alt="Woodlyworld" width={64} height={64} />
-                    <div>
+                    <Image src="logo/woodlyworld.png" alt="Woodlyworld" width={50} height={50} className="pl-3"/>
+                    <div className="pl-3">
                       <div className="font-semibold text-gray-900">Карты</div>
                       <div className="text-xs text-gray-500">Деревянные карты Woodlyworld</div>
                     </div>
@@ -156,9 +176,7 @@ export function Header() {
                     className="flex items-center gap-3 px-4 py-3 hover:translate-x-2 transition-all duration-300"
                     onClick={() => setProductsOpen(false)}
                   >
-                    <div className="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <span className="text-purple-600 text-sm font-bold">👶</span>
-                    </div>
+                    <Image src="logo/babyjoy.png" alt="Babyjoy" width={64} height={64} />
                     <div>
                       <div className="font-semibold text-gray-900">Детская мебель</div>
                       <div className="text-xs text-gray-500">Мебель Babyjoy</div>
@@ -300,8 +318,8 @@ export function Header() {
                         className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        <Image src="logo/woodlyworld.png" alt="Woodlyworld" width={64} height={64} />
-                        <div>
+                        <Image src="logo/woodlyworld.png" alt="Woodlyworld" width={50} height={50} className="pl-3"/>
+                        <div className="pl-3">
                           <div className="font-semibold text-gray-900">Карты</div>
                           <div className="text-xs text-gray-500">Деревянные карты Woodlyworld</div>
                         </div>
@@ -311,9 +329,7 @@ export function Header() {
                         className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        <div className="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center">
-                          <span className="text-purple-600 text-sm font-bold">👶</span>
-                        </div>
+                        <Image src="logo/babyjoy.png" alt="Babyjoy" width={64} height={64} />
                         <div>
                           <div className="font-semibold text-gray-900">Детская мебель</div>
                           <div className="text-xs text-gray-500">Мебель Babyjoy</div>

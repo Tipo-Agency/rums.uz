@@ -88,7 +88,7 @@ export default function EcopalmaPage() {
     },
     {
       name: "Экзотик",
-      images: ["/ecopalma/exotic/1.jpg", "/ecopalma/exotic/2.jpg", "/ecopalma/exotic/3.jpg", "/ecopalma/exotic/4.jpg", "/ecopalma/exotic/5.jpg", "/ecopalma/exotic/6.jpg", "/ecopalma/exotic/7.jpg", "/ecopalma/exotic/8.jpg"],
+      images: ["/ecopalma/exotic/2.jpg", "/ecopalma/exotic/4.jpg", "/ecopalma/exotic/5.jpg", "/ecopalma/exotic/6.jpg", "/ecopalma/exotic/7.jpg", "/ecopalma/exotic/8.jpg"],
       description: "Уникальная веерная пальма с необычной формой листьев для ценителей экзотики.",
       price: "от $850",
       linkHref: "/ecopalma",
