@@ -22,7 +22,7 @@ export function Footer() {
                 P
               </div>
               <div className="flex flex-col">
-                <div className="text-2xl font-bold text-white leading-none">PalKarMe</div>
+                <div className="text-2xl font-bold text-white leading-none">RUMS.UZ</div>
                 <div className="text-[11px] text-gray-400 mt-0.5">Пальмы • Карты • Мебель</div>
               </div>
             </div>
@@ -113,7 +113,7 @@ export function Footer() {
           </div>
         </div>
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
-          <p>&copy; {new Date().getFullYear()} PalkarMe. Все права защищены.</p>
+          <p>&copy; {new Date().getFullYear()} rums.uz Все права защищены.</p>
         </div>
       </div>
     </footer>

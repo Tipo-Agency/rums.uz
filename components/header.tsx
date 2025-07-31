@@ -56,7 +56,7 @@ export function Header() {
       description: "Детская мебель"
     }
     return {
-      name: "PalkarMe",
+      name: "RUMS.UZ",
       description: "Пальмы • Карты • Мебель"
     }
   }
@@ -128,13 +128,13 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gray-200/80 shadow-sm">
       <div className="max-w-7xl mx-auto px-4">
         <nav className="flex items-center justify-between h-[70px]">
-          <Link href="/" className="flex items-center gap-3">
+          <div className="flex items-center gap-3">
             {getLogo()}
             <div className="hidden sm:flex flex-col">
               <div className="text-2xl font-bold text-gray-900 leading-none">{getSiteInfo().name}</div>
               <div className="text-[11px] text-gray-500 mt-0.5">{getSiteInfo().description}</div>
             </div>
-          </Link>
+          </div>
           <div className="hidden lg:flex items-center gap-8">
             <Link href="/" className="text-gray-600 hover:text-green-600 font-medium text-[15px] transition-colors">
               Главная
