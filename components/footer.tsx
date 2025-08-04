@@ -1,4 +1,7 @@
+"use client"
+
 import { Phone, Mail, MapPin } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 24 24" fill="currentColor">
@@ -12,6 +15,8 @@ const InstagramIcon = (props: React.SVGProps<SVGSVGElement>) => (
 )
 
 export function Footer() {
+  const { t } = useLanguage()
+  
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-16">
@@ -23,11 +28,11 @@ export function Footer() {
               </div>
               <div className="flex flex-col">
                 <div className="text-2xl font-bold text-white leading-none">RUMS.UZ</div>
-                <div className="text-[11px] text-gray-400 mt-0.5">Пальмы • Карты • Мебель</div>
+                <div className="text-[11px] text-gray-400 mt-0.5">{t('palms')} • {t('maps')} • {t('childrenFurniture')}</div>
               </div>
             </div>
             <p className="text-gray-400">
-              Создаём уют и комфорт для вашего дома с помощью качественных растений и мебели.
+              {t('createComfortWithQualityItems')}
             </p>
             {/* <div className="flex gap-4 mt-6">
               <a
@@ -49,26 +54,26 @@ export function Footer() {
             </div> */}
           </div>
           <div>
-            <h4 className="font-bold text-lg mb-4">Навигация</h4>
+            <h4 className="font-bold text-lg mb-4">{t('navigation')}</h4>
             <ul className="space-y-2">
               <li>
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  Главная
+                  {t('homePage')}
                 </a>
               </li>
               <li>
                 <a href="/ecopalma" className="text-gray-400 hover:text-white transition-colors">
-                  Пальмы
+                  {t('palms')}
                 </a>
               </li>
               <li>
                 <a href="/woodlyworld" className="text-gray-400 hover:text-white transition-colors">
-                  Карты
+                  {t('maps')}
                 </a>
               </li>
               <li>
                 <a href="/babyjoy" className="text-gray-400 hover:text-white transition-colors">
-                  Детская мебель
+                  {t('childrenFurniture')}
                 </a>
               </li>
             </ul>
@@ -99,7 +104,7 @@ export function Footer() {
             </ul>
           </div> */}
           <div>
-            <h4 className="font-bold text-lg mb-4">Контакты</h4>
+            <h4 className="font-bold text-lg mb-4">{t('contacts')}</h4>
             <ul className="space-y-3 text-gray-400">
               <li className="flex items-center gap-3">
                 <MapPin className="w-5 h-5 text-green-500" />
@@ -113,7 +118,7 @@ export function Footer() {
           </div>
         </div>
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
-          <p>&copy; {new Date().getFullYear()} rums.uz Все права защищены.</p>
+          <p>&copy; {new Date().getFullYear()} rums.uz {t('allRightsReserved')}</p>
         </div>
       </div>
     </footer>

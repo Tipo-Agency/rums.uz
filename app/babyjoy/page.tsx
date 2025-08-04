@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useLanguage } from "@/lib/language-context"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -43,6 +44,8 @@ const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
 )
 
 export default function BabyjoyPage() {
+  const { t } = useLanguage()
+
   // Инициализируем AmoCRM
   useAmoForms({
     id: "1572674",
@@ -70,7 +73,7 @@ export default function BabyjoyPage() {
 
   const furnitureItems = [
     {
-      name: "Башня помощника",
+      name: t('helperTower'),
       images: [
         "/tower-1.jpeg",
         "/tower-2.jpeg",
@@ -80,10 +83,10 @@ export default function BabyjoyPage() {
         "/tower-6.jpeg",
         "/tower-7.jpeg",
       ],
-      description: "Помогает ребёнку безопасно участвовать в домашних делах на уровне взрослых.",
+      description: t('helperTowerDesc'),
     },
     {
-      name: "Растущий стол-стул",
+      name: t('growingDeskChair'),
       images: [
         "/desk-chair-1.jpeg",
         "/desk-chair-2.jpeg",
@@ -92,10 +95,10 @@ export default function BabyjoyPage() {
         "/desk-chair-5.jpeg",
         "/desk-chair-6.jpeg",
       ],
-      description: "Адаптируется под рост ребёнка, обеспечивая комфорт на долгие годы.",
+      description: t('growingDeskChairDesc'),
     },
     {
-      name: "Треугольник Пиклера",
+      name: t('piklerTriangle'),
       images: [
         "/pikler-1.jpeg",
         "/pikler-2.jpeg",
@@ -105,121 +108,118 @@ export default function BabyjoyPage() {
         "/pikler-6.jpeg",
         "/pikler-7.jpeg",
       ],
-      description: "Развивает моторику и координацию, стимулируя физическую активность.",
+      description: t('piklerTriangleDesc'),
     },
     {
-      name: "Детская тележка",
+      name: t('childrenCart'),
       images: ["/cart-1.jpeg", "/cart-2.jpeg", "/cart-3.jpeg"],
-      description: "Идеально подходит для хранения игрушек и развития навыков самостоятельности.",
+      description: t('childrenCartDesc'),
     },
     {
-      name: "Двухэтажная кроватка",
+      name: t('bunkBed'),
       images: ["/bunk-bed-1.jpeg", "/bunk-bed-2.jpeg"],
-      description: "Функциональная двухэтажная кроватка с встроенными ящиками и рабочим местом.",
+      description: t('bunkBedDesc'),
     },
   ]
 
   const features = [
     {
       icon: CheckCircle,
-      title: "Экологичные материалы",
-      text: "Используем только натуральное дерево и безопасные краски.",
+      title: t('ecoMaterials'),
+      text: t('ecoMaterialsDesc'),
     },
     {
       icon: ShieldCheck,
-      title: "Быстрая сборка",
-      text: "Мебель собирается за 5 минут без специальных инструментов.",
+      title: t('quickAssembly'),
+      text: t('quickAssemblyDesc'),
     },
     {
       icon: Star,
-      title: "Развивающий дизайн",
-      text: "Способствует развитию самостоятельности и моторики ребёнка.",
+      title: t('developmentalDesign'),
+      text: t('developmentalDesignDesc'),
     },
     {
       icon: Heart,
-      title: "Безопасность",
-      text: "Все углы скруглены, поверхности гладкие, без острых деталей.",
+      title: t('safety'),
+      text: t('safetyDesc'),
     },
   ]
 
   const uniqueFeatures = [
     {
       icon: Baby,
-      title: "Методика Монтессори",
-      description:
-        "Вся наша мебель создана по принципам педагогики Монтессори, способствуя естественному развитию ребёнка через самостоятельную деятельность и исследование окружающего мира.",
+      title: t('montessoriMethod'),
+      description: t('montessoriMethodDesc'),
     },
     {
       icon: Zap,
-      title: "Растущая мебель",
-      description:
-        "Уникальная система регулировки позволяет мебели 'расти' вместе с ребёнком. Один стул прослужит от 6 месяцев до 10 лет, адаптируясь под рост и потребности малыша.",
+      title: t('growingFurniture'),
+      description: t('growingFurnitureDesc'),
     },
     {
       icon: ShieldCheck,
-      title: "Безопасность превыше всего",
-      description:
-        "Каждый элемент мебели проходит строгий контроль качества. Используем только гипоаллергенные материалы, все углы скруглены, поверхности отшлифованы до идеальной гладкости.",
+      title: t('safetyFirst'),
+      description: t('safetyFirstDesc'),
     },
   ]
 
   const advantages = [
     {
       icon: Heart,
-      title: "Развитие самостоятельности",
-      description: "Мебель помогает детям стать более независимыми",
+      title: t('developmentIndependence'),
+      description: t('developmentIndependenceDesc'),
     },
     {
       icon: ShieldCheck,
-      title: "Гарантия качества 3 года",
-      description: "Полная гарантия на все изделия и фурнитуру",
+      title: t('qualityGuarantee3Years'),
+      description: t('qualityGuarantee3YearsDesc'),
     },
     {
       icon: Timer,
-      title: "Быстрое изготовление 5-10 дней",
-      description: "Оперативное выполнение заказов любой сложности",
+      title: t('fastManufacturing5_10Days'),
+      description: t('fastManufacturing5_10DaysDesc'),
     },
     {
       icon: Package,
-      title: "Простая сборка",
-      description: "Мебель собирается за 5 минут без инструментов",
+      title: t('simpleAssembly'),
+      description: t('simpleAssemblyDesc'),
     },
     {
       icon: Headphones,
-      title: "Консультация педагога",
-      description: "Помощь в выборе мебели от специалиста Монтессори",
+      title: t('pedagogConsultation'),
+      description: t('pedagogConsultationDesc'),
     },
     {
       icon: Palette,
-      title: "Индивидуальные размеры",
-      description: "Изготавливаем мебель под любые размеры помещения",
+      title: t('individualSizes'),
+      description: t('individualSizesDesc'),
     },
   ]
 
   const testimonials = [
     {
-      name: "Анна М.",
-      text: "Башня помощника стала настоящим спасением! Дочка теперь сама помогает готовить, и это так мило. Качество отличное, собрали за 3 минуты.",
+      name: t('testimonial1Name'),
+      text: t('testimonial1Text'),
       image: "/tower-1.jpeg",
     },
     {
-      name: "Дмитрий К.",
-      text: "Растущий стол-стул просто находка! Сын растет, а мебель подстраивается под него. Очень удобно и практично.",
+      name: t('testimonial2Name'),
+      text: t('testimonial2Text'),
       image: "/desk-chair-1.jpeg",
     },
     {
-      name: "Мария В.",
-      text: "Треугольник Пиклера - лучшая покупка для развития ребенка! Малыш лазает с удовольствием, развивается физически.",
+      name: t('testimonial3Name'),
+      text: t('testimonial3Text'),
       image: "/pikler-1.jpeg",
     },
     {
-      name: "Алексей Р.",
-      text: "Детская тележка помогла приучить дочку к порядку. Теперь она сама складывает игрушки и катает их по дому.",
+      name: t('testimonial4Name'),
+      text: t('testimonial4Text'),
       image: "/cart-1.jpeg",
     },
     {
-      name: "Елена С.",
-      text: "Двухэтажная кроватка - мечта любого ребенка! Сын в восторге, а мы довольны качеством и функциональностью.",
+      name: t('testimonial5Name'),
+      text: t('testimonial5Text'),
       image: "/bunk-bed-1.jpeg",
     },
   ]
@@ -227,21 +227,18 @@ export default function BabyjoyPage() {
   const orderProcess = [
     {
       icon: User,
-      title: "Оставить заявку",
-      description:
-        "Выберите понравившуюся мебель и оставьте заявку. Наш менеджер свяжется с вами для обсуждения деталей заказа и поможет подобрать идеальный размер для вашего ребенка.",
+      title: t('leaveRequest'),
+      description: t('leaveRequestDesc'),
     },
     {
       icon: CreditCard,
-      title: "Предоплата и изготовление",
-      description:
-        "После выбора мебели внесите предоплату 50%, и мы изготовим вашу детскую мебель премиум-класса в течение 5-10 дней с учетом всех пожеланий.",
+      title: t('prepaymentAndManufacturing'),
+      description: t('prepaymentAndManufacturingDesc'),
     },
     {
       icon: Truck,
-      title: "Бесплатная доставка",
-      description:
-        "Абсолютно бесплатная доставка по всему Узбекистану с профессиональной сборкой на месте. Также доступна международная доставка.",
+      title: t('freeDelivery'),
+      description: t('freeDeliveryDesc'),
     },
   ]
 
@@ -249,28 +246,28 @@ export default function BabyjoyPage() {
     {
       name: "YouTube",
       icon: Youtube,
-      description: "Обучающие видео по методике Монтессори",
+      description: t('youtubeDesc'),
       color: "from-red-500 to-red-600",
       href: "#",
     },
     {
       name: "Facebook",
       icon: Facebook,
-      description: "Советы по развитию детей и новости",
+      description: t('facebookDesc'),
       color: "from-blue-600 to-blue-700",
       href: "#",
     },
     {
       name: "Instagram",
       icon: Instagram,
-      description: "Фото счастливых детей с нашей мебелью",
+      description: t('instagramDesc'),
       color: "from-pink-500 to-purple-600",
       href: "https://www.instagram.com/babyjoy.uz",
     },
     {
       name: "Telegram",
       icon: TelegramIcon,
-      description: "Быстрая связь и эксклюзивные предложения",
+      description: t('telegramDesc'),
       color: "from-blue-400 to-blue-500",
       href: "https://t.me/babyjoy_uz",
     },
@@ -326,13 +323,13 @@ export default function BabyjoyPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
               <Badge className="mb-6 bg-red-600 hover:bg-red-500/50 text-white border-red-400 backdrop-blur-md shadow-lg text-lg px-4 py-2">
                 <Gift className="w-5 h-5 mr-2" />
-                СКИДКА 30% + Бесплатная консультация педагога
+                {t('discountAndConsultation')}
               </Badge>
               <h1 className="text-5xl md:text-7xl font-extrabold mb-4 leading-tight drop-shadow-2xl">
                 <span className="text-white drop-shadow-lg">Babyjoy</span>
               </h1>
               <p className="text-xl md:text-2xl text-purple-200 max-w-2xl mx-auto mb-8 drop-shadow-lg font-medium">
-                Мебель, которая растёт вместе с вашим ребёнком по методике Монтессори со скидкой до конца июля!
+                {t('montessoriFurnitureDescription')}
               </p>
             </motion.div>
           </div>
@@ -353,7 +350,7 @@ export default function BabyjoyPage() {
                     <div className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
                       {value.toString().padStart(2, "0")}
                     </div>
-                    <div className="text-xs text-white/90 uppercase tracking-wider font-medium">{unit}</div>
+                    <div className="text-xs text-white/90 uppercase tracking-wider font-medium">{t(unit as 'days' | 'hours' | 'minutes' | 'seconds')}</div>
                   </div>
                 ))}
               </div>
@@ -369,7 +366,7 @@ export default function BabyjoyPage() {
                   }}
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
-                  Заказать со скидкой
+                  {t('orderWithDiscount')}
                 </Button>
                 <div id="amocrm_btn"></div>
               </div>
@@ -466,11 +463,10 @@ export default function BabyjoyPage() {
         <section className="py-24 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
-              Наша уникальность и отличия
+              {t('ourUniquenessTitle')}
             </h2>
             <p className="text-xl text-gray-600 text-center mb-16 max-w-4xl mx-auto">
-              Наша детская мебель — это не просто предметы интерьера, а инструменты для гармоничного развития ребёнка по
-              проверенной методике Монтессори
+              {t('ourUniquenessSubtitle')}
             </p>
             <div className="grid md:grid-cols-3 gap-8">
               {uniqueFeatures.map((feature, i) => (
@@ -497,7 +493,7 @@ export default function BabyjoyPage() {
         {/* Product Catalog */}
         <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">Наш Каталог</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">{t('ourCatalog')}</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
               {furnitureItems.map((item, i) => (
                 <motion.div
@@ -528,7 +524,7 @@ export default function BabyjoyPage() {
                           }
                         }}
                       >
-                        Узнать цену <ArrowRight className="w-4 h-4 ml-2" />
+                        {t('getPrice')} <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </CardContent>
                   </Card>
@@ -541,7 +537,7 @@ export default function BabyjoyPage() {
         {/* How to Get Furniture Process - Compact Version */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">Как получить мебель?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">{t('howToGetFurniture')}</h2>
             <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-8">
               {orderProcess.map((step, i) => (
                 <motion.div
@@ -567,7 +563,7 @@ export default function BabyjoyPage() {
         <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
-              Дополнительные преимущества
+              {t('additionalAdvantages')}
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {advantages.map((advantage, i) => (
@@ -595,7 +591,7 @@ export default function BabyjoyPage() {
         <section className="py-24 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
-              Фотоотзывы наших клиентов
+              {t('customerTestimonials')}
             </h2>
             <div className="relative max-w-4xl mx-auto">
               <div className="flex justify-between items-center mb-8">
@@ -679,9 +675,9 @@ export default function BabyjoyPage() {
         {/* Social Media Section */}
         <section className="py-24 bg-gray-900 text-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Следите за нами</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">{t('followUs')}</h2>
             <p className="text-xl text-gray-300 text-center mb-16 max-w-2xl mx-auto">
-              Присоединяйтесь к нашему сообществу родителей в социальных сетях
+              {t('joinParentsCommunity')}
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
               {socialLinks.map((social, i) => (
@@ -714,7 +710,7 @@ export default function BabyjoyPage() {
         <section className="py-24 bg-gray-100">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">Получить консультацию</h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">{t('getConsultation')}</h2>
               <Button
                 size="lg"
                 className="bg-purple-600 hover:bg-purple-700 px-12 py-4 text-lg text-white"
@@ -725,7 +721,7 @@ export default function BabyjoyPage() {
                   }
                 }}
               >
-                Оставить заявку на консультацию
+                {t('leaveConsultationRequest')}
               </Button>
             </div>
           </div>
@@ -734,7 +730,7 @@ export default function BabyjoyPage() {
         {/* Gallery Slider */}
         <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">Babyjoy в интерьере</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">{t('babyjoyInInterior')}</h2>
             <div className="relative max-w-6xl mx-auto">
               <div className="flex justify-between items-center mb-8">
                 <Button
@@ -792,42 +788,38 @@ export default function BabyjoyPage() {
         {/* FAQ */}
         <section className="py-24 bg-white">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">Часто задаваемые вопросы</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">{t('faq')}</h2>
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
                 <AccordionTrigger className="text-lg font-semibold text-gray-900">
-                  Из каких материалов сделана мебель Babyjoy?
+                  {t('faqBabyjoyMaterials')}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600">
-                  Наша мебель изготавливается из высококачественной березовой фанеры и покрывается безопасными,
-                  гипоаллергенными красками на водной основе.
+                  {t('faqBabyjoyMaterialsAnswer')}
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
                 <AccordionTrigger className="text-lg font-semibold text-gray-900">
-                  Можно ли собрать мебель самостоятельно?
+                  {t('faqBabyjoyAssembly')}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600">
-                  Да, вся мебель Babyjoy разработана для быстрой и легкой сборки. В комплекте идет подробная инструкция,
-                  и вам не потребуются специальные инструменты.
+                  {t('faqBabyjoyAssemblyAnswer')}
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
                 <AccordionTrigger className="text-lg font-semibold text-gray-900">
-                  На какой возраст рассчитана мебель?
+                  {t('faqBabyjoyAge')}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600">
-                  Каждый предмет мебели имеет свои возрастные рекомендации, указанные в описании товара. Например, Башня
-                  помощника подходит для детей от 1 года.
+                  {t('faqBabyjoyAgeAnswer')}
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4">
                 <AccordionTrigger className="text-lg font-semibold text-gray-900">
-                  Что такое методика Монтессори?
+                  {t('faqMontessoriMethod')}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600">
-                  Методика Монтессори — это педагогическая система, основанная на самостоятельной деятельности ребёнка.
-                  Наша мебель создана по этим принципам для развития независимости и уверенности в себе.
+                  {t('faqMontessoriMethodAnswer')}
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

@@ -8,6 +8,7 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { useLanguage } from "@/lib/language-context"
 
 interface PalmCardProps {
   name: string
@@ -19,6 +20,7 @@ interface PalmCardProps {
 }
 
 export function PalmCard({ name, images, description, price, linkHref, onDetailsClick }: PalmCardProps) {
+  const { t } = useLanguage()
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false)
   const [currentGalleryImageIndex, setCurrentGalleryImageIndex] = useState(0)
@@ -148,7 +150,7 @@ export function PalmCard({ name, images, description, price, linkHref, onDetails
           <div className="mt-auto">
             <Link href={linkHref}>
               <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
-                Узнать подробнее <ArrowRight className="w-4 h-4 ml-2" />
+                {t('learnMore')} <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
           </div>

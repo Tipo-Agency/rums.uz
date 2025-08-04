@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -35,6 +35,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { useAmoForms } from "@/hooks/use-amo-forms"
+import { useLanguage } from "@/lib/language-context"
 
 
 interface MapItem {
@@ -61,6 +62,8 @@ const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
 )
 
 export default function WoodlyworldPage() {
+  const { t } = useLanguage()
+  
   // Инициализируем AmoCRM
   useAmoForms({
     id: "1572666",
@@ -69,7 +72,7 @@ export default function WoodlyworldPage() {
   })
 
   const [timeLeft, setTimeLeft] = useState({ days: 12, hours: 14, minutes: 32, seconds: 45 })
-  const [activeCategory, setActiveCategory] = useState("3D Карты")
+  const [activeCategory, setActiveCategory] = useState("")
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0)
   const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0)
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false)
@@ -90,15 +93,15 @@ export default function WoodlyworldPage() {
     return () => clearInterval(timer)
   }, [])
 
-  const mapCategories: MapCategories = {
-    "3D Карты": {
+  const mapCategories: MapCategories = useMemo(() => ({
+    [t('maps3D')]: {
       items: [
         {
-          name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА NATURAL",
+          name: t('map3dNatural'),
           image: "woodyworld/3d/1.jpg",
-          price: "от 1,181,000",
+          price: `${t('from')} 1,181,000`,
           oldPrice: "1,969,000",
-          description: "Объемная деревянная карта мира с естественной текстурой дерева.",
+          description: t('map3dNaturalDesc'),
           gallery: [
             "woodyworld/3d/1.jpg",
             "woodyworld/3d/2.jpg",
@@ -108,11 +111,11 @@ export default function WoodlyworldPage() {
           ]
         },
         {
-          name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА BLACK WITCH",
+          name: t('map3dBlackWitch'),
           image: "woodyworld/3d/8.jpg",
-          price: "от 1,181,000",
+          price: `${t('from')} 1,181,000`,
           oldPrice: "1,969,000",
-          description: "Премиальная версия с детализированными границами стран.",
+          description: t('map3dBlackWitchDesc'),
           gallery: [
             "woodyworld/3d/8.jpg",
             "woodyworld/3d/9.jpg",
@@ -122,11 +125,11 @@ export default function WoodlyworldPage() {
           ]
         },
         {
-          name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА MACCHIATO",
+          name: t('map3dMacchiato'),
           image: "woodyworld/3d/9.jpg",
-          price: "от 1,181,000",
+          price: `${t('from')} 1,181,000`,
           oldPrice: "1,969,000",
-          description: "Компактная версия для рабочего стола или небольших помещений.",
+          description: t('map3dMacchiatoDesc'),
           gallery: [
             "woodyworld/3d/9.jpg",
             "woodyworld/3d/10.jpg",
@@ -136,11 +139,11 @@ export default function WoodlyworldPage() {
           ]
         },
         {
-          name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА ELEGANT",
+          name: t('map3dElegant'),
           image: "woodyworld/3d/10.jpg",
-          price: "от 1,181,000",
+          price: `${t('from')} 1,181,000`,
           oldPrice: "1,969,000",
-          description: "Компактная версия для рабочего стола или небольших помещений.",
+          description: t('map3dElegantDesc'),
           gallery: [
             "woodyworld/3d/10.jpg",
             "woodyworld/3d/11.jpg",
@@ -149,11 +152,11 @@ export default function WoodlyworldPage() {
             "woodyworld/3d/14.jpg"
           ]
         },        {
-          name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА MARSHMALLOW",
+          name: t('map3dMarshmallow'),
           image: "woodyworld/3d/11.jpg",
-          price: "от 1,181,000",
+          price: `${t('from')} 1,181,000`,
           oldPrice: "1,969,000",
-          description: "Компактная версия для рабочего стола или небольших помещений.",
+          description: t('map3dMarshmallowDesc'),
           gallery: [
             "woodyworld/3d/11.jpg",
             "woodyworld/3d/12.jpg",
@@ -162,11 +165,11 @@ export default function WoodlyworldPage() {
             "woodyworld/3d/1.jpg"
           ]
         },        {
-          name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА MIAMI",
+          name: t('map3dMiami'),
           image: "woodyworld/3d/12.jpg",
-          price: "от 1,181,000",
+          price: `${t('from')} 1,181,000`,
           oldPrice: "1,969,000",
-          description: "Компактная версия для рабочего стола или небольших помещений.",
+          description: t('map3dMiamiDesc'),
           gallery: [
             "woodyworld/3d/12.jpg",
             "woodyworld/3d/13.jpg",
@@ -175,11 +178,11 @@ export default function WoodlyworldPage() {
             "woodyworld/3d/2.jpg"
           ]
         },        {
-          name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА EXOTIC",
+          name: t('map3dExotic'),
           image: "woodyworld/3d/13.jpg",
-          price: "от 1,181,000",
+          price: `${t('from')} 1,181,000`,
           oldPrice: "1,969,000",
-          description: "Компактная версия для рабочего стола или небольших помещений.",
+          description: t('map3dExoticDesc'),
           gallery: [
             "woodyworld/3d/13.jpg",
             "woodyworld/3d/14.jpg",
@@ -188,11 +191,11 @@ export default function WoodlyworldPage() {
             "woodyworld/3d/3.jpg"
           ]
         },        {
-          name: "3D EKO ДЕРЕВЯННАЯ КАРТА МИРА CARAMEL",
+          name: t('map3dCaramel'),
           image: "woodyworld/3d/14.jpg",
-          price: "от 1,181,000",
+          price: `${t('from')} 1,181,000`,
           oldPrice: "1,969,000",
-          description: "Компактная версия для рабочего стола или небольших помещений.",
+          description: t('map3dCaramelDesc'),
           gallery: [
             "woodyworld/3d/14.jpg",
             "woodyworld/3d/1.jpg",
@@ -203,14 +206,14 @@ export default function WoodlyworldPage() {
         },
       ],
     },
-    "LED Карты": {
+    [t('mapsLED')]: {
       items: [
         {
-          name: "LED Карта Северное сияние",
+          name: t('mapLedAurora'),
           image: "woodyworld/map-led-1.jpeg",
-          price: "от 1,536,000",
+          price: `${t('from')} 1,536,000`,
           oldPrice: "2,559,000",
-          description: "Карта с LED-подсветкой в стиле северного сияния.",
+          description: t('mapLedAuroraDesc'),
           gallery: [
             "woodyworld/map-led-1.jpeg",
             "woodyworld/led/1.jpg",
@@ -220,11 +223,11 @@ export default function WoodlyworldPage() {
           ]
         },
         {
-          name: "LED Карта Золотой час",
+          name: t('mapLedGoldenHour'),
           image: "woodyworld/map-led-2.jpeg",
-          price: "от 1,536,000",
+          price: `${t('from')} 1,536,000`,
           oldPrice: "2,559,000",
-          description: "Теплая золотистая подсветка создает уютную атмосферу.",
+          description: t('mapLedGoldenHourDesc'),
           gallery: [
             "woodyworld/map-led-2.jpeg",
             "woodyworld/led/5.jpg",
@@ -234,11 +237,11 @@ export default function WoodlyworldPage() {
           ]
         },
         {
-          name: "3D LED ДЕРЕВЯННАЯ КАРТА МИРА BLUE",
+          name: t('mapLedBlue'),
           image: "woodyworld/led/1.jpg",
-          price: "от 1,536,000",
+          price: `${t('from')} 1,536,000`,
           oldPrice: "2,559,000",
-          description: "Теплая золотистая подсветка создает уютную атмосферу.",
+          description: t('mapLedBlueDesc'),
           gallery: [
             "woodyworld/led/1.jpg",
             "woodyworld/led/2.jpg",
@@ -248,11 +251,11 @@ export default function WoodlyworldPage() {
           ]
         },
         {
-          name: "3D LED ДЕРЕВЯННАЯ КАРТА МИРА GREEN",
+          name: t('mapLedGreen'),
           image: "woodyworld/led/3.jpg",
-          price: "от 1,536,000",
+          price: `${t('from')} 1,536,000`,
           oldPrice: "2,559,000",
-          description: "Теплая золотистая подсветка создает уютную атмосферу.",
+          description: t('mapLedGreenDesc'),
           gallery: [
             "woodyworld/led/3.jpg",
             "woodyworld/led/4.jpg",
@@ -262,11 +265,11 @@ export default function WoodlyworldPage() {
           ]
         },
         {
-          name: "3D LED ДЕРЕВЯННАЯ КАРТА МИРА UNIQUE",
+          name: t('mapLedUnique'),
           image: "woodyworld/led/4.jpg",
-          price: "от 1,536,000",
+          price: `${t('from')} 1,536,000`,
           oldPrice: "2,559,000",
-          description: "Теплая золотистая подсветка создает уютную атмосферу.",
+          description: t('mapLedUniqueDesc'),
           gallery: [
             "woodyworld/led/4.jpg",
             "woodyworld/led/5.jpg",
@@ -275,11 +278,11 @@ export default function WoodlyworldPage() {
             "woodyworld/led/2.jpg"
           ]
         },        {
-          name: "3D LED ДЕРЕВЯННАЯ КАРТА МИРА NATURAL",
+          name: t('mapLedNatural'),
           image: "woodyworld/led/5.jpg",
-          price: "от 1,536,000",
+          price: `${t('from')} 1,536,000`,
           oldPrice: "2,559,000",
-          description: "Теплая золотистая подсветка создает уютную атмосферу.",
+          description: t('mapLedNaturalDesc'),
           gallery: [
             "woodyworld/led/5.jpg",
             "woodyworld/led/6.jpg",
@@ -288,11 +291,11 @@ export default function WoodlyworldPage() {
             "woodyworld/led/3.jpg"
           ]
         },        {
-          name: "3D LED ДЕРЕВЯННАЯ КАРТА МИРА BLACK WITCH",
+          name: t('mapLedBlackWitch'),
           image: "woodyworld/led/6.jpg",
-          price: "от 1,536,000",
+          price: `${t('from')} 1,536,000`,
           oldPrice: "2,559,000",
-          description: "Теплая золотистая подсветка создает уютную атмосферу.",
+          description: t('mapLedBlackWitchDesc'),
           gallery: [
             "woodyworld/led/6.jpg",
             "woodyworld/led/1.jpg",
@@ -303,14 +306,14 @@ export default function WoodlyworldPage() {
         },
       ],
     },
-    "Фото-Карты": {
+    [t('mapsPhoto')]: {
       items: [
         {
-          name: "Фото-карта Путешественника",
+          name: t('mapPhotoTraveler'),
           image: "woodyworld/photo/1.jpg",
-          price: "от 1,536,000",
+          price: `${t('from')} 1,536,000`,
           oldPrice: "2,559,000",
-          description: "Карта с держателями для фотографий из ваших путешествий.",
+          description: t('mapPhotoTravelerDesc'),
           gallery: [
             "woodyworld/photo/1.jpg",
             "woodyworld/photo/2.jpg",
@@ -321,14 +324,14 @@ export default function WoodlyworldPage() {
         },
       ],
     },
-    "2D Карты": {
+    [t('maps2D')]: {
       items: [
         {
-          name: "2D EKO ДЕРЕВЯННАЯ КАРТА МИРА LIGHT",
+          name: t('map2dLight'),
           image: "woodyworld/2d/1.jpg",
-          price: "от 866,250",
+          price: `${t('from')} 866,250`,
           oldPrice: "1,443,750",
-          description: "Если вы чувствуете, что вашему дому или рабочему месту не хватает центральной части - вот оно. 3D Wooden World Map LIGHT изготовлена ​​из качественной березовой фанеры с безупречной гравировкой. Это прекрасный предмет декора стен для любого интерьера: минималистичный, многозначительный и действительно вдохновляющий! Прекрасный подарок как для путешественников, так и для тех, кто любит уединяться.",
+          description: t('map2dLightDesc'),
           gallery: [
             "woodyworld/2d/1.jpg",
             "woodyworld/2d/2.jpg",
@@ -338,11 +341,11 @@ export default function WoodlyworldPage() {
           ]
         },
         {
-          name: "2D EKO ДЕРЕВЯННАЯ КАРТА МИРА BLACK",
+          name: t('map2dBlack'),
           image: "woodyworld/2d/2.jpg",
-          price: "от 866,250",
+          price: `${t('from')} 866,250`,
           oldPrice: "1,443,750",
-          description: "Если вы чувствуете, что вашему дому или рабочему месту не хватает центральной части - вот оно. 3D Wooden World Map BLACK изготовлена ​​из качественной березовой фанеры с безупречной гравировкой. Это прекрасный предмет декора стен для любого интерьера: минималистичный, многозначительный и действительно вдохновляющий! Прекрасный подарок как для путешественников, так и для тех, кто любит уединяться.",
+          description: t('map2dBlackDesc'),
           gallery: [
             "woodyworld/2d/2.jpg",
             "woodyworld/2d/1.jpg",
@@ -353,14 +356,14 @@ export default function WoodlyworldPage() {
         }
       ],
     },
-    Принадлежности: {
+    [t('accessories')]: {
       items: [
         {
-          name: "Premium Флажки",
+          name: t('flagsPremium'),
           image: "woodyworld/prin/country_tag.jpg",
-          price: "от 546,000",
+          price: `${t('from')} 546,000`,
           oldPrice: "910,000",
-          description: "",
+          description: t('flagsPremiumDesc'),
           gallery: [
             "woodyworld/prin/country_tag.jpg",
             "woodyworld/prin/country_tag2.jpg",
@@ -370,11 +373,11 @@ export default function WoodlyworldPage() {
           ]
         },
         {
-          name: "Standard Флажки",
+          name: t('flagsStandard'),
           image: "woodyworld/prin/1.jpg",
-          price: "от 312,000",
+          price: `${t('from')} 312,000`,
           oldPrice: "520,000",
-          description: "",
+          description: t('flagsStandardDesc'),
           gallery: [
             "woodyworld/prin/1.jpg",
             "woodyworld/prin/2.jpg",
@@ -383,11 +386,11 @@ export default function WoodlyworldPage() {
             "woodyworld/prin/country_tag2.jpg"
           ]
         },        {
-          name: "Деревянные часы",
+          name: t('woodenClock'),
           image: "woodyworld/prin/2.jpg",
-          price: "от 248,000",
+          price: `${t('from')} 248,000`,
           oldPrice: "413,000",
-          description: "",
+          description: t('woodenClockDesc'),
           gallery: [
             "woodyworld/prin/2.jpg",
             "woodyworld/prin/3.jpg",
@@ -396,11 +399,11 @@ export default function WoodlyworldPage() {
             "woodyworld/prin/1.jpg"
           ]
         },        {
-          name: "Нажимные Флажки Всех Стран",
+          name: t('pushPinFlags'),
           image: "woodyworld/prin/3.jpg",
-          price: "от 268,000",
+          price: `${t('from')} 268,000`,
           oldPrice: "440,000",
-          description: "",
+          description: t('pushPinFlagsDesc'),
           gallery: [
             "woodyworld/prin/3.jpg",
             "woodyworld/prin/country_tag.jpg",
@@ -411,82 +414,88 @@ export default function WoodlyworldPage() {
         },
       ],
     },
-  }
+  }), [t])
+
+  // Initialize activeCategory when mapCategories is ready or language changes
+  useEffect(() => {
+    const categories = Object.keys(mapCategories)
+    if (categories.length > 0) {
+      // Always set to first category (3D Maps) - handles both initial load and language switch
+      setActiveCategory(categories[0])
+    }
+  }, [mapCategories])
 
   const features = [
     {
       icon: CheckCircle,
-      title: "Натуральное дерево",
-      text: "Используем только качественную березовую фанеру и дуб.",
+      title: t('naturalWood'),
+      text: t('naturalWoodDesc'),
     },
     {
       icon: ShieldCheck,
-      title: "Экологичность",
-      text: "Безопасные материалы и покрытия на водной основе.",
+      title: t('ecoFriendly'),
+      text: t('ecoFriendlyDesc'),
     },
     {
       icon: Zap,
-      title: "LED-технологии",
-      text: "Современная LED-подсветка с долгим сроком службы.",
+      title: t('ledTechnology'),
+      text: t('ledTechnologyDesc'),
     },
     {
       icon: Heart,
-      title: "Ручная работа",
-      text: "Каждая карта изготавливается вручную с любовью к деталям.",
+      title: t('handmade'),
+      text: t('handmadeDesc'),
     },
   ]
 
   const uniqueFeatures = [
     {
       icon: Globe,
-      title: "2D vs 3D технология",
-      description:
-        "Уникальная слоистая конструкция создает объемный 3D эффект. Толщина карты достигает до 15 мм, что придает невероятную глубину и реалистичность изображению.",
+      title: t('technology2Dvs3D'),
+      description: t('technology2Dvs3DDesc'),
     },
     {
       icon: Lightbulb,
-      title: "LED подсветка с управлением",
-      description:
-        "Встроенная LED система с регулировкой яркости и пультом дистанционного управления. Создайте идеальную атмосферу одним нажатием кнопки.",
+      title: t('ledLightingWithControl'),
+      description: t('ledLightingWithControlDesc'),
     },
     {
       icon: Star,
-      title: "Премиальные материалы",
-      description:
-        "Используем только качественный файн-серый клен и буковый шпон. Натуральная древесина высшего сорта гарантирует долговечность и элегантный внешний вид.",
+      title: t('premiumMaterials'),
+      description: t('premiumMaterialsDesc'),
     },
   ]
 
   const advantages = [
     {
       icon: Zap,
-      title: "Энергоэффективные LED диоды",
-      description: "Современные LED диоды с низким энергопотреблением",
+      title: t('energyEfficientLED'),
+      description: t('energyEfficientLEDDesc'),
     },
     {
       icon: ShieldCheck,
-      title: "Гарантия качества 2 года",
-      description: "Полная гарантия на все изделия и LED-подсветку",
+      title: t('qualityGuarantee2Years'),
+      description: t('qualityGuarantee2YearsDesc'),
     },
     {
       icon: Timer,
-      title: "Быстрое изготовление 3-7 дней",
-      description: "Оперативное выполнение заказов любой сложности",
+      title: t('fastManufacturing3_7Days'),
+      description: t('fastManufacturing3_7DaysDesc'),
     },
     {
       icon: Package,
-      title: "Безопасная упаковка",
-      description: "Надежная упаковка для безопасной доставки",
+      title: t('safePackaging'),
+      description: t('safePackagingDesc'),
     },
     {
       icon: Headphones,
-      title: "Персональная консультация",
-      description: "Индивидуальный подход к каждому клиенту",
+      title: t('personalConsultation'),
+      description: t('personalConsultationDesc'),
     },
     {
       icon: Palette,
-      title: "Индивидуальный дизайн",
-      description: "Создаем уникальные карты по вашим пожеланиям",
+      title: t('individualDesign'),
+      description: t('individualDesignDesc'),
     },
   ]
 
@@ -516,20 +525,18 @@ export default function WoodlyworldPage() {
   const orderProcess = [
     {
       icon: User,
-      title: "Оставить заявку",
-      description:
-        "На сайте, выберите карту, которая вам понравится, и оставьте заявку. Наш менеджер свяжется с вами для обсуждения всех деталей вашего заказа. В случае возникновения вопросов мы с удовольствием поможем их решить.",
+      title: t('makeRequest'),
+      description: t('makeRequestDesc'),
     },
     {
       icon: CreditCard,
-      title: "Предоплата и изготовление",
-      description:
-        "После выбора желаемой карты, внесите предоплату в размере 50%, и мы изготовим вашу карту премиум-класса в течение 3-7 дней.",
+      title: t('prepaymentAndManufacturing'),
+      description: t('prepaymentAndManufacturingDesc'),
     },
     {
       icon: Truck,
-      title: "Бесплатная доставка",
-      description: "Абсолютно бесплатная доставка по всему Узбекистану. Также имеется доставка по всему миру.",
+      title: t('freeDelivery'),
+      description: t('freeDeliveryDesc'),
     },
   ]
 
@@ -537,28 +544,28 @@ export default function WoodlyworldPage() {
     {
       name: "YouTube",
       icon: Youtube,
-      description: "Смотрите наши видео о продукции и процессе создания",
+      description: t('youtubeDesc'),
       color: "from-red-500 to-red-600",
       href: "#",
     },
     {
       name: "Facebook",
       icon: Facebook,
-      description: "Новости компании и общение с клиентами",
+      description: t('facebookDesc'),
       color: "from-blue-600 to-blue-700",
       href: "#",
     },
     {
       name: "Instagram",
       icon: Instagram,
-      description: "Красивые фото наших изделий и закулисье",
+      description: t('instagramDesc'),
       color: "from-pink-500 to-purple-600",
       href: "https://www.instagram.com/woodlyworld.uz/",
     },
     {
       name: "Telegram",
       icon: TelegramIcon,
-      description: "Быстрая связь и эксклюзивные предложения",
+      description: t('telegramDesc'),
       color: "from-blue-400 to-blue-500",
       href: "https://t.me/woodlyworld",
     },
@@ -697,13 +704,13 @@ export default function WoodlyworldPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
               <Badge className="mb-6 bg-red-600 hover:bg-red-600/50 text-white border-red-400 backdrop-blur-md shadow-lg text-lg px-4 py-2">
                 <Gift className="w-5 h-5 mr-2" />
-                СКИДКА 30% + Бесплатный дизайн-проект
+                {t('discountAndFreeDesign')}
               </Badge>
               <h1 className="text-5xl md:text-7xl font-extrabold mb-4 leading-tight drop-shadow-2xl">
                 <span className="text-white drop-shadow-lg">Woodlyworld</span>
               </h1>
               <p className="text-xl md:text-2xl text-orange-200 max-w-2xl mx-auto mb-8 drop-shadow-lg font-medium">
-                Деревянные карты мира, которые превращают стены в произведения искусства со скидкой до конца июля!
+                {t('woodenWorldMaps')}
               </p>
             </motion.div>
           </div>
@@ -724,7 +731,7 @@ export default function WoodlyworldPage() {
                     <div className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
                       {value.toString().padStart(2, "0")}
                     </div>
-                    <div className="text-xs text-white/90 uppercase tracking-wider font-medium">{unit}</div>
+                    <div className="text-xs text-white/90 uppercase tracking-wider font-medium">{t(unit as keyof typeof timeLeft)}</div>
                   </div>
                 ))}
               </div>
@@ -740,7 +747,7 @@ export default function WoodlyworldPage() {
                   }}
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
-                  Заказать со скидкой
+                  {t('orderWithDiscount')}
                 </Button>
                 <div id="amocrm_btn"></div>
               </div>
@@ -782,15 +789,12 @@ export default function WoodlyworldPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">Наша команда</h2>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">{t('ourTeam')}</h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Мы создаём больше, чем просто настенные карты — мы создаём атмосферу, эмоции и истории, которые
-                  становятся частью интерьера.
+                  {t('ourTeamDesc1')}
                 </p>
                 <p className="text-lg text-gray-600">
-                  Наша команда объединяет дизайнеров, мастеров и людей, влюблённых в географию, эстетику и уютные
-                  пространства. Мы внимательно подходим к каждому заказу — от подбора стиля и размера до точности
-                  деталей на карте. Всё, что мы делаем — делаем с душой и вниманием к мелочам.
+                  {t('ourTeamDesc2')}
                 </p>
               </motion.div>
               <motion.div
@@ -837,11 +841,10 @@ export default function WoodlyworldPage() {
         <section className="py-24 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
-              Наша уникальность и отличия
+              {t('uniquenessAndDifferences')}
             </h2>
             <p className="text-xl text-gray-600 text-center mb-16 max-w-4xl mx-auto">
-              Наши карты мира — это не просто декор, а произведения искусства с уникальными технологиями и премиальными
-              материалами
+              {t('uniquenessSubtitle')}
             </p>
             <div className="grid md:grid-cols-3 gap-8">
               {uniqueFeatures.map((feature, i) => (
@@ -868,7 +871,7 @@ export default function WoodlyworldPage() {
         {/* Product Categories */}
         <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">Наш Каталог</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">{t('ourCatalog')}</h2>
 
             {/* Category Tabs */}
             <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -888,7 +891,7 @@ export default function WoodlyworldPage() {
 
             {/* Products Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {mapCategories[activeCategory].items.map((item, i) => {
+              {activeCategory && mapCategories[activeCategory] && mapCategories[activeCategory].items.map((item, i) => {
                 const catIdx = Object.keys(mapCategories).indexOf(activeCategory)
                 const idx = getCardIndex(catIdx, i)
                 const gallery = item.gallery && item.gallery.length > 0 ? item.gallery : [item.image]
@@ -909,7 +912,7 @@ export default function WoodlyworldPage() {
                     {item.gallery && item.gallery.length > 1 && (
                       <div className="absolute top-4 right-4 z-10">
                         <Badge className="bg-black/70 text-white font-bold px-3 py-1 text-sm shadow-lg backdrop-blur-md">
-                          {item.gallery.length} фото
+                          {item.gallery.length} {t('photos')}
                         </Badge>
                       </div>
                     )}
@@ -980,11 +983,11 @@ export default function WoodlyworldPage() {
                       <div className="mb-4">
                         <div className="flex items-center gap-2 mb-1">
                           <span className="text-2xl font-bold text-orange-600">{item.price}</span>
-                          <span className="text-sm text-gray-500">сум</span>
+                          <span className="text-sm text-gray-500">{t('sum')}</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <span className="text-lg text-gray-400 line-through">{item.oldPrice}</span>
-                          <span className="text-sm text-gray-400">сум</span>
+                          <span className="text-sm text-gray-400">{t('sum')}</span>
                         </div>
                       </div>
 
@@ -997,7 +1000,7 @@ export default function WoodlyworldPage() {
                           }
                         }}
                       >
-                        Узнать подробнее <ArrowRight className="w-4 h-4 ml-2" />
+                        {t('learnMore')} <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </CardContent>
                   </Card>
@@ -1011,7 +1014,7 @@ export default function WoodlyworldPage() {
         {/* How to Get Map Process - Compact Version */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">Как получить карту?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">{t('howToGetMap')}</h2>
             <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-8">
               {orderProcess.map((step, i) => (
                 <motion.div
@@ -1037,7 +1040,7 @@ export default function WoodlyworldPage() {
         <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
-              Дополнительные преимущества
+              {t('additionalAdvantages')}
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {advantages.map((advantage, i) => (
@@ -1065,7 +1068,7 @@ export default function WoodlyworldPage() {
         <section className="py-24 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
-              Фотоотзывы наших клиентов
+              {t('customerPhotoReviews')}
             </h2>
             <div className="relative max-w-4xl mx-auto">
               <div className="flex justify-between items-center mb-8">
@@ -1148,9 +1151,9 @@ export default function WoodlyworldPage() {
         {/* Social Media Section */}
         <section className="py-24 bg-gray-900 text-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Следите за нами</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">{t('followUs')}</h2>
             <p className="text-xl text-gray-300 text-center mb-16 max-w-2xl mx-auto">
-              Присоединяйтесь к нашему сообществу в социальных сетях
+              {t('joinOurCommunity')}
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
               {socialLinks.map((social, i) => (
@@ -1183,7 +1186,7 @@ export default function WoodlyworldPage() {
         <section className="py-24 bg-gray-100">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8 ">Получить консультацию</h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-8 ">{t('getConsultation')}</h2>
               <Button
                 size="lg"
                 className="bg-orange-600 hover:bg-orange-700 px-12 py-4 text-lg text-white font-semibold"
@@ -1194,7 +1197,7 @@ export default function WoodlyworldPage() {
                   }
                 }}
               >
-                Оставить заявку на консультацию
+                {t('requestConsultation')}
               </Button>
             </div>
           </div>
@@ -1203,7 +1206,7 @@ export default function WoodlyworldPage() {
         {/* Gallery Slider */}
         <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">Карты в интерьере</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">{t('mapsInInterior')}</h2>
             <div className="relative max-w-6xl mx-auto">
               <div className="flex justify-between items-center mb-8">
                 <Button
@@ -1260,40 +1263,36 @@ export default function WoodlyworldPage() {
         {/* FAQ */}
         <section className="py-24">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">Часто задаваемые вопросы</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">{t('frequentlyAskedQuestions')}</h2>
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
                 <AccordionTrigger className="text-lg font-semibold">
-                  Как устанавливается карта на стену?
+                  {t('howToInstallMap')}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600">
-                  Каждая карта поставляется с подробной инструкцией и всеми необходимыми крепежными элементами.
-                  Установка занимает около 30 минут и не требует специальных навыков.
+                  {t('howToInstallMapAnswer')}
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
                 <AccordionTrigger className="text-lg font-semibold">
-                  Можно ли управлять LED-подсветкой?
+                  {t('canControlLED')}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600">
-                  Да, LED-карты поставляются с пультом управления и мобильным приложением для настройки цвета, яркости и
-                  режимов подсветки.
+                  {t('canControlLEDAnswer')}
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
-                <AccordionTrigger className="text-lg font-semibold">Какие размеры карт доступны?</AccordionTrigger>
+                <AccordionTrigger className="text-lg font-semibold">{t('whatSizesAvailable')}</AccordionTrigger>
                 <AccordionContent className="text-gray-600">
-                  Мы предлагаем карты различных размеров: от компактных 60x40 см до больших 200x120 см. Также возможно
-                  изготовление карт по индивидуальным размерам.
+                  {t('whatSizesAvailableAnswer')}
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4">
                 <AccordionTrigger className="text-lg font-semibold">
-                  Как ухаживать за деревянной картой?
+                  {t('howToCareForWoodenMap')}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600">
-                  Карты покрыты защитным лаком и не требуют особого ухода. Достаточно периодически протирать сухой
-                  тряпкой от пыли. Избегайте попадания прямых солнечных лучей и влаги.
+                  {t('howToCareForWoodenMapAnswer')}
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

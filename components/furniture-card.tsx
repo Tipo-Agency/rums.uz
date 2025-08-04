@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
+import { useLanguage } from "@/lib/language-context"
 
 interface FurnitureCardProps {
   name: string
@@ -17,6 +18,7 @@ interface FurnitureCardProps {
 }
 
 export function FurnitureCard({ name, images, description, linkHref, onDetailsClick }: FurnitureCardProps) {
+  const { t } = useLanguage()
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   return (
@@ -64,7 +66,7 @@ export function FurnitureCard({ name, images, description, linkHref, onDetailsCl
           <Button
             className="w-full bg-purple-300 hover:bg-purple-400 text-purple-900"
           >
-            Узнать подробнее <ArrowRight className="w-4 h-4 ml-2 text-purple-900" />
+            {t('learnMore')} <ArrowRight className="w-4 h-4 ml-2 text-purple-900" />
           </Button>
           </Link>
         </div>

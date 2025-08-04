@@ -3,12 +3,13 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Phone, Instagram, ChevronDown, Menu, X } from "lucide-react"
+import { Phone, Instagram, ChevronDown, Menu, X, Languages } from "lucide-react"
 import Image from "next/image"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Facebook, Youtube } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 24 24" fill="currentColor">
@@ -22,6 +23,7 @@ export function Header() {
   const [hoveredSocial, setHoveredSocial] = useState<"instagram" | "telegram" | null>(null)
   const [expandedSocial, setExpandedSocial] = useState<"instagram" | "telegram" | null>(null)
   const pathname = usePathname()
+  const { language, setLanguage, t } = useLanguage()
 
   const productsRef = useRef<HTMLDivElement>(null)
   const instagramRef = useRef<HTMLDivElement>(null)
@@ -45,19 +47,19 @@ export function Header() {
   const getSiteInfo = () => {
     if (pathname === "/ecopalma") return {
       name: "Ecopalma",
-      description: "Искусственные пальмы"
+      description: t('artificialPalmsEcopalma')
     }
     if (pathname === "/woodlyworld") return {
       name: "Woodlyworld", 
-      description: "Деревянные карты"
+      description: t('woodenMapsWoodlyworld')
     }
     if (pathname === "/babyjoy") return {
       name: "Babyjoy",
-      description: "Детская мебель"
+      description: t('furnitureBabyjoy')
     }
     return {
       name: "RUMS.UZ",
-      description: "Пальмы • Карты • Мебель"
+      description: `${t('palms')} • ${t('maps')} • ${t('childrenFurniture')}`
     }
   }
 
@@ -137,14 +139,14 @@ export function Header() {
           </div>
           <div className="hidden lg:flex items-center gap-8">
             <Link href="/" className="text-gray-600 hover:text-green-600 font-medium text-[15px] transition-colors">
-              Главная
+              {t('mainPage')}
             </Link>
             <div className="relative" ref={productsRef}>
               <button
                 className="flex items-center gap-1 text-gray-600 hover:text-green-600 font-medium text-[15px] transition-colors py-2"
                 onClick={() => setProductsOpen(!isProductsOpen)}
               >
-                Продукты
+                {t('products')}
                 <ChevronDown className={`w-4 h-4 transition-transform ${isProductsOpen ? "rotate-180" : ""}`} />
               </button>
               {isProductsOpen && (
@@ -156,8 +158,8 @@ export function Header() {
                   >
                     <Image src="logo/ecopalma.png" alt="Ecopalma" width={64} height={64} />
                     <div>
-                      <div className="font-semibold text-gray-900">Пальмы</div>
-                      <div className="text-xs text-gray-500">Искусственные пальмы Ecopalma</div>
+                      <div className="font-semibold text-gray-900">{t('palms')}</div>
+                      <div className="text-xs text-gray-500">{t('artificialPalmsEcopalma')}</div>
                     </div>
                   </Link>
                   <Link
@@ -167,8 +169,8 @@ export function Header() {
                   >
                     <Image src="logo/woodlyworld.png" alt="Woodlyworld" width={50} height={50} className="pl-3"/>
                     <div className="pl-3">
-                      <div className="font-semibold text-gray-900">Карты</div>
-                      <div className="text-xs text-gray-500">Деревянные карты Woodlyworld</div>
+                      <div className="font-semibold text-gray-900">{t('maps')}</div>
+                      <div className="text-xs text-gray-500">{t('woodenMapsWoodlyworld')}</div>
                     </div>
                   </Link>
                   <Link
@@ -178,8 +180,8 @@ export function Header() {
                   >
                     <Image src="logo/babyjoy.png" alt="Babyjoy" width={64} height={64} />
                     <div>
-                      <div className="font-semibold text-gray-900">Детская мебель</div>
-                      <div className="text-xs text-gray-500">Мебель Babyjoy</div>
+                      <div className="font-semibold text-gray-900">{t('childrenFurniture')}</div>
+                      <div className="text-xs text-gray-500">{t('furnitureBabyjoy')}</div>
                     </div>
                   </Link>
                 </div>
@@ -187,6 +189,14 @@ export function Header() {
             </div>
           </div>
           <div className="lg:flex items-center gap-6">
+            {/* Language Toggle Button */}
+            <button
+              onClick={() => setLanguage(language === 'ru' ? 'uz' : 'ru')}
+              className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors"
+            >
+              <Languages className="w-4 h-4" />
+              {language === 'ru' ? 'RU' : 'UZ'}
+            </button>
             <a
               href={`tel:${getPhoneNumber().replace(/\s/g, "")}`}
               className="flex items-center gap-2 text-gray-600 hover:text-green-600 font-medium transition-colors"
@@ -297,7 +307,7 @@ export function Header() {
                   className="block px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors font-medium"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Главная
+                  {t('mainPage')}
                 </Link>
                 
                 {/* Products Dropdown */}
@@ -309,8 +319,8 @@ export function Header() {
                       >
                         <Image src="logo/ecopalma.png" alt="Ecopalma" width={64} height={64} />
                         <div>
-                          <div className="font-semibold text-gray-900">Пальмы</div>
-                          <div className="text-xs text-gray-500">Искусственные пальмы Ecopalma</div>
+                          <div className="font-semibold text-gray-900">{t('palms')}</div>
+                          <div className="text-xs text-gray-500">{t('artificialPalmsEcopalma')}</div>
                         </div>
                       </Link>
                       <Link
@@ -320,8 +330,8 @@ export function Header() {
                       >
                         <Image src="logo/woodlyworld.png" alt="Woodlyworld" width={50} height={50} className="pl-3"/>
                         <div className="pl-3">
-                          <div className="font-semibold text-gray-900">Карты</div>
-                          <div className="text-xs text-gray-500">Деревянные карты Woodlyworld</div>
+                          <div className="font-semibold text-gray-900">{t('maps')}</div>
+                          <div className="text-xs text-gray-500">{t('woodenMapsWoodlyworld')}</div>
                         </div>
                       </Link>
                       <Link
@@ -331,8 +341,8 @@ export function Header() {
                       >
                         <Image src="logo/babyjoy.png" alt="Babyjoy" width={64} height={64} />
                         <div>
-                          <div className="font-semibold text-gray-900">Детская мебель</div>
-                          <div className="text-xs text-gray-500">Мебель Babyjoy</div>
+                          <div className="font-semibold text-gray-900">{t('childrenFurniture')}</div>
+                          <div className="text-xs text-gray-500">{t('furnitureBabyjoy')}</div>
                         </div>
                       </Link>
                     </div>
@@ -422,11 +432,15 @@ export function Header() {
               </div>
 
               {/* Language Selector */}
-              {/* <div className="px-4 py-3 border-t border-gray-100">
-                <button className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors">
-                  Ru
+              <div className="px-4 py-3 border-t border-gray-100">
+                <button 
+                  onClick={() => setLanguage(language === 'ru' ? 'uz' : 'ru')}
+                  className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors"
+                >
+                  <Languages className="w-4 h-4" />
+                  {language === 'ru' ? 'Русский' : 'O\'zbek'}
                 </button>
-              </div> */}
+              </div>
             </div>
           </div>
         )}

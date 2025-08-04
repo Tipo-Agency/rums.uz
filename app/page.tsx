@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -33,6 +33,7 @@ import { MapInquiryModal } from "@/components/map-inquiry-modal"
 import { FurnitureCard } from "@/components/furniture-card"
 import { FurnitureInquiryModal } from "@/components/furniture-inquiry-modal"
 import { useAmoForms } from "@/hooks/use-amo-forms"
+import { useLanguage } from "@/lib/language-context"
 
 
 interface MapData {
@@ -45,6 +46,8 @@ interface Maps {
 }
 
 export default function PalkarMePage() {
+  const { t } = useLanguage()
+  
   // Инициализируем AmoCRM для Woodlyworld секции
   useAmoForms({
     id: "1572666",
@@ -53,7 +56,7 @@ export default function PalkarMePage() {
   })
 
   const [timeLeft, setTimeLeft] = useState({ days: 2, hours: 14, minutes: 32, seconds: 45 })
-  const [activeMap, setActiveMap] = useState("3D Карты")
+  const [activeMap, setActiveMap] = useState("")
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
   const [isPalmDetailModalOpen, setIsPalmDetailModalOpen] = useState(false)
   const [isMapInquiryModalOpen, setIsMapInquiryModalOpen] = useState(false)
@@ -71,38 +74,38 @@ export default function PalkarMePage() {
 
   const palms = [
     {
-      name: "Майами",
+      name: t('palmMiami'),
       images: ["/ecopalma/mayami/1.jpg", "/ecopalma/mayami/2.jpg", "/ecopalma/mayami/3.jpg", "/ecopalma/mayami/4.jpg", "/ecopalma/mayami/5.jpg"],
-      description: "Реалистичный ствол и листья премиум-качества.",
-      price: "от $850",
+      description: t('palmMiamiDesc'),
+      price: `${t('from')} $850`,
       linkHref: "/ecopalma",
     },
     {
-      name: "Пляжный коктейль",
+      name: t('palmCocktail'),
       images: ["/ecopalma/coctail/1.jpg", "/ecopalma/coctail/2.jpg", "/ecopalma/coctail/3.jpg", "/ecopalma/coctail/4.jpg", "/ecopalma/coctail/5.jpg"],
-      description: "Пышная пальма с густой кроной, создающая атмосферу тропического оазиса.",
-      price: "от $850",
+      description: t('palmCocktailDesc'),
+      price: `${t('from')} $850`,
       linkHref: "/ecopalma",
     },
     {
-      name: "Экзотик",
+      name: t('palmExotic'),
       images: ["/ecopalma/exotic/1.jpg", "/ecopalma/exotic/2.jpg", "/ecopalma/exotic/3.jpg", "/ecopalma/exotic/4.jpg", "/ecopalma/exotic/5.jpg", "/ecopalma/exotic/6.jpg", "/ecopalma/exotic/7.jpg", "/ecopalma/exotic/8.jpg"],
-      description: "Уникальная веерная пальма с необычной формой листьев для ценителей экзотики.",
-      price: "от $850",
+      description: t('palmExoticDesc'),
+      price: `${t('from')} $850`,
       linkHref: "/ecopalma",
     },
     {
-      name: "Баунти",
+      name: t('palmBounty'),
       images: ["/ecopalma/bounty/1.jpg", "/ecopalma/bounty/2.jpg", "/ecopalma/bounty/3.jpg", "/ecopalma/bounty/4.jpg", "/ecopalma/bounty/5.jpg"],
-      description: "Элегантная пальма средних размеров, которая гармонично впишется в любой интерьер.",
-      price: "от $780",
+      description: t('palmBountyDesc'),
+      price: `${t('from')} $780`,
       linkHref: "/ecopalma",
     },
   ]
 
   const furniture = [
     {
-      name: "Башня помощника",
+      name: t('helperTower'),
       images: [
         "/tower-1.jpeg",
         "/tower-2.jpeg",
@@ -112,11 +115,11 @@ export default function PalkarMePage() {
         "/tower-6.jpeg",
         "/tower-7.jpeg",
       ],
-      description: "Помогает ребёнку безопасно участвовать в домашних делах на уровне взрослых.",
+      description: t('helperTowerDesc'),
       linkHref: "/babyjoy",
     },
     {
-      name: "Растущий стол-стул",
+      name: t('growingDeskChair'),
       images: [
         "/desk-chair-1.jpeg",
         "/desk-chair-2.jpeg",
@@ -125,11 +128,11 @@ export default function PalkarMePage() {
         "/desk-chair-5.jpeg",
         "/desk-chair-6.jpeg",
       ],
-      description: "Адаптируется под рост ребёнка, обеспечивая комфорт на долгие годы.",
+      description: t('growingDeskChairDesc'),
       linkHref: "/babyjoy",
     },
     {
-      name: "Треугольник Пиклера",
+      name: t('piklerTriangle'),
       images: [
         "/pikler-1.jpeg",
         "/pikler-2.jpeg",
@@ -139,25 +142,25 @@ export default function PalkarMePage() {
         "/pikler-6.jpeg",
         "/pikler-7.jpeg",
       ],
-      description: "Развивает моторику и координацию, стимулируя физическую активность.",
+      description: t('piklerTriangleDesc'),
       linkHref: "/babyjoy",
     },
     {
-      name: "Детская тележка",
+      name: t('childrenCart'),
       images: ["/cart-1.jpeg", "/cart-2.jpeg", "/cart-3.jpeg"],
-      description: "Идеально подходит для хранения игрушек и развития навыков самостоятельности.",
+      description: t('childrenCartDesc'),
       linkHref: "/babyjoy",
     },
     {
-      name: "Двухэтажная кроватка",
+      name: t('bunkBed'),
       images: ["/bunk-bed-1.jpeg", "/bunk-bed-2.jpeg"],
-      description: "Функциональная двухэтажная кроватка с встроенными ящиками и рабочим местом.",
+      description: t('bunkBedDesc'),
       linkHref: "/babyjoy",
     },
   ]
 
-  const maps: Maps = {
-    "3D Карты": {
+  const maps: Maps = useMemo(() => ({
+    [t('maps3D')]: {
       images: [
         "woodyworld/3d/1.jpg",
         "woodyworld/3d/2.jpg",
@@ -174,9 +177,9 @@ export default function PalkarMePage() {
         "woodyworld/3d/13.jpg",
         "woodyworld/3d/14.jpg"
       ],
-      description: "Объемные карты с потрясающей детализацией, создающие эффект присутствия.",
+      description: t('woodlyworld3DDesc'),
     },
-    "LED Карты": {
+    [t('mapsLED')]: {
       images: [
         "woodyworld/led/1.jpg",
         "woodyworld/led/2.jpg",
@@ -185,9 +188,9 @@ export default function PalkarMePage() {
         "woodyworld/led/5.jpg",
         "woodyworld/led/6.jpg"
       ],
-      description: "Карты с LED-подсветкой, создающие уютную и футуристичную атмосферу в комнате.",
+      description: t('woodlyworldLEDDesc'),
     },
-    "Фото-Карты": {
+    [t('mapsPhoto')]: {
       images: [
         "woodyworld/photo/1.jpg",
         "woodyworld/photo/2.jpg",
@@ -195,18 +198,32 @@ export default function PalkarMePage() {
         "woodyworld/photo/5.jpg",
         "woodyworld/photo/6.jpg"
       ],
-      description: "Персонализированные карты, на которых можно размещать свои фотографии из путешествий.",
+      description: t('woodlyworldPhotoDesc'),
     },
-    "2D Карты": {
+    [t('maps2D')]: {
       images: [
         "woodyworld/2d/1.jpg",
         "woodyworld/2d/2.jpg"
       ],
-      description: "Классические плоские карты, идеально вписывающиеся в любой современный интерьер.",
+      description: t('woodlyworld2DDesc'),
     },
-  }
+  }), [t])
 
   const [currentMapImageIndex, setCurrentMapImageIndex] = useState(0)
+
+  // Initialize activeMap when translations are ready or language changes
+  useEffect(() => {
+    const mapKeys = Object.keys(maps)
+    if (mapKeys.length > 0) {
+      setActiveMap(prevActiveMap => {
+        // Only change if current activeMap is not valid for new maps
+        if (!prevActiveMap || !mapKeys.includes(prevActiveMap)) {
+          return mapKeys[0] // Set to first map key (3D Maps)
+        }
+        return prevActiveMap // Keep current selection if it's valid
+      })
+    }
+  }, [maps])
 
   // Furniture carousel settings
   const itemsPerPage = 4
@@ -222,9 +239,24 @@ export default function PalkarMePage() {
 
   const visibleFurniture = furniture.slice(currentFurnitureIndex, currentFurnitureIndex + itemsPerPage)
 
+  // Map image navigation
+  const nextMapImage = () => {
+    if (activeMap && maps[activeMap]?.images) {
+      setCurrentMapImageIndex((prev) => (prev + 1) % maps[activeMap].images.length)
+    }
+  }
+
+  const prevMapImage = () => {
+    if (activeMap && maps[activeMap]?.images) {
+      setCurrentMapImageIndex((prev) => (prev - 1 + maps[activeMap].images.length) % maps[activeMap].images.length)
+    }
+  }
+
   useEffect(() => {
     setCurrentMapImageIndex(0)
   }, [activeMap])
+
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -256,39 +288,33 @@ export default function PalkarMePage() {
   const services = [
     {
       icon: Leaf,
-      title: "Искусственные пальмы",
-      description:
-        "Мы производим высококачественные искусственные пальмы, которые станут отличным дополнением к вашему интерьеру.",
+      title: t('artificialPalmsService'),
+      description: t('artificialPalmsServiceDesc'),
     },
     {
       icon: Map,
-      title: "Деревянные карты",
-      description:
-        "Наши деревянные карты изготовлены из натуральных материалов и отличаются высоким качеством исполнения.",
+      title: t('woodenMapsService'),
+      description: t('woodenMapsServiceDesc'),
     },
     {
       icon: Baby,
-      title: "Корпусная мебель",
-      description:
-        "Мы предлагаем широкий выбор корпусной мебели, изготовленной с использованием современных технологий и качественных материалов.",
+      title: t('corpusFurnitureService'),
+      description: t('corpusFurnitureServiceDesc'),
     },
     {
       icon: Palette,
-      title: "Индивидуальный дизайн",
-      description:
-        "Разрабатываем уникальный дизайн мебели и декоративных изделий, соответствующий вашим пожеланиям и стилю.",
+      title: t('individualDesignService'),
+      description: t('individualDesignServiceDesc'),
     },
     {
       icon: Sparkles,
-      title: "Услуги по персонализации",
-      description:
-        "Предлагаем услуги по персонализации мебели и декоративных изделий, чтобы каждый заказ был уникальным.",
+      title: t('personalizationService'),
+      description: t('personalizationServiceDesc'),
     },
     {
       icon: Wrench,
-      title: "Поставка материалов",
-      description:
-        "Осуществляем поставку качественных материалов для самостоятельного изготовления декоративных изделий и мебели.",
+      title: t('materialSupplyService'),
+      description: t('materialSupplyServiceDesc'),
     },
   ]
 
@@ -306,8 +332,8 @@ export default function PalkarMePage() {
       <MapInquiryModal
         isOpen={isMapInquiryModalOpen}
         onClose={() => setIsMapInquiryModalOpen(false)}
-        mapType={activeMap}
-        mapDescription={maps[activeMap].description}
+        mapType={activeMap || ""}
+        mapDescription={activeMap && maps[activeMap]?.description || ""}
       />
       <FurnitureInquiryModal
         isOpen={isFurnitureInquiryModalOpen}
@@ -335,17 +361,17 @@ export default function PalkarMePage() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
               <Badge className="mb-6 bg-white/20 text-white border-white/30 backdrop-blur-md shadow-lg">
                 <Timer className="w-4 h-4 mr-2" />
-                Ограниченное предложение
+                {t('limitedOffer')}
               </Badge>
               <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight drop-shadow-2xl">
-                <span className="text-white drop-shadow-lg">Уютные предметы</span>{" "}
+                <span className="text-white drop-shadow-lg">{t('cozyHomeItems')}</span>{" "}
                 <span className="block bg-gradient-to-r from-green-400 to-orange-400 bg-clip-text text-transparent drop-shadow-lg">
-                  интерьера
+                  {t('interior')}
                 </span>{" "}
-                <span className="text-white drop-shadow-lg text-4xl md:text-5xl">со скидкой</span>
+                <span className="text-white drop-shadow-lg text-4xl md:text-5xl">{t('withDiscount')}</span>
               </h1>
               <p className="text-xl md:text-2xl text-white mb-8 max-w-2xl mx-auto drop-shadow-lg font-medium">
-                Создаём уют для вашего дома. Успейте купить по выгодной цене!
+                {t('createComfortForHome')}
               </p>
             </motion.div>
           </div>
@@ -365,7 +391,7 @@ export default function PalkarMePage() {
                     <div className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
                       {value.toString().padStart(2, "0")}
                     </div>
-                    <div className="text-xs text-white/90 uppercase tracking-wider font-medium">{unit}</div>
+                    <div className="text-xs text-white/90 uppercase tracking-wider font-medium">{t(unit as keyof typeof timeLeft)}</div>
                   </div>
                 ))}
               </div>
@@ -376,7 +402,7 @@ export default function PalkarMePage() {
                   className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
-                  Связаться с менеджером
+                  {t('contactManager')}
                 </Button>
                 </a>
               </div>
@@ -393,9 +419,9 @@ export default function PalkarMePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Ecopalma — Уникальные пальмы</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">{t('uniquePalms')}</h2>
               <p className="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-12">
-                Реалистичные искусственные пальмы по индивидуальному заказу, которые преобразят любое пространство.
+                {t('realisticArtificialPalms')}
               </p>
             </motion.div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
@@ -430,8 +456,8 @@ export default function PalkarMePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Woodlyworld — Карты мира</h2>
-              <p className="text-xl text-gray-300 mb-8 min-h-[6rem]">{maps[activeMap].description}</p>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">{t('worldMaps')}</h2>
+              <p className="text-xl text-gray-300 mb-8 min-h-[6rem]">{activeMap && maps[activeMap]?.description || ""}</p>
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {Object.keys(maps).map((name) => (
                   <button
@@ -457,7 +483,7 @@ export default function PalkarMePage() {
                     }
                   }}
                 >
-                  Оставить заявку
+                  {t('submitRequest')}
                 </Button>
                 <div id="amocrm_btn"></div>
               </div>
@@ -480,18 +506,36 @@ export default function PalkarMePage() {
                     className="absolute inset-0"
                   >
                     <Image
-                      src={maps[activeMap].images[currentMapImageIndex] || "/placeholder.svg"}
-                      alt={activeMap}
+                      src={activeMap && maps[activeMap]?.images?.[currentMapImageIndex] || "/placeholder.svg"}
+                      alt={activeMap || "Map"}
                       fill
                       className="rounded-2xl shadow-2xl object-cover"
                     />
                   </motion.div>
                 </AnimatePresence>
 
+                {/* Navigation arrows */}
+                {activeMap && (maps[activeMap]?.images?.length || 0) > 1 && (
+                  <>
+                    <button
+                      onClick={prevMapImage}
+                      className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-200 hover:scale-110"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+                    <button
+                      onClick={nextMapImage}
+                      className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-200 hover:scale-110"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+                  </>
+                )}
+
                 {/* Image indicators */}
-                {maps[activeMap].images.length > 1 && (
+                {activeMap && (maps[activeMap]?.images?.length || 0) > 1 && (
                   <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-                    {maps[activeMap].images.map((_, index) => (
+                    {(activeMap && maps[activeMap]?.images || []).map((_, index) => (
                       <button
                         key={index}
                         onClick={() => setCurrentMapImageIndex(index)}
@@ -517,10 +561,10 @@ export default function PalkarMePage() {
               transition={{ duration: 0.5 }}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-purple-900">
-                Babyjoy — Мебель для детей
+                {t('furnitureForChildren')}
               </h2>
               <p className="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-8">
-                Качественная детская корпусная мебель, которую можно собрать за 5 минут.
+                {t('qualityChildrenFurniture')}
               </p>
 
               {/* Carousel Controls */}
@@ -561,8 +605,8 @@ export default function PalkarMePage() {
               </div>
 
               <p className="text-center text-gray-500 mb-12">
-                Показано {currentFurnitureIndex + 1}-{Math.min(currentFurnitureIndex + itemsPerPage, furniture.length)}{" "}
-                из {furniture.length} товаров
+                {t('showing')} {currentFurnitureIndex + 1}-{Math.min(currentFurnitureIndex + itemsPerPage, furniture.length)}{" "}
+                {t('of')} {furniture.length} {t('products')}
               </p>
             </motion.div>
 
@@ -599,9 +643,9 @@ export default function PalkarMePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Наши Услуги</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">{t('ourServices')}</h2>
               <p className="text-xl text-gray-300 text-center max-w-3xl mx-auto mb-16">
-                Полный цикл производства декоративных изделий от дизайна до поставки материалов.
+                {t('fullCycleProduction')}
               </p>
             </motion.div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -629,23 +673,23 @@ export default function PalkarMePage() {
         {/* Delivery Section */}
         <section className="py-24 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">Варианты Доставки</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">{t('deliveryOptions')}</h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {[
                 {
                   icon: Package,
-                  title: "Доставка по Ташкенту",
-                  desc: "Осуществляется сразу после изготовления мебели. Бесплатная доставка и профессиональная сборка.",
+                  title: t('tashkentDelivery'),
+                  desc: t('tashkentDeliveryDesc'),
                 },
                 {
                   icon: Truck,
-                  title: "Доставка по Узбекистану",
-                  desc: "Возможна на следующий день после готовности заказа. Доставляем в любой город республики.",
+                  title: t('uzbekistanDelivery'),
+                  desc: t('uzbekistanDeliveryDesc'),
                 },
                 {
                   icon: Globe,
-                  title: "Доставка по всему миру",
-                  desc: "Также доступна международная доставка. Надежная упаковка и быстрая отправка.",
+                  title: t('worldwideDelivery'),
+                  desc: t('worldwideDeliveryDesc'),
                 },
               ].map((item, i) => (
                 <motion.div
@@ -678,3 +722,4 @@ export default function PalkarMePage() {
     </div>
   )
 }
+

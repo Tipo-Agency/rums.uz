@@ -3,11 +3,12 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
+import { LanguageProvider } from "@/lib/language-context"
 
 export const metadata: Metadata = {
-  title: "PalkarMe",
-  description: "PalkarMe",
-  generator: "PalkarMe",
+  title: "RUMS",
+  description: "RUMS",
+  generator: "RUMS",
 }
 
 export default function RootLayout({
@@ -19,10 +20,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
-          <Toaster />
-        </ThemeProvider>
+        <LanguageProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            {children}
+            <Toaster />
+          </ThemeProvider>
+        </LanguageProvider>
       </body>
     </html>
   )

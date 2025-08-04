@@ -31,6 +31,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { useAmoForms } from "@/hooks/use-amo-forms"
+import { useLanguage } from "@/lib/language-context"
 
 // Добавляем типы для глобального окна
 declare global {
@@ -46,6 +47,8 @@ const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
 )
 
 export default function EcopalmaPage() {
+  const { t } = useLanguage()
+  
   // Инициализируем AmoCRM
   useAmoForms({
     id: "1572670",
@@ -73,43 +76,43 @@ export default function EcopalmaPage() {
 
   const palms = [
     {
-      name: "Майами",
+      name: t('palmMiami'),
       images: ["/ecopalma/mayami/1.jpg", "/ecopalma/mayami/2.jpg", "/ecopalma/mayami/3.jpg", "/ecopalma/mayami/4.jpg", "/ecopalma/mayami/5.jpg"],
-      description: "Реалистичный ствол и листья премиум-качества.",
-      price: "от $850",
+      description: t('palmMiamiDesc'),
+      price: `${t('from')} $850`,
       linkHref: "/ecopalma",
     },
     {
-      name: "Пляжный коктейль",
+      name: t('palmCocktail'),
       images: ["/ecopalma/coctail/1.jpg", "/ecopalma/coctail/2.jpg", "/ecopalma/coctail/3.jpg", "/ecopalma/coctail/4.jpg", "/ecopalma/coctail/5.jpg"],
-      description: "Пышная пальма с густой кроной, создающая атмосферу тропического оазиса.",
-      price: "от $850",
+      description: t('palmCocktailDesc'),
+      price: `${t('from')} $1850`,
       linkHref: "/ecopalma",
     },
     {
-      name: "Экзотик",
+      name: t('palmExotic'),
       images: ["/ecopalma/exotic/2.jpg", "/ecopalma/exotic/4.jpg", "/ecopalma/exotic/5.jpg", "/ecopalma/exotic/6.jpg", "/ecopalma/exotic/7.jpg", "/ecopalma/exotic/8.jpg"],
-      description: "Уникальная веерная пальма с необычной формой листьев для ценителей экзотики.",
-      price: "от $850",
+      description: t('palmExoticDesc'),
+      price: `${t('from')} $850`,
       linkHref: "/ecopalma",
     },
     {
-      name: "Баунти",
+      name: t('palmBounty'),
       images: ["/ecopalma/bounty/1.jpg", "/ecopalma/bounty/2.jpg", "/ecopalma/bounty/3.jpg", "/ecopalma/bounty/4.jpg", "/ecopalma/bounty/5.jpg"],
-      description: "Элегантная пальма средних размеров, которая гармонично впишется в любой интерьер.",
-      price: "от $780",
+      description: t('palmBountyDesc'),
+      price: `${t('from')} $780`,
       linkHref: "/ecopalma",
     },
   ]
 
   const features = [
-    { icon: CheckCircle, title: "Гиперреалистичность", text: "Каждый лист и изгиб ствола неотличимы от настоящих." },
-    { icon: ShieldCheck, title: "Гипоаллергенно", text: "Безопасные материалы, не вызывающие аллергических реакций." },
-    { icon: Sun, title: "Не выгорают", text: "Специальное покрытие защищает от УФ-лучей и потери цвета." },
+    { icon: CheckCircle, title: t('hyperRealistic'), text: t('hyperRealisticDesc') },
+    { icon: ShieldCheck, title: t('hypoallergenic'), text: t('hypoallergenicDesc') },
+    { icon: Sun, title: t('noFading'), text: t('noFadingDesc') },
     {
       icon: Wind,
-      title: "Простота в уходе",
-      text: "Не требуют полива, света и специальных условий. Только протереть пыль.",
+      title: t('easyMaintenance'),
+      text: t('easyMaintenanceDesc'),
     },
   ]
 
@@ -149,53 +152,51 @@ export default function EcopalmaPage() {
   const advantages = [
     {
       icon: Wind,
-      title: "Устойчивость к погодным условиям",
-      description: "Выдерживают любые климатические условия",
+      title: t('weatherResistance'),
+      description: t('weatherResistanceDesc'),
     },
     {
       icon: ShieldCheck,
-      title: "Гарантия качества 3 года",
-      description: "Полная гарантия на все изделия",
+      title: t('qualityGuarantee3Years'),
+      description: t('qualityGuarantee3YearsDesc'),
     },
     {
       icon: Timer,
-      title: "Быстрое изготовление 7-14 дней",
-      description: "Оперативное выполнение заказов",
+      title: t('fastManufacturing7_14Days'),
+      description: t('fastManufacturing7_14DaysDesc'),
     },
     {
       icon: CheckCircle,
-      title: "Профессиональная установка",
-      description: "Квалифицированные мастера",
+      title: t('professionalInstallation'),
+      description: t('professionalInstallationDesc'),
     },
     {
       icon: User,
-      title: "Индивидуальный подбор размера",
-      description: "Подбираем идеальный размер для вашего пространства",
+      title: t('individualSizeSelection'),
+      description: t('individualSizeSelectionDesc'),
     },
     {
       icon: Leaf,
-      title: "Экологически безопасные материалы",
-      description: "Только качественные и безвредные материалы",
+      title: t('ecoFriendlyMaterials'),
+      description: t('ecoFriendlyMaterialsDesc'),
     },
   ]
 
   const orderProcess = [
     {
       icon: User,
-      title: "Оставить заявку",
-      description:
-        "На сайте выберите пальму, которая вам понравится, и оставьте заявку. Наш менеджер свяжется с вами для обсуждения всех деталей вашего заказа. В случае возникновения вопросов мы с удовольствием поможем их решить.",
+      title: t('makeRequest'),
+      description: t('makeRequestDesc'),
     },
     {
       icon: CreditCard,
-      title: "Предоплата и изготовление",
-      description:
-        "После выбора желаемой пальмы, внесите предоплату в размере 50%, и мы изготовим вашу искусственную пальму премиум-класса в течение 3-7 дней.",
+      title: t('prepaymentAndManufacturing'),
+      description: t('prepaymentAndManufacturingDesc'),
     },
     {
       icon: Truck,
-      title: "Бесплатная доставка",
-      description: "Абсолютно бесплатная доставка по всему Узбекистану. Также имеется доставка по всему миру.",
+      title: t('freeDelivery'),
+      description: t('freeDeliveryDesc'),
     },
   ]
 
@@ -203,28 +204,28 @@ export default function EcopalmaPage() {
     {
       name: "YouTube",
       icon: Youtube,
-      description: "Смотрите наши видео о продукции и процессе создания",
+      description: t('youtubeDesc'),
       color: "from-red-500 to-red-600",
       href: "#",
     },
     {
       name: "Facebook",
       icon: Facebook,
-      description: "Новости компании и общение с клиентами",
+      description: t('facebookDesc'),
       color: "from-blue-600 to-blue-700",
       href: "#",
     },
     {
       name: "Instagram",
       icon: Instagram,
-      description: "Красивые фото наших изделий и закулисье",
+      description: t('instagramDesc'),
       color: "from-pink-500 to-purple-600",
       href: "https://www.instagram.com/ecopalma.uz/",
     },
     {
       name: "Telegram",
       icon: TelegramIcon,
-      description: "Быстрая связь и эксклюзивные предложения",
+      description: t('telegramDesc'),
       color: "from-blue-400 to-blue-500",
       href: "https://t.me/ecopalmatashkent",
     },
@@ -232,7 +233,6 @@ export default function EcopalmaPage() {
 
   const galleryImages = [
     "/cocktail-1.jpg",
-    "/miami-2.jpg",
     "/cocktail-3.png",
     "/exotic-palm.png",
     "/bounty-1.png",
@@ -348,13 +348,13 @@ export default function EcopalmaPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
               <Badge className="mb-6 bg-red-500/90 text-white border-red-400 backdrop-blur-md shadow-lg text-lg px-4 py-2">
                 <Gift className="w-5 h-5 mr-2" />
-                СКИДКА 30% + Бесплатный дизайн-проект
+                {t('discountAndFreeDesign')}
               </Badge>
               <h1 className="text-5xl md:text-7xl font-extrabold mb-4 leading-tight drop-shadow-2xl">
                 <span className="text-white drop-shadow-lg">Ecopalma</span>
               </h1>
               <p className="text-xl md:text-2xl text-green-200 max-w-2xl mx-auto mb-8 drop-shadow-lg font-medium">
-                Искусство создания вечной природы в вашем интерьере со скидкой до конца июля!
+                {t('artOfCreatingEternalNature')}
               </p>
             </motion.div>
           </div>
@@ -375,7 +375,7 @@ export default function EcopalmaPage() {
                     <div className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
                       {value.toString().padStart(2, "0")}
                     </div>
-                    <div className="text-xs text-white/90 uppercase tracking-wider font-medium">{unit}</div>
+                    <div className="text-xs text-white/90 uppercase tracking-wider font-medium">{t(unit as keyof typeof timeLeft)}</div>
                   </div>
                 ))}
               </div>
@@ -390,7 +390,7 @@ export default function EcopalmaPage() {
                   }}
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
-                  Заказать со скидкой
+                  {t('orderWithDiscount')}
                 </Button>
                 <div id="amocrm_btn"></div>
               </div>
@@ -425,7 +425,7 @@ export default function EcopalmaPage() {
         {/* Product Catalog */}
         <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">Наш Каталог</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">{t('ourCatalog')}</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
               {palms.map((palm, i) => (
                 <motion.div
@@ -515,7 +515,7 @@ export default function EcopalmaPage() {
                           }
                         }}
                       >
-                        Узнать подробнее <ArrowRight className="w-4 h-4 ml-2" />
+                        {t('learnMore')} <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </CardContent>
                   </Card>
@@ -528,7 +528,7 @@ export default function EcopalmaPage() {
         {/* How to Get Palm Process - Compact Version */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">Как получить пальму?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">{t('howToGetPalm')}</h2>
             <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-8">
               {orderProcess.map((step, i) => (
                 <motion.div
@@ -554,7 +554,7 @@ export default function EcopalmaPage() {
         <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
-              Дополнительные преимущества
+              {t('additionalAdvantages')}
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {advantages.map((advantage, i) => (
@@ -582,7 +582,7 @@ export default function EcopalmaPage() {
         <section className="py-24 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
-              Фотоотзывы наших клиентов
+              {t('customerPhotoReviews')}
             </h2>
             <div className="relative max-w-4xl mx-auto">
               <div className="flex justify-between items-center mb-8">
@@ -666,9 +666,9 @@ export default function EcopalmaPage() {
         {/* Social Media Section */}
         <section className="py-24 bg-gray-900 text-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Следите за нами</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">{t('followUs')}</h2>
             <p className="text-xl text-gray-300 text-center mb-16 max-w-2xl mx-auto">
-              Присоединяйтесь к нашему сообществу в социальных сетях
+              {t('joinOurCommunity')}
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
               {socialLinks.map((social, i) => (
@@ -701,7 +701,7 @@ export default function EcopalmaPage() {
         <section className="py-24 bg-gray-100">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">Получить консультацию</h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">{t('getConsultation')}</h2>
               <Button
                 size="lg"
                 className="bg-green-600 hover:bg-green-700 px-12 py-4 text-lg text-white"
@@ -711,7 +711,7 @@ export default function EcopalmaPage() {
                   }
                 }}
               >
-                Оставить заявку на консультацию
+                {t('requestConsultation')}
               </Button>
             </div>
           </div>
@@ -720,7 +720,7 @@ export default function EcopalmaPage() {
         {/* Gallery Slider */}
         <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">Пальмы в интерьере</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">{t('palmsInInterior')}</h2>
             <div className="relative max-w-6xl mx-auto">
               <div className="flex justify-between items-center mb-8">
                 <Button
@@ -778,32 +778,30 @@ export default function EcopalmaPage() {
         {/* FAQ */}
         <section className="py-24 bg-white">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">Часто задаваемые вопросы</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">{t('frequentlyAskedQuestions')}</h2>
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
                 <AccordionTrigger className="text-lg font-semibold text-gray-900">
-                  Можно ли использовать пальмы на улице?
+                  {t('canUsePalmsOutside')}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600">
-                  Да, некоторые наши модели специально обработаны для использования на открытом воздухе. Они устойчивы к
-                  УФ-излучению и погодным условиям. Уточняйте при заказе.
+                  {t('canUsePalmsOutsideAnswer')}
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
                 <AccordionTrigger className="text-lg font-semibold text-gray-900">
-                  Какие у вас сроки изготовления?
+                  {t('whatAreDeliveryTimes')}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600">
-                  Срок изготовления зависит от сложности и размера заказа, в среднем от 5 до 14 рабочих дней.
+                  {t('whatAreDeliveryTimesAnswer')}
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
                 <AccordionTrigger className="text-lg font-semibold text-gray-900">
-                  Как ухаживать за пальмами?
+                  {t('howToCareForPalms')}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600">
-                  Уход минимален. Достаточно периодически протирать листья влажной тряпкой от пыли. Никакого полива или
-                  удобрений не требуется.
+                  {t('howToCareForPalmsAnswer')}
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
