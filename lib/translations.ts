@@ -66,7 +66,6 @@ export interface Translations {
   bunkBedDesc: string
   showing: string
   of: string
-  products: string
 
   // Services Section
   ourServices: string
@@ -174,6 +173,7 @@ export interface Translations {
     ledTechnologyDesc: string
     handmade: string
     handmadeDesc: string
+    showcatalogwithprice: string
     
     ourTeam: string
     ourTeamDesc1: string
@@ -205,11 +205,7 @@ export interface Translations {
     
     mapsInInterior: string
     
-    // Product categories
-    maps3D: string
-    mapsLED: string
-    mapsPhoto: string
-    maps2D: string
+    // Product categories  
     accessories: string
     
     // Currency
@@ -282,13 +278,6 @@ export interface Translations {
   // Babyjoy Page
   discountAndConsultation: string
   montessoriFurnitureDescription: string
-  orderWithDiscount: string
-
-  // Timer units
-  days: string
-  hours: string
-  minutes: string
-  seconds: string
 
   // Features Babyjoy
   ecoMaterials: string
@@ -310,33 +299,14 @@ export interface Translations {
   safetyFirst: string
   safetyFirstDesc: string
 
-  // Furniture items
-  helperTower: string
-  helperTowerDesc: string
-  growingDeskChair: string
-  growingDeskChairDesc: string
-  piklerTriangle: string
-  piklerTriangleDesc: string
-  childrenCart: string
-  childrenCartDesc: string
-  bunkBed: string
-  bunkBedDesc: string
-
   // Process
   howToGetFurniture: string
   leaveRequest: string
   leaveRequestDesc: string
-  prepaymentAndManufacturing: string
-  prepaymentAndManufacturingDesc: string
-  freeDelivery: string
-  freeDeliveryDesc: string
 
   // Additional advantages
-  additionalAdvantages: string
   developmentIndependence: string
   developmentIndependenceDesc: string
-  qualityGuarantee3Years: string
-  qualityGuarantee3YearsDesc: string
   fastManufacturing5_10Days: string
   fastManufacturing5_10DaysDesc: string
   simpleAssembly: string
@@ -362,15 +332,8 @@ export interface Translations {
   testimonial5Text: string
 
   // Social Media
-  followUs: string
   joinParentsCommunity: string
-  youtubeDesc: string
-  facebookDesc: string
-  instagramDesc: string
-  telegramDesc: string
 
-  // Consultation
-  getConsultation: string
   leaveConsultationRequest: string
 
   // Gallery
@@ -460,7 +423,6 @@ export const translations: Record<Language, Translations> = {
     bunkBedDesc: "Функциональная двухэтажная кроватка с встроенными ящиками и рабочим местом.",
     showing: "Показано",
     of: "из",
-    products: "Продукты",
 
     // Services Section
     ourServices: "Наши Услуги",
@@ -498,8 +460,8 @@ export const translations: Record<Language, Translations> = {
     createComfortWithQualityItems: "Создаём уют и комфорт для вашего дома с помощью качественных растений и мебели.",
 
     // Ecopalma Page
-    discountAndFreeDesign: "СКИДКА 30% + Бесплатный дизайн-проект",
-    artOfCreatingEternalNature: "Искусство создания вечной природы в вашем интерьере со скидкой до конца июля!",
+    discountAndFreeDesign: "СКИДКА 15% + Бесплатный дизайн-проект",
+    artOfCreatingEternalNature: "Искусство создания вечной природы в вашем экстерьере со скидкой до конца месяца!",
     orderWithDiscount: "Заказать со скидкой",
     hyperRealistic: "Гиперреалистичность",
     hyperRealisticDesc: "Каждый лист и изгиб ствола неотличимы от настоящих.",
@@ -568,6 +530,7 @@ export const translations: Record<Language, Translations> = {
     ledTechnologyDesc: "Современная LED-подсветка с долгим сроком службы.",
     handmade: "Ручная работа",
     handmadeDesc: "Каждая карта изготавливается вручную с любовью к деталям.",
+    showcatalogwithprice: "Посмотреть каталог с ценами",
     
     ourTeam: "Наша команда",
     ourTeamDesc1: "Мы создаём больше, чем просто настенные карты — мы создаём атмосферу, эмоции и истории, которые становятся частью интерьера.",
@@ -600,10 +563,6 @@ export const translations: Record<Language, Translations> = {
     mapsInInterior: "Карты в интерьере",
     
     // Product categories
-    maps3D: "3D Карты",
-    mapsLED: "LED Карты",
-    mapsPhoto: "Фото-Карты",
-    maps2D: "2D Карты",
     accessories: "Принадлежности",
     
     // Currency
@@ -612,13 +571,6 @@ export const translations: Record<Language, Translations> = {
     // Babyjoy Page
     discountAndConsultation: "СКИДКА 30% + Бесплатная консультация педагога",
     montessoriFurnitureDescription: "Мебель, которая растёт вместе с вашим ребёнком по методике Монтессори со скидкой до конца июля!",
-    orderWithDiscount: "Заказать со скидкой",
-
-    // Timer units
-    days: "дни",
-    hours: "часы",
-    minutes: "минуты", 
-    seconds: "секунды",
 
     // Features Babyjoy
     ecoMaterials: "Экологичные материалы",
@@ -640,33 +592,14 @@ export const translations: Record<Language, Translations> = {
     safetyFirst: "Безопасность превыше всего",
     safetyFirstDesc: "Каждый элемент мебели проходит строгий контроль качества. Используем только гипоаллергенные материалы, все углы скруглены, поверхности отшлифованы до идеальной гладкости.",
 
-    // Furniture items
-    helperTower: "Башня помощника",
-    helperTowerDesc: "Помогает ребёнку безопасно участвовать в домашних делах на уровне взрослых.",
-    growingDeskChair: "Растущий стол-стул",
-    growingDeskChairDesc: "Адаптируется под рост ребёнка, обеспечивая комфорт на долгие годы.",
-    piklerTriangle: "Треугольник Пиклера",
-    piklerTriangleDesc: "Развивает моторику и координацию, стимулируя физическую активность.",
-    childrenCart: "Детская тележка",
-    childrenCartDesc: "Идеально подходит для хранения игрушек и развития навыков самостоятельности.",
-    bunkBed: "Двухэтажная кроватка",
-    bunkBedDesc: "Функциональная двухэтажная кроватка с встроенными ящиками и рабочим местом.",
-
     // Process
     howToGetFurniture: "Как получить мебель?",
     leaveRequest: "Оставить заявку",
     leaveRequestDesc: "Выберите понравившуюся мебель и оставьте заявку. Наш менеджер свяжется с вами для обсуждения деталей заказа и поможет подобрать идеальный размер для вашего ребенка.",
-    prepaymentAndManufacturing: "Предоплата и изготовление",
-    prepaymentAndManufacturingDesc: "После выбора мебели внесите предоплату 50%, и мы изготовим вашу детскую мебель премиум-класса в течение 5-10 дней с учетом всех пожеланий.",
-    freeDelivery: "Бесплатная доставка",
-    freeDeliveryDesc: "Абсолютно бесплатная доставка по всему Узбекистану с профессиональной сборкой на месте. Также доступна международная доставка.",
 
     // Additional advantages
-    additionalAdvantages: "Дополнительные преимущества",
     developmentIndependence: "Развитие самостоятельности",
     developmentIndependenceDesc: "Мебель помогает детям стать более независимыми",
-    qualityGuarantee3Years: "Гарантия качества 3 года",
-    qualityGuarantee3YearsDesc: "Полная гарантия на все изделия и фурнитуру",
     fastManufacturing5_10Days: "Быстрое изготовление 5-10 дней",
     fastManufacturing5_10DaysDesc: "Оперативное выполнение заказов любой сложности",
     simpleAssembly: "Простая сборка",
@@ -692,15 +625,9 @@ export const translations: Record<Language, Translations> = {
     testimonial5Text: "Двухэтажная кроватка - мечта любого ребенка! Сын в восторге, а мы довольны качеством и функциональностью.",
 
     // Social Media
-    followUs: "Следите за нами",
     joinParentsCommunity: "Присоединяйтесь к нашему сообществу родителей в социальных сетях",
-    youtubeDesc: "Обучающие видео по методике Монтессори",
-    facebookDesc: "Советы по развитию детей и новости",
-    instagramDesc: "Фото счастливых детей с нашей мебелью",
-    telegramDesc: "Быстрая связь и эксклюзивные предложения",
 
     // Consultation
-    getConsultation: "Получить консультацию",
     leaveConsultationRequest: "Оставить заявку на консультацию",
 
     // Gallery
@@ -852,7 +779,6 @@ export const translations: Record<Language, Translations> = {
     bunkBedDesc: "O'rnatilgan tortmalar va ish joyi bilan funksional ikki qavatli kravat.",
     showing: "Ko'rsatilmoqda",
     of: "dan",
-    products: "Mahsulotlar",
 
     // Services Section
     ourServices: "Bizning Xizmatlarimiz",
@@ -890,8 +816,8 @@ export const translations: Record<Language, Translations> = {
     createComfortWithQualityItems: "Sifatli o'simliklar va mebel yordamida uyingizda qulaylik va farovonlik yaratamiz.",
 
     // Ecopalma Page
-    discountAndFreeDesign: "30% CHEGIRMA + Bepul dizayn loyihasi",
-    artOfCreatingEternalNature: "Iyul oyining oxirigacha chegirma bilan interyeringizda abadiy tabiat yaratish san'ati!",
+    discountAndFreeDesign: "15% CHEGIRMA + Bepul dizayn loyihasi",
+    artOfCreatingEternalNature: "Oyning oxirigacha chegirma bilan eksteriyeringizda abadiy tabiat yaratish san'ati!",
     orderWithDiscount: "Chegirma bilan buyurtma berish",
     hyperRealistic: "Giper-realistik",
     hyperRealisticDesc: "Har bir barg va novda egilishi haqiqisidan farq qilmaydi.",
@@ -960,6 +886,7 @@ export const translations: Record<Language, Translations> = {
     ledTechnologyDesc: "Uzoq xizmat muddatli zamonaviy LED yoritgich.",
     handmade: "Qo'lda ishlanadi",
     handmadeDesc: "Har bir xarita tafsilotlarga muhabbat bilan qo'lda tayyorlanadi.",
+    showcatalogwithprice: "Katalogni ko'rish va narxlarni bilish",
     
     ourTeam: "Bizning jamoa",
     ourTeamDesc1: "Biz oddiy devor xaritalaridan ko'ra ko'p narsalarni yaratamiz — biz interyer qismiga aylanadigan atmosfera, his-tuyg'ular va hikoyalarni yaratamiz.",
@@ -992,10 +919,6 @@ export const translations: Record<Language, Translations> = {
     mapsInInterior: "Interyerdagi xaritalar",
     
     // Product categories
-    maps3D: "3D Xaritalar",
-    mapsLED: "LED Xaritalar",
-    mapsPhoto: "Foto-Xaritalar",
-    maps2D: "2D Xaritalar",
     accessories: "Aksessuarlar",
     
     // Currency
@@ -1004,13 +927,6 @@ export const translations: Record<Language, Translations> = {
     // Babyjoy Page
     discountAndConsultation: "30% CHEGIRMA + Bepul pedagog konsultatsiyasi",
     montessoriFurnitureDescription: "Montessori metodikasi bo'yicha farzandingiz bilan birga o'sadigan mebel - iyul oxirigacha chegirma bilan!",
-    orderWithDiscount: "Chegirma bilan buyurtma",
-
-    // Timer units
-    days: "kun",
-    hours: "soat",
-    minutes: "daqiqa",
-    seconds: "soniya",
 
     // Features Babyjoy
     ecoMaterials: "Ekologik materiallar",
@@ -1032,33 +948,14 @@ export const translations: Record<Language, Translations> = {
     safetyFirst: "Xavfsizlik birinchi o'rinda",
     safetyFirstDesc: "Mebelning har bir elementi qattiq sifat nazoratidan o'tadi. Faqat gipoallergen materiallardan foydalanamiz, barcha burchaklar yumalak, sirtlar mukammal silliqlikgacha silliqlangan.",
 
-    // Furniture items
-    helperTower: "Yordamchi minora",
-    helperTowerDesc: "Bolaga kattalar darajasida uy ishlarida xavfsiz ishtirok etishga yordam beradi.",
-    growingDeskChair: "O'sadigan stol-stul",
-    growingDeskChairDesc: "Bolaning o'sishiga moslashadi, uzoq yillar davomida qulaylik ta'minlaydi.",
-    piklerTriangle: "Pikler uchburchagi",
-    piklerTriangleDesc: "Harakatchanlik va koordinatsiyani rivojlantiradi, jismoniy faollikni rag'batlantiradi.",
-    childrenCart: "Bolalar aravachasi",
-    childrenCartDesc: "O'yinchoqlarni saqlash va mustaqillik ko'nikmalarini rivojlantirish uchun ideal.",
-    bunkBed: "Ikki qavatli kravat",
-    bunkBedDesc: "O'rnatilgan qutilari va ish joyi bilan funksional ikki qavatli kravat.",
-
     // Process
     howToGetFurniture: "Mebelni qanday olish mumkin?",
     leaveRequest: "Ariza qoldirish",
     leaveRequestDesc: "Yoqqan mebelni tanlang va ariza qoldiring. Bizning menejer siz bilan bog'lanadi va buyurtma tafsilotlarini muhokama qiladi, farzandingiz uchun ideal o'lchamni tanlashda yordam beradi.",
-    prepaymentAndManufacturing: "Oldindan to'lov va ishlab chiqarish",
-    prepaymentAndManufacturingDesc: "Mebelni tanlaganingizdan so'ng 50% oldindan to'lovni amalga oshiring va biz barcha istaklaringizni hisobga olgan holda 5-10 kun ichida premium-sinf bolalar mebelingizni tayyorlaymiz.",
-    freeDelivery: "Bepul yetkazib berish",
-    freeDeliveryDesc: "Butun O'zbekiston bo'ylab mutlaqo bepul yetkazib berish va joyida professional yig'ish. Xalqaro yetkazib berish ham mavjud.",
 
     // Additional advantages
-    additionalAdvantages: "Qo'shimcha afzalliklar",
     developmentIndependence: "Mustaqillikni rivojlantirish",
     developmentIndependenceDesc: "Mebel bolalarga ko'proq mustaqil bo'lishga yordam beradi",
-    qualityGuarantee3Years: "3 yillik sifat kafolati",
-    qualityGuarantee3YearsDesc: "Barcha buyumlar va aksessuarlar uchun to'liq kafolat",
     fastManufacturing5_10Days: "5-10 kun ichida tez ishlab chiqarish",
     fastManufacturing5_10DaysDesc: "Har qanday murakkablikdagi buyurtmalarni tezkor bajarish",
     simpleAssembly: "Oddiy yig'ish",
@@ -1084,15 +981,9 @@ export const translations: Record<Language, Translations> = {
     testimonial5Text: "Ikki qavatli kravat - har qanday bolaning orzusi! O'g'lim juda xursand, biz esa sifat va funksionallikdan mamnunmiz.",
 
     // Social Media
-    followUs: "Bizni kuzatib boring",
     joinParentsCommunity: "Ijtimoiy tarmoqlarda ota-onalar hamjamiyatimizga qo'shiling",
-    youtubeDesc: "Montessori metodikasi bo'yicha ta'lim videolari",
-    facebookDesc: "Bolalarni tarbiyalash bo'yicha maslahatlar va yangiliklar",
-    instagramDesc: "Bizning mebellarimiz bilan baxtli bolalarning fotolari",
-    telegramDesc: "Tez aloqa va eksklyuziv takliflar",
 
     // Consultation
-    getConsultation: "Konsultatsiya olish",
     leaveConsultationRequest: "Konsultatsiya uchun ariza qoldirish",
 
     // Gallery

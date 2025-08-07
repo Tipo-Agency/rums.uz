@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { useLanguage } from "@/lib/language-context"
 
@@ -24,6 +24,20 @@ export function PalmCard({ name, images, description, price, linkHref, onDetails
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false)
   const [currentGalleryImageIndex, setCurrentGalleryImageIndex] = useState(0)
+
+  // Touch/swipe handling
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
+  const [hasUsedSwipe, setHasUsedSwipe] = useState(false)
+  const [currentSwipeOffset, setCurrentSwipeOffset] = useState<number>(0)
+
+  // Animation handling
+  const [animationDirection, setAnimationDirection] = useState<'left' | 'right' | null>(null)
+  const [isAnimating, setIsAnimating] = useState(false)
+
+  // Минимальное расстояние для срабатывания свайпа (в пикселях)
+  const minSwipeDistance = 50
 
   const openGalleryModal = (initialIndex: number = 0) => {
     setCurrentGalleryImageIndex(initialIndex)
@@ -48,12 +62,81 @@ export function PalmCard({ name, images, description, price, linkHref, onDetails
   }
 
   const handleCardPrev = () => {
+    if (isAnimating) return // Предотвращаем множественные анимации
+
+    setAnimationDirection('right')
+    setIsAnimating(true)
+
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
+
+    // Сбрасываем состояние анимации после завершения
+    setTimeout(() => {
+      setIsAnimating(false)
+      setAnimationDirection(null)
+    }, 400)
   }
 
   const handleCardNext = () => {
+    if (isAnimating) return // Предотвращаем множественные анимации
+
+    setAnimationDirection('left')
+    setIsAnimating(true)
+
     setCurrentImageIndex((prev) => (prev + 1) % images.length)
+
+    // Сбрасываем состояние анимации после завершения
+    setTimeout(() => {
+      setIsAnimating(false)
+      setAnimationDirection(null)
+    }, 400)
   }
+
+  // Touch handlers для свайпа
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null) // иначе свайп может срабатывать после обычного клика
+    setTouchStart(e.targetTouches[0].clientX)
+    setCurrentSwipeOffset(0)
+  }
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    if (!touchStart || isAnimating) return
+    
+    const currentX = e.targetTouches[0].clientX
+    const offset = currentX - touchStart
+    
+    // Ограничиваем offset для лучшего UX
+    const limitedOffset = Math.max(-80, Math.min(80, offset))
+    
+    setCurrentSwipeOffset(limitedOffset)
+    setTouchEnd(currentX)
+  }
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) {
+      setCurrentSwipeOffset(0)
+      return
+    }
+    
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    // Сбрасываем offset
+    setCurrentSwipeOffset(0)
+
+    if (isLeftSwipe) {
+      handleCardNext()
+      setHasUsedSwipe(true) // Отмечаем что свайп был использован
+    } else if (isRightSwipe) {
+      handleCardPrev()
+      setHasUsedSwipe(true) // Отмечаем что свайп был использован
+    }
+  }
+
+  // Определение поддержки touch при монтировании компонента
+  useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
+  }, [])
 
   // Keyboard navigation for gallery
   useEffect(() => {
@@ -78,7 +161,12 @@ export function PalmCard({ name, images, description, price, linkHref, onDetails
   return (
     <>
       <Card className="group overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-0 h-full flex flex-col bg-white">
-        <div className="relative h-72 overflow-hidden cursor-pointer select-none">
+        <div 
+          className="relative h-72 overflow-hidden cursor-pointer select-none"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           {/* Индикатор количества фото */}
           {images && images.length > 1 && (
             <div className="absolute top-4 right-4 z-10">
@@ -88,14 +176,40 @@ export function PalmCard({ name, images, description, price, linkHref, onDetails
             </div>
           )}
           
-          <Image
-            src={images[currentImageIndex] || "/placeholder.svg"}
-            alt={name}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
-            onClick={() => openGalleryModal(currentImageIndex)}
-            style={{ cursor: 'pointer' }}
-          />
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`palm-${currentImageIndex}`}
+              initial={{ 
+                x: animationDirection === 'left' ? 50 : animationDirection === 'right' ? -50 : 0,
+                opacity: 0,
+                scale: 0.95
+              }}
+              animate={{ 
+                x: currentSwipeOffset || 0,
+                opacity: 1,
+                scale: 1
+              }}
+              exit={{ 
+                x: animationDirection === 'left' ? -50 : animationDirection === 'right' ? 50 : 0,
+                opacity: 0,
+                scale: 0.95
+              }}
+              transition={{ 
+                duration: currentSwipeOffset ? 0 : 0.4, // Мгновенно во время свайпа
+                ease: [0.25, 0.46, 0.45, 0.94] // Более плавная кривая
+              }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={images[currentImageIndex] || "/placeholder.svg"}
+                alt={name}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                onClick={() => openGalleryModal(currentImageIndex)}
+                style={{ cursor: 'pointer' }}
+              />
+            </motion.div>
+          </AnimatePresence>
           
           {/* Image Indicators */}
           {images.length > 1 && (
@@ -117,8 +231,8 @@ export function PalmCard({ name, images, description, price, linkHref, onDetails
             </div>
           )}
           
-          {/* Gallery Navigation Arrows */}
-          {images && images.length > 1 && (
+          {/* Gallery Navigation Arrows - скрыты на touch устройствах */}
+          {images && images.length > 1 && !isTouchDevice && (
             <>
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 pointer-events-none" />
               <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
@@ -140,6 +254,15 @@ export function PalmCard({ name, images, description, price, linkHref, onDetails
                 </Button>
               </div>
             </>
+          )}
+
+          {/* Swipe инструкция для touch устройств (показывается до первого использования) */}
+          {images.length > 1 && isTouchDevice && !hasUsedSwipe && (
+            <div className="absolute top-4 left-4 z-10 animate-pulse">
+              <Badge className="bg-green-500/90 text-white text-xs px-3 py-1 backdrop-blur-sm shadow-lg">
+                👆 Свайп для листания
+              </Badge>
+            </div>
           )}
         </div>
         

@@ -52,8 +52,25 @@ export default function BabyjoyPage() {
     hash: "ca9417663fe415ec439626c3b90bb6ff",
     scriptUrl: "https://forms.amocrm.ru/forms/assets/js/amoforms.js?1752886975"
   })
+  const getTimeLeftInMonth = () => {
+    const now = new Date();
+    const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0, 0);
+    endOfMonth.setMilliseconds(-1); // последний миллисекунда текущего месяца
+    const diff = endOfMonth.getTime() - now.getTime();
 
-  const [timeLeft, setTimeLeft] = useState({ days: 12, hours: 14, minutes: 32, seconds: 45 })
+    if (diff <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    return { days, hours, minutes, seconds };
+  };
+
+  const [timeLeft, setTimeLeft] = useState(getTimeLeftInMonth());
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0)
   const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0)
 

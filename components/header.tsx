@@ -38,10 +38,10 @@ export function Header() {
   }
 
   const getLogo = () => {
-    if (pathname === "/ecopalma") return <Image src="logo/ecopalma.png" alt="Ecopalma" width={90} height={90} />
-    if (pathname === "/woodlyworld") return <Image src="logo/woodlyworld.png" alt="Woodlyworld" width={60} height={60} />
-    if (pathname === "/babyjoy") return <Image src="logo/babyjoy.png" alt="Babyjoy" width={90} height={90} />
-    return <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-orange-500 rounded-xl flex items-center justify-center text-white font-bold text-xl">P</div>
+    if (pathname === "/ecopalma") return <Image src="logo/ecopalma.png" alt="Ecopalma" className="w-full h-full object-contain" width={90} height={90} />
+    if (pathname === "/woodlyworld") return <Image src="logo/woodlyworld.png" alt="Woodlyworld" className="w-full h-full object-contain" width={60} height={60} />
+    if (pathname === "/babyjoy") return <Image src="logo/babyjoy.png" alt="Babyjoy" className="w-full h-full object-contain" width={90} height={90} />
+    return <div className="w-full h-full bg-gradient-to-br from-green-600 to-orange-500 rounded-xl flex items-center justify-center text-white font-bold text-sm">P</div>
   }
 
   const getSiteInfo = () => {
@@ -128,16 +128,16 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gray-200/80 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4">
-        <nav className="flex items-center justify-between h-[70px]">
-          <div className="flex items-center gap-3">
-            {getLogo()}
-            <div className="hidden sm:flex flex-col">
-              <div className="text-2xl font-bold text-gray-900 leading-none">{getSiteInfo().name}</div>
-              <div className="text-[11px] text-gray-500 mt-0.5">{getSiteInfo().description}</div>
+      <div className="w-full max-w-full px-3 sm:px-4 box-border">
+        <nav className="flex items-center justify-between h-[70px] w-full max-w-full box-border">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1 max-w-[65%] sm:max-w-[70%] overflow-hidden">
+            <div className="flex-shrink-0 w-16 h-16 sm:w-16 sm:h-16">{getLogo()}</div>
+            <div className="flex flex-col min-w-0 flex-1 overflow-hidden">
+              <div className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 leading-tight truncate whitespace-nowrap">{getSiteInfo().name}</div>
+              <div className="text-[10px] sm:text-[11px] lg:text-[12px] text-gray-500 leading-tight truncate whitespace-nowrap">{getSiteInfo().description}</div>
             </div>
           </div>
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8 mr-10">
             <Link href="/" className="text-gray-600 hover:text-green-600 font-medium text-[15px] transition-colors">
               {t('mainPage')}
             </Link>
@@ -192,14 +192,14 @@ export function Header() {
             {/* Language Toggle Button */}
             <button
               onClick={() => setLanguage(language === 'ru' ? 'uz' : 'ru')}
-              className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors"
+              className="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors"
             >
               <Languages className="w-4 h-4" />
               {language === 'ru' ? 'RU' : 'UZ'}
             </button>
             <a
               href={`tel:${getPhoneNumber().replace(/\s/g, "")}`}
-              className="flex items-center gap-2 text-gray-600 hover:text-green-600 font-medium transition-colors"
+              className="hidden lg:flex items-center gap-2 text-gray-600 hover:text-green-600 font-medium transition-colors"
             >
               <Phone className="w-4 h-4" /> {getPhoneNumber()}
             </a>
@@ -284,16 +284,27 @@ export function Header() {
             </div>
 
           </div>
-          <button 
-            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors" 
-            onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-gray-700" />
-            ) : (
-              <Menu className="w-6 h-6 text-gray-700" />
-            )}
-          </button>
+          
+          {/* Mobile Language Toggle + Menu Button */}
+          <div className="lg:hidden flex items-center gap-2 flex-shrink-0">
+            <button
+              onClick={() => setLanguage(language === 'ru' ? 'uz' : 'ru')}
+              className="flex items-center gap-1 px-2 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-xs font-medium transition-colors flex-shrink-0"
+            >
+              <Languages className="w-4 h-4" />
+              <span className="text-xs">{language === 'ru' ? 'RU' : 'UZ'}</span>
+            </button>
+            <button 
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors" 
+              onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6 text-gray-700" />
+              ) : (
+                <Menu className="w-6 h-6 text-gray-700" />
+              )}
+            </button>
+          </div>
         </nav>
 
         {/* Mobile Menu */}
@@ -431,16 +442,7 @@ export function Header() {
                 </div>
               </div>
 
-              {/* Language Selector */}
-              <div className="px-4 py-3 border-t border-gray-100">
-                <button 
-                  onClick={() => setLanguage(language === 'ru' ? 'uz' : 'ru')}
-                  className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors"
-                >
-                  <Languages className="w-4 h-4" />
-                  {language === 'ru' ? 'Русский' : 'O\'zbek'}
-                </button>
-              </div>
+
             </div>
           </div>
         )}

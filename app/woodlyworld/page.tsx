@@ -71,7 +71,25 @@ export default function WoodlyworldPage() {
     scriptUrl: "https://forms.amocrm.ru/forms/assets/js/amoforms.js?1752885451"
   })
 
-  const [timeLeft, setTimeLeft] = useState({ days: 12, hours: 14, minutes: 32, seconds: 45 })
+  const getTimeLeftInMonth = () => {
+    const now = new Date();
+    const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0, 0);
+    endOfMonth.setMilliseconds(-1); // последний миллисекунда текущего месяца
+    const diff = endOfMonth.getTime() - now.getTime();
+
+    if (diff <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    return { days, hours, minutes, seconds };
+  };
+
+  const [timeLeft, setTimeLeft] = useState(getTimeLeftInMonth());
   const [activeCategory, setActiveCategory] = useState("")
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0)
   const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0)
@@ -623,6 +641,20 @@ export default function WoodlyworldPage() {
   // Для превью в карточках
   const [cardImageIndexes, setCardImageIndexes] = useState<number[]>(() => Object.values(mapCategories).flatMap(cat => cat.items.map(() => 0)))
   
+  // Touch/swipe handling
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
+  const [hasUsedSwipe, setHasUsedSwipe] = useState(false)
+  const [currentSwipeOffset, setCurrentSwipeOffset] = useState<{ [key: number]: number }>({})
+  
+  // Animation handling
+  const [animationDirection, setAnimationDirection] = useState<{ [key: number]: 'left' | 'right' | null }>({})
+  const [isAnimating, setIsAnimating] = useState<{ [key: number]: boolean }>({})
+
+  // Минимальное расстояние для срабатывания свайпа (в пикселях)
+  const minSwipeDistance = 50
+  
   const getCardIndex = (catIdx: number, itemIdx: number) => {
     // Получить индекс в общем массиве для flatMap
     let idx = 0
@@ -636,21 +668,45 @@ export default function WoodlyworldPage() {
   }
   
   const handleCardPrev = (catIdx: number, itemIdx: number, gallery: string[] = []) => {
+    const idx = getCardIndex(catIdx, itemIdx)
+    if (isAnimating[idx]) return // Предотвращаем множественные анимации
+    
+    setAnimationDirection(prev => ({ ...prev, [idx]: 'right' }))
+    setIsAnimating(prev => ({ ...prev, [idx]: true }))
+    
+    // Немедленно меняем изображение для лучшей синхронизации
     setCardImageIndexes(prev => {
       const copy = [...prev]
-      const idx = getCardIndex(catIdx, itemIdx)
       copy[idx] = (copy[idx] - 1 + gallery.length) % gallery.length
       return copy
     })
+    
+    // Сбрасываем состояние анимации после завершения
+    setTimeout(() => {
+      setIsAnimating(prev => ({ ...prev, [idx]: false }))
+      setAnimationDirection(prev => ({ ...prev, [idx]: null }))
+    }, 400) // Даем время для завершения анимации
   }
   
   const handleCardNext = (catIdx: number, itemIdx: number, gallery: string[] = []) => {
+    const idx = getCardIndex(catIdx, itemIdx)
+    if (isAnimating[idx]) return // Предотвращаем множественные анимации
+    
+    setAnimationDirection(prev => ({ ...prev, [idx]: 'left' }))
+    setIsAnimating(prev => ({ ...prev, [idx]: true }))
+    
+    // Немедленно меняем изображение для лучшей синхронизации
     setCardImageIndexes(prev => {
       const copy = [...prev]
-      const idx = getCardIndex(catIdx, itemIdx)
       copy[idx] = (copy[idx] + 1) % gallery.length
       return copy
     })
+    
+    // Сбрасываем состояние анимации после завершения
+    setTimeout(() => {
+      setIsAnimating(prev => ({ ...prev, [idx]: false }))
+      setAnimationDirection(prev => ({ ...prev, [idx]: null }))
+    }, 400) // Даем время для завершения анимации
   }
   
   const handleCardOpenModal = (gallery: string[] = [], imgIdx: number = 0) => {
@@ -658,6 +714,53 @@ export default function WoodlyworldPage() {
     setCurrentGalleryImageIndex(imgIdx)
     setIsGalleryModalOpen(true)
   }
+
+  // Touch handlers для свайпа
+  const onTouchStart = (e: React.TouchEvent, cardIndex: number) => {
+    setTouchEnd(null) // иначе свайп может срабатывать после обычного клика
+    setTouchStart(e.targetTouches[0].clientX)
+    setCurrentSwipeOffset(prev => ({ ...prev, [cardIndex]: 0 }))
+  }
+
+  const onTouchMove = (e: React.TouchEvent, cardIndex: number) => {
+    if (!touchStart || isAnimating[cardIndex]) return
+    
+    const currentX = e.targetTouches[0].clientX
+    const offset = currentX - touchStart
+    
+    // Ограничиваем offset для лучшего UX
+    const limitedOffset = Math.max(-80, Math.min(80, offset))
+    
+    setCurrentSwipeOffset(prev => ({ ...prev, [cardIndex]: limitedOffset }))
+    setTouchEnd(currentX)
+  }
+
+  const onTouchEnd = (cardIndex: number, catIdx: number, itemIdx: number, gallery: string[]) => {
+    if (!touchStart || !touchEnd) {
+      setCurrentSwipeOffset(prev => ({ ...prev, [cardIndex]: 0 }))
+      return
+    }
+    
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    // Сбрасываем offset
+    setCurrentSwipeOffset(prev => ({ ...prev, [cardIndex]: 0 }))
+
+    if (isLeftSwipe) {
+      handleCardNext(catIdx, itemIdx, gallery)
+      setHasUsedSwipe(true) // Отмечаем что свайп был использован
+    } else if (isRightSwipe) {
+      handleCardPrev(catIdx, itemIdx, gallery)
+      setHasUsedSwipe(true) // Отмечаем что свайп был использован
+    }
+  }
+
+  // Определение поддержки touch при монтировании компонента
+  useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
+  }, [])
 
   // Keyboard navigation for gallery
   useEffect(() => {
@@ -740,14 +843,18 @@ export default function WoodlyworldPage() {
                   size="lg"
                   className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
                   onClick={() => {
-                    const amoButton = document.getElementById('amoforms_action_btn');
-                    if (amoButton) {
-                      amoButton.click();
+                    // const amoButton = document.getElementById('amoforms_action_btn');
+                    // if (amoButton) {
+                    //   amoButton.click();
+                    // }
+                    const productsCard = document.getElementById('products');
+                    if (productsCard) {
+                      productsCard.scrollIntoView({ behavior: 'smooth' });
                     }
                   }}
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
-                  {t('orderWithDiscount')}
+                  {t('showcatalogwithprice')}
                 </Button>
                 <div id="amocrm_btn"></div>
               </div>
@@ -869,7 +976,7 @@ export default function WoodlyworldPage() {
         </section>
 
         {/* Product Categories */}
-        <section className="py-24 bg-gray-50">
+        <section id="products" className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">{t('ourCatalog')}</h2>
 
@@ -917,14 +1024,45 @@ export default function WoodlyworldPage() {
                       </div>
                     )}
 
-                    <div className="relative h-72 overflow-hidden cursor-pointer select-none">
-                      <Image
-                        src={gallery[cardImageIndexes[idx]] || "/placeholder.svg"}
-                        alt={item.name}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        onClick={() => handleCardOpenModal(gallery, cardImageIndexes[idx])}
-                      />
+                    <div 
+                      className="relative h-72 overflow-hidden cursor-pointer select-none"
+                      onTouchStart={(e) => onTouchStart(e, idx)}
+                      onTouchMove={(e) => onTouchMove(e, idx)}
+                      onTouchEnd={() => onTouchEnd(idx, catIdx, i, gallery)}
+                    >
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={`${idx}-${cardImageIndexes[idx]}`}
+                          initial={{ 
+                            x: animationDirection[idx] === 'left' ? 50 : animationDirection[idx] === 'right' ? -50 : 0,
+                            opacity: 0,
+                            scale: 0.95
+                          }}
+                          animate={{ 
+                            x: currentSwipeOffset[idx] || 0,
+                            opacity: 1,
+                            scale: 1
+                          }}
+                          exit={{ 
+                            x: animationDirection[idx] === 'left' ? -50 : animationDirection[idx] === 'right' ? 50 : 0,
+                            opacity: 0,
+                            scale: 0.95
+                          }}
+                          transition={{ 
+                            duration: currentSwipeOffset[idx] ? 0 : 0.4, // Мгновенно во время свайпа
+                            ease: [0.25, 0.46, 0.45, 0.94] // Более плавная кривая
+                          }}
+                          className="absolute inset-0"
+                        >
+                          <Image
+                            src={gallery[cardImageIndexes[idx]] || "/placeholder.svg"}
+                            alt={item.name}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                            onClick={() => handleCardOpenModal(gallery, cardImageIndexes[idx])}
+                          />
+                        </motion.div>
+                      </AnimatePresence>
                       
                       {/* Image Indicators */}
                       {gallery.length > 1 && (
@@ -950,8 +1088,8 @@ export default function WoodlyworldPage() {
                         </div>
                       )}
                       
-                      {/* Gallery Navigation Arrows */}
-                      {gallery.length > 1 && (
+                      {/* Gallery Navigation Arrows - скрыты на touch устройствах */}
+                      {gallery.length > 1 && !isTouchDevice && (
                         <>
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 pointer-events-none" />
                           <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">

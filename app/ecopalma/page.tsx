@@ -56,7 +56,25 @@ export default function EcopalmaPage() {
     scriptUrl: "https://forms.amocrm.ru/forms/assets/js/amoforms.js?1752873171"
   })
 
-  const [timeLeft, setTimeLeft] = useState({ days: 12, hours: 14, minutes: 32, seconds: 45 })
+  const getTimeLeftInMonth = () => {
+    const now = new Date();
+    const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0, 0);
+    endOfMonth.setMilliseconds(-1); // последний миллисекунда текущего месяца
+    const diff = endOfMonth.getTime() - now.getTime();
+
+    if (diff <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    return { days, hours, minutes, seconds };
+  };
+
+  const [timeLeft, setTimeLeft] = useState(getTimeLeftInMonth());
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0)
   const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0)
 
@@ -265,21 +283,106 @@ export default function EcopalmaPage() {
   // Для превью в карточках
   const [cardImageIndexes, setCardImageIndexes] = useState<number[]>(() => palms.map(() => 0))
   
+  // Touch/swipe handling
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
+  const [hasUsedSwipe, setHasUsedSwipe] = useState(false)
+  const [currentSwipeOffset, setCurrentSwipeOffset] = useState<{ [key: number]: number }>({})
+  
+  // Animation handling
+  const [animationDirection, setAnimationDirection] = useState<{ [key: number]: 'left' | 'right' | null }>({})
+  const [isAnimating, setIsAnimating] = useState<{ [key: number]: boolean }>({})
+
+  // Минимальное расстояние для срабатывания свайпа (в пикселях)
+  const minSwipeDistance = 50
+  
   const handleCardPrev = (idx: number, images: string[]) => {
+    if (isAnimating[idx]) return // Предотвращаем множественные анимации
+    
+    setAnimationDirection(prev => ({ ...prev, [idx]: 'right' }))
+    setIsAnimating(prev => ({ ...prev, [idx]: true }))
+    
+    // Немедленно меняем изображение для лучшей синхронизации
     setCardImageIndexes(prev => {
       const copy = [...prev]
       copy[idx] = (copy[idx] - 1 + images.length) % images.length
       return copy
     })
+    
+    // Сбрасываем состояние анимации после завершения
+    setTimeout(() => {
+      setIsAnimating(prev => ({ ...prev, [idx]: false }))
+      setAnimationDirection(prev => ({ ...prev, [idx]: null }))
+    }, 400) // Даем время для завершения анимации
   }
   
   const handleCardNext = (idx: number, images: string[]) => {
+    if (isAnimating[idx]) return // Предотвращаем множественные анимации
+    
+    setAnimationDirection(prev => ({ ...prev, [idx]: 'left' }))
+    setIsAnimating(prev => ({ ...prev, [idx]: true }))
+    
+    // Немедленно меняем изображение для лучшей синхронизации
     setCardImageIndexes(prev => {
       const copy = [...prev]
       copy[idx] = (copy[idx] + 1) % images.length
       return copy
     })
+    
+    // Сбрасываем состояние анимации после завершения
+    setTimeout(() => {
+      setIsAnimating(prev => ({ ...prev, [idx]: false }))
+      setAnimationDirection(prev => ({ ...prev, [idx]: null }))
+    }, 400) // Даем время для завершения анимации
   }
+
+  // Touch handlers для свайпа
+  const onTouchStart = (e: React.TouchEvent, cardIndex: number) => {
+    setTouchEnd(null) // иначе свайп может срабатывать после обычного клика
+    setTouchStart(e.targetTouches[0].clientX)
+    setCurrentSwipeOffset(prev => ({ ...prev, [cardIndex]: 0 }))
+  }
+
+  const onTouchMove = (e: React.TouchEvent, cardIndex: number) => {
+    if (!touchStart || isAnimating[cardIndex]) return
+    
+    const currentX = e.targetTouches[0].clientX
+    const offset = currentX - touchStart
+    
+    // Ограничиваем offset для лучшего UX
+    const limitedOffset = Math.max(-80, Math.min(80, offset))
+    
+    setCurrentSwipeOffset(prev => ({ ...prev, [cardIndex]: limitedOffset }))
+    setTouchEnd(currentX)
+  }
+
+  const onTouchEnd = (cardIndex: number, images: string[]) => {
+    if (!touchStart || !touchEnd) {
+      setCurrentSwipeOffset(prev => ({ ...prev, [cardIndex]: 0 }))
+      return
+    }
+    
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    // Сбрасываем offset
+    setCurrentSwipeOffset(prev => ({ ...prev, [cardIndex]: 0 }))
+
+    if (isLeftSwipe) {
+      handleCardNext(cardIndex, images)
+      setHasUsedSwipe(true) // Отмечаем что свайп был использован
+    } else if (isRightSwipe) {
+      handleCardPrev(cardIndex, images)
+      setHasUsedSwipe(true) // Отмечаем что свайп был использован
+    }
+  }
+
+  // Определение поддержки touch при монтировании компонента
+  useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
+  }, [])
   
   const handleCardOpenModal = (images: string[], imgIdx: number = 0) => {
     setCurrentProductGallery(images)
@@ -346,12 +449,12 @@ export default function EcopalmaPage() {
 
           <div className="relative z-10 text-center max-w-4xl mx-auto px-4 flex-grow flex flex-col justify-center">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-              <Badge className="mb-6 bg-red-500/90 text-white border-red-400 backdrop-blur-md shadow-lg text-lg px-4 py-2">
+              <Badge className="mb-6 bg-red-500/90 hover:bg-red-500/90 text-white border-red-400 backdrop-blur-md shadow-lg text-lg px-4 py-2">
                 <Gift className="w-5 h-5 mr-2" />
                 {t('discountAndFreeDesign')}
               </Badge>
               <h1 className="text-5xl md:text-7xl font-extrabold mb-4 leading-tight drop-shadow-2xl">
-                <span className="text-white drop-shadow-lg">Ecopalma</span>
+                <span className="text-white drop-shadow-lg">ECOPALMA</span>
               </h1>
               <p className="text-xl md:text-2xl text-green-200 max-w-2xl mx-auto mb-8 drop-shadow-lg font-medium">
                 {t('artOfCreatingEternalNature')}
@@ -444,15 +547,46 @@ export default function EcopalmaPage() {
                         </Badge>
                       </div>
                     )}
-                    <div className="relative h-72 overflow-hidden cursor-pointer select-none">
-                      <Image
-                        src={palm.images[cardImageIndexes[i]] || "/placeholder.svg"}
-                        alt={palm.name}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        onClick={() => handleCardOpenModal(palm.images, cardImageIndexes[i])}
-                        style={{ cursor: 'pointer' }}
-                      />
+                    <div 
+                      className="relative h-72 overflow-hidden cursor-pointer select-none"
+                      onTouchStart={(e) => onTouchStart(e, i)}
+                      onTouchMove={(e) => onTouchMove(e, i)}
+                      onTouchEnd={() => onTouchEnd(i, palm.images)}
+                    >
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={`${i}-${cardImageIndexes[i]}`}
+                          initial={{ 
+                            x: animationDirection[i] === 'left' ? 50 : animationDirection[i] === 'right' ? -50 : 0,
+                            opacity: 0,
+                            scale: 0.95
+                          }}
+                          animate={{ 
+                            x: currentSwipeOffset[i] || 0,
+                            opacity: 1,
+                            scale: 1
+                          }}
+                          exit={{ 
+                            x: animationDirection[i] === 'left' ? -50 : animationDirection[i] === 'right' ? 50 : 0,
+                            opacity: 0,
+                            scale: 0.95
+                          }}
+                          transition={{ 
+                            duration: currentSwipeOffset[i] ? 0 : 0.4, // Мгновенно во время свайпа
+                            ease: [0.25, 0.46, 0.45, 0.94] // Более плавная кривая
+                          }}
+                          className="absolute inset-0"
+                        >
+                          <Image
+                            src={palm.images[cardImageIndexes[i]] || "/placeholder.svg"}
+                            alt={palm.name}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                            onClick={() => handleCardOpenModal(palm.images, cardImageIndexes[i])}
+                            style={{ cursor: 'pointer' }}
+                          />
+                        </motion.div>
+                      </AnimatePresence>
                       
                       {/* Image Indicators */}
                       {palm.images && palm.images.length > 1 && (
@@ -478,8 +612,8 @@ export default function EcopalmaPage() {
                         </div>
                       )}
                       
-                      {/* Gallery Navigation Arrows */}
-                      {palm.images && palm.images.length > 1 && (
+                      {/* Gallery Navigation Arrows - скрыты на touch устройствах */}
+                      {palm.images && palm.images.length > 1 && !isTouchDevice && (
                         <>
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 pointer-events-none" />
                           <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">

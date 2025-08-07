@@ -211,6 +211,20 @@ export default function PalkarMePage() {
 
   const [currentMapImageIndex, setCurrentMapImageIndex] = useState(0)
 
+  // Touch/swipe handling для Woodlyworld карт
+  const [mapTouchStart, setMapTouchStart] = useState<number | null>(null)
+  const [mapTouchEnd, setMapTouchEnd] = useState<number | null>(null)
+  const [isMapTouchDevice, setIsMapTouchDevice] = useState(false)
+  const [hasUsedMapSwipe, setHasUsedMapSwipe] = useState(false)
+  const [currentMapSwipeOffset, setCurrentMapSwipeOffset] = useState<number>(0)
+
+  // Animation handling для карт
+  const [mapAnimationDirection, setMapAnimationDirection] = useState<'left' | 'right' | null>(null)
+  const [isMapAnimating, setIsMapAnimating] = useState(false)
+
+  // Минимальное расстояние для срабатывания свайпа карт (в пикселях)
+  const minMapSwipeDistance = 50
+
   // Initialize activeMap when translations are ready or language changes
   useEffect(() => {
     const mapKeys = Object.keys(maps)
@@ -241,20 +255,87 @@ export default function PalkarMePage() {
 
   // Map image navigation
   const nextMapImage = () => {
+    if (isMapAnimating) return // Предотвращаем множественные анимации
     if (activeMap && maps[activeMap]?.images) {
+      setMapAnimationDirection('left')
+      setIsMapAnimating(true)
+
       setCurrentMapImageIndex((prev) => (prev + 1) % maps[activeMap].images.length)
+
+      // Сбрасываем состояние анимации после завершения
+      setTimeout(() => {
+        setIsMapAnimating(false)
+        setMapAnimationDirection(null)
+      }, 400)
     }
   }
 
   const prevMapImage = () => {
+    if (isMapAnimating) return // Предотвращаем множественные анимации
     if (activeMap && maps[activeMap]?.images) {
+      setMapAnimationDirection('right')
+      setIsMapAnimating(true)
+
       setCurrentMapImageIndex((prev) => (prev - 1 + maps[activeMap].images.length) % maps[activeMap].images.length)
+
+      // Сбрасываем состояние анимации после завершения
+      setTimeout(() => {
+        setIsMapAnimating(false)
+        setMapAnimationDirection(null)
+      }, 400)
     }
   }
 
   useEffect(() => {
     setCurrentMapImageIndex(0)
   }, [activeMap])
+
+  // Touch handlers для свайпа карт
+  const onMapTouchStart = (e: React.TouchEvent) => {
+    setMapTouchEnd(null) // иначе свайп может срабатывать после обычного клика
+    setMapTouchStart(e.targetTouches[0].clientX)
+    setCurrentMapSwipeOffset(0)
+  }
+
+  const onMapTouchMove = (e: React.TouchEvent) => {
+    if (!mapTouchStart || isMapAnimating) return
+    
+    const currentX = e.targetTouches[0].clientX
+    const offset = currentX - mapTouchStart
+    
+    // Ограничиваем offset для лучшего UX
+    const limitedOffset = Math.max(-80, Math.min(80, offset))
+    
+    setCurrentMapSwipeOffset(limitedOffset)
+    setMapTouchEnd(currentX)
+  }
+
+  const onMapTouchEnd = () => {
+    if (!mapTouchStart || !mapTouchEnd) {
+      setCurrentMapSwipeOffset(0)
+      return
+    }
+    
+    const distance = mapTouchStart - mapTouchEnd
+    const isLeftSwipe = distance > minMapSwipeDistance
+    const isRightSwipe = distance < -minMapSwipeDistance
+
+    // Сбрасываем offset
+    setCurrentMapSwipeOffset(0)
+
+    if (isLeftSwipe) {
+      nextMapImage()
+      setHasUsedMapSwipe(true) // Отмечаем что свайп был использован
+    } else if (isRightSwipe) {
+      prevMapImage()
+      setHasUsedMapSwipe(true) // Отмечаем что свайп был использован
+    }
+  }
+
+  // Определение поддержки touch при монтировании компонента
+  useEffect(() => {
+    setIsMapTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
+  }, [])
 
 
 
@@ -495,14 +576,34 @@ export default function PalkarMePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <div className="relative h-full">
+              <div 
+                className="relative h-full cursor-pointer select-none"
+                onTouchStart={onMapTouchStart}
+                onTouchMove={onMapTouchMove}
+                onTouchEnd={onMapTouchEnd}
+              >
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={`${activeMap}-${currentMapImageIndex}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
+                    initial={{ 
+                      x: mapAnimationDirection === 'left' ? 50 : mapAnimationDirection === 'right' ? -50 : 0,
+                      opacity: 0,
+                      scale: 0.95
+                    }}
+                    animate={{ 
+                      x: currentMapSwipeOffset || 0,
+                      opacity: 1,
+                      scale: 1
+                    }}
+                    exit={{ 
+                      x: mapAnimationDirection === 'left' ? -50 : mapAnimationDirection === 'right' ? 50 : 0,
+                      opacity: 0,
+                      scale: 0.95
+                    }}
+                    transition={{ 
+                      duration: currentMapSwipeOffset ? 0 : 0.4, // Мгновенно во время свайпа
+                      ease: [0.25, 0.46, 0.45, 0.94] // Более плавная кривая
+                    }}
                     className="absolute inset-0"
                   >
                     <Image
@@ -514,8 +615,8 @@ export default function PalkarMePage() {
                   </motion.div>
                 </AnimatePresence>
 
-                {/* Navigation arrows */}
-                {activeMap && (maps[activeMap]?.images?.length || 0) > 1 && (
+                {/* Navigation arrows - скрыты на touch устройствах */}
+                {activeMap && (maps[activeMap]?.images?.length || 0) > 1 && !isMapTouchDevice && (
                   <>
                     <button
                       onClick={prevMapImage}
@@ -530,6 +631,15 @@ export default function PalkarMePage() {
                       <ChevronRight className="w-6 h-6" />
                     </button>
                   </>
+                )}
+
+                {/* Swipe инструкция для touch устройств (показывается до первого использования) */}
+                {activeMap && (maps[activeMap]?.images?.length || 0) > 1 && isMapTouchDevice && !hasUsedMapSwipe && (
+                  <div className="absolute top-4 left-4 z-10 animate-pulse">
+                    <Badge className="bg-orange-500/90 text-white text-xs px-3 py-1 backdrop-blur-sm shadow-lg">
+                      👆 Свайп для листания
+                    </Badge>
+                  </div>
                 )}
 
                 {/* Image indicators */}
