@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+
 import {
   Baby,
   CheckCircle,
@@ -101,6 +102,12 @@ export default function BabyjoyPage() {
         "/tower-7.jpeg",
       ],
       description: t('helperTowerDesc'),
+      colorPrices: [
+        { color: "Деревянная", price: "705 000 сум", originalPrice: "830 000 сум" },
+        { color: "Белая", price: "940 000 сум", originalPrice: "1 107 000 сум" },
+        { color: "Белая-серая", price: "948 000 сум", originalPrice: "1 116 000 сум" },
+        { color: "Белая-деревянная", price: "905 000 сум", originalPrice: "1 065 000 сум" },
+      ],
     },
     {
       name: t('growingDeskChair'),
@@ -113,6 +120,12 @@ export default function BabyjoyPage() {
         "/desk-chair-6.jpeg",
       ],
       description: t('growingDeskChairDesc'),
+      colorPrices: [
+        { color: "Деревянная", price: "1 285 000 сум", originalPrice: "1 512 000 сум" },
+        { color: "Белая", price: "1 520 000 сум", originalPrice: "1 788 000 сум" },
+        { color: "Белая-серая", price: "1 530 000 сум", originalPrice: "1 800 000 сум" },
+        { color: "Белая-деревянная", price: "1 485 000 сум", originalPrice: "1 747 000 сум" },
+      ],
     },
     {
       name: t('piklerTriangle'),
@@ -126,16 +139,34 @@ export default function BabyjoyPage() {
         "/pikler-7.jpeg",
       ],
       description: t('piklerTriangleDesc'),
+      colorPrices: [
+        { color: "Деревянная", price: "680 000 сум", originalPrice: "800 000 сум" },
+        { color: "Белая", price: "890 000 сум", originalPrice: "1 047 000 сум" },
+        { color: "Белая-серая", price: "895 000 сум", originalPrice: "1 053 000 сум" },
+        { color: "Белая-деревянная", price: "850 000 сум", originalPrice: "1 000 000 сум" },
+      ],
     },
     {
       name: t('childrenCart'),
       images: ["/cart-1.jpeg", "/cart-2.jpeg", "/cart-3.jpeg"],
       description: t('childrenCartDesc'),
+      colorPrices: [
+        { color: "Деревянная", price: "420 000 сум", originalPrice: "494 000 сум" },
+        { color: "Белая", price: "580 000 сум", originalPrice: "682 000 сум" },
+        { color: "Белая-серая", price: "585 000 сум", originalPrice: "688 000 сум" },
+        { color: "Белая-деревянная", price: "545 000 сум", originalPrice: "641 000 сум" },
+      ],
     },
     {
       name: t('bunkBed'),
       images: ["/bunk-bed-1.jpeg", "/bunk-bed-2.jpeg"],
       description: t('bunkBedDesc'),
+      colorPrices: [
+        { color: "Деревянная", price: "3 250 000 сум", originalPrice: "3 824 000 сум" },
+        { color: "Белая", price: "4 180 000 сум", originalPrice: "4 918 000 сум" },
+        { color: "Белая-серая", price: "4 200 000 сум", originalPrice: "4 941 000 сум" },
+        { color: "Белая-деревянная", price: "3 980 000 сум", originalPrice: "4 682 000 сум" },
+      ],
     },
   ]
 
@@ -532,6 +563,26 @@ export default function BabyjoyPage() {
                     <CardContent className="p-6 flex flex-col flex-grow bg-white">
                       <h3 className="text-2xl font-bold mb-2 text-purple-900">{item.name}</h3>
                       <p className="text-gray-600 mb-4 text-sm flex-grow">{item.description}</p>
+                      
+                      {/* Отображение всех цен и цветов */}
+                      <div className="mb-4 p-3 bg-gray-50 rounded-lg">
+                        <h4 className="text-sm font-semibold text-gray-800 mb-3">Цвета и цены:</h4>
+                        <div className="space-y-2">
+                          {item.colorPrices.map((option, idx) => (
+                            <div key={idx} className="flex justify-between items-center">
+                              <span className="text-gray-700 text-sm">✔️ {option.color}</span>
+                              <div className="text-right">
+                                <div className="font-semibold text-purple-900 text-sm">{option.price}</div>
+                                <div className="text-xs text-gray-500 line-through">(вместо {option.originalPrice})</div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="mt-3 p-2 bg-purple-50 rounded text-center">
+                          <p className="text-xs text-purple-800 font-medium">💰 Экономия до 15%!</p>
+                        </div>
+                      </div>
+
                       <Button
                         className="w-full bg-purple-300 hover:bg-purple-400 text-purple-900 font-semibold"
                         onClick={() => {
@@ -541,7 +592,7 @@ export default function BabyjoyPage() {
                           }
                         }}
                       >
-                        {t('getPrice')} <ArrowRight className="w-4 h-4 ml-2" />
+                        {t('orderWithDiscount')} <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </CardContent>
                   </Card>

@@ -553,7 +553,7 @@ export default function PalkarMePage() {
                   </button>
                 ))}
               </div>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   size="lg"
                   className="bg-orange-600 hover:bg-orange-700 text-white"
@@ -566,6 +566,14 @@ export default function PalkarMePage() {
                 >
                   {t('submitRequest')}
                 </Button>
+                <Link href="/woodlyworld">
+                  <Button
+                    size="lg"
+                    className="bg-orange-600 hover:bg-orange-700 text-white"
+                  >
+                    {t('learnMore')}
+                  </Button>
+                </Link>
                 <div id="amocrm_btn"></div>
               </div>
             </motion.div>
