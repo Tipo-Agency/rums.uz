@@ -997,7 +997,7 @@ export default function WoodlyworldPage() {
             </div>
 
             {/* Products Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
               {activeCategory && mapCategories[activeCategory] && mapCategories[activeCategory].items.map((item, i) => {
                 const catIdx = Object.keys(mapCategories).indexOf(activeCategory)
                 const idx = getCardIndex(catIdx, i)
@@ -1025,7 +1025,7 @@ export default function WoodlyworldPage() {
                     )}
 
                     <div 
-                      className="relative h-72 overflow-hidden cursor-pointer select-none"
+                      className="relative h-44 sm:h-56 lg:h-72 overflow-hidden cursor-pointer select-none"
                       onTouchStart={(e) => onTouchStart(e, idx)}
                       onTouchMove={(e) => onTouchMove(e, idx)}
                       onTouchEnd={() => onTouchEnd(idx, catIdx, i, gallery)}
@@ -1113,24 +1113,24 @@ export default function WoodlyworldPage() {
                         </>
                       )}
                     </div>
-                    <CardContent className="p-6 flex flex-col flex-grow bg-white">
-                      <h3 className="text-xl font-bold mb-2 text-gray-900">{item.name}</h3>
-                      <p className="text-gray-600 mb-4 text-sm flex-grow">{item.description}</p>
+                    <CardContent className="p-4 sm:p-6 flex flex-col flex-grow bg-white">
+                      <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold mb-2 text-gray-900">{item.name}</h3>
+                      <p className="text-gray-600 mb-3 text-xs sm:text-sm flex-grow">{item.description}</p>
 
                       {/* Price Section */}
                       <div className="mb-4">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-2xl font-bold text-orange-600">{item.price}</span>
+                          <span className="text-lg sm:text-xl md:text-2xl font-bold text-orange-600">{item.price}</span>
                           <span className="text-sm text-gray-500">{t('sum')}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-lg text-gray-400 line-through">{item.oldPrice}</span>
-                          <span className="text-sm text-gray-400">{t('sum')}</span>
+                          <span className="text-xs sm:text-sm md:text-lg text-gray-400 line-through">{item.oldPrice}</span>
+                          <span className="text-xs sm:text-sm text-gray-400">{t('sum')}</span>
                         </div>
                       </div>
 
                       <Button
-                        className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold"
+                        className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs sm:text-sm md:text-base py-2 md:py-3"
                         onClick={() => {
                           const amoButton = document.getElementById('amoforms_action_btn');
                           if (amoButton) {
@@ -1138,7 +1138,7 @@ export default function WoodlyworldPage() {
                           }
                         }}
                       >
-                        {t('learnMore')} <ArrowRight className="w-4 h-4 ml-2" />
+                        {t('learnMore')} <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-2" />
                       </Button>
                     </CardContent>
                   </Card>
