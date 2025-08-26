@@ -554,18 +554,20 @@ export default function PalkarMePage() {
                 ))}
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/woodlyworld">
                 <Button
                   size="lg"
                   className="bg-orange-600 hover:bg-orange-700 text-white"
-                  onClick={() => {
-                    const amoButton = document.getElementById('amoforms_action_btn');
-                    if (amoButton) {
-                      amoButton.click();
-                    }
-                  }}
+                  // onClick={() => {
+                  //   const amoButton = document.getElementById('amoforms_action_btn');
+                  //   if (amoButton) {
+                  //     amoButton.click();
+                  //   }
+                  // }}
                 >
                   {t('submitRequest')}
                 </Button>
+                </Link>
                 <Link href="/woodlyworld">
                   <Button
                     size="lg"

@@ -354,6 +354,63 @@ export interface Translations {
   
   // Common
   faq: string
+  
+  // Form Modal Translations
+  yourName: string
+  phoneNumber: string
+  sendRequest: string
+  sendConsultationRequest: string
+  orderChildrenFurniture: string
+  orderEcoPalm: string
+  orderWorldMap: string
+  submitInquiry: string
+  submittingRequest: string
+  submittingInquiry: string
+  submittingConsultation: string
+  modalOrderTitle: string
+  modalConsultationTitle: string
+  modalLearnMoreTitle: string
+  modalOrderDescription: string
+  modalConsultationDescription: string
+  modalLearnMoreDescription: string
+  modalOrderDescriptionEcopalma: string
+  modalOrderDescriptionWoodlyworld: string
+  modalOrderDescriptionBabyjoy: string
+  modalConsultationDescriptionEcopalma: string
+  modalConsultationDescriptionWoodlyworld: string
+  modalConsultationDescriptionBabyjoy: string
+  modalLearnMoreDescriptionEcopalma: string
+  modalLearnMoreDescriptionWoodlyworld: string
+  modalLearnMoreDescriptionBabyjoy: string
+  modalOrderButton: string
+  modalConsultationButton: string
+  modalLearnMoreButton: string
+  modalOrderButtonEcopalma: string
+  modalOrderButtonWoodlyworld: string
+  modalOrderButtonBabyjoy: string
+  modalConsultationButtonEcopalma: string
+  modalConsultationButtonWoodlyworld: string
+  modalConsultationButtonBabyjoy: string
+  modalLearnMoreButtonEcopalma: string
+  modalLearnMoreButtonWoodlyworld: string
+  modalLearnMoreButtonBabyjoy: string
+  modalOrderSuccessEcopalma: string
+  modalOrderSuccessWoodlyworld: string
+  modalOrderSuccessBabyjoy: string
+  modalConsultationSuccessEcopalma: string
+  modalConsultationSuccessWoodlyworld: string
+  modalConsultationSuccessBabyjoy: string
+  modalLearnMoreSuccessEcopalma: string
+  modalLearnMoreSuccessWoodlyworld: string
+  modalLearnMoreSuccessBabyjoy: string
+  modalErrorFallback: string
+  modalAlternativeContact: string
+  modalWhatsApp: string
+  modalCall: string
+  modalPrivacyNotice: string
+  modalWhatsAppMessageEcopalma: string
+  modalWhatsAppMessageWoodlyworld: string
+  modalWhatsAppMessageBabyjoy: string
 }
 
 export const translations: Record<Language, Translations> = {
@@ -712,6 +769,63 @@ export const translations: Record<Language, Translations> = {
     woodenClockDesc: "Стильные деревянные часы в дизайне карты мира.",
     pushPinFlags: "Нажимные Флажки Всех Стран",
     pushPinFlagsDesc: "Полный набор флажков всех стран мира для вашей карты.",
+    
+    // Form Modal Translations
+    yourName: "Ваше имя",
+    phoneNumber: "Номер телефона",
+    sendRequest: "Отправить заявку",
+    sendConsultationRequest: "Получить консультацию",
+    orderChildrenFurniture: "Заказать детскую мебель",
+    orderEcoPalm: "Заказать экологичную пальму",
+    orderWorldMap: "Заказать карту мира",
+    submitInquiry: "Отправить заявку",
+    submittingRequest: "Отправляем заявку...",
+    submittingInquiry: "Отправляем заявку...",
+    submittingConsultation: "Отправляем запрос...",
+    modalOrderTitle: "Заказать",
+    modalConsultationTitle: "Получить консультацию",
+    modalLearnMoreTitle: "Узнать подробнее",
+    modalOrderDescription: "Оставьте заявку на заказ",
+    modalConsultationDescription: "Оставьте заявку на бесплатную консультацию",
+    modalLearnMoreDescription: "Получите подробную информацию и оставьте заявку на консультацию",
+    modalOrderDescriptionEcopalma: "Оставьте заявку на заказ качественной экологичной пальмы для вашего интерьера",
+    modalOrderDescriptionWoodlyworld: "Оставьте заявку на заказ уникальной деревянной карты мира",
+    modalOrderDescriptionBabyjoy: "Оставьте заявку на заказ качественной детской мебели для гармоничного развития ребенка",
+    modalConsultationDescriptionEcopalma: "Оставьте заявку на бесплатную консультацию по выбору экологичной пальмы",
+    modalConsultationDescriptionWoodlyworld: "Оставьте заявку на бесплатную консультацию по выбору карты мира",
+    modalConsultationDescriptionBabyjoy: "Оставьте заявку на бесплатную консультацию по выбору детской мебели",
+    modalLearnMoreDescriptionEcopalma: "Получите подробную информацию о пальмах и оставьте заявку на консультацию",
+    modalLearnMoreDescriptionWoodlyworld: "Получите подробную информацию о картах мира и оставьте заявку на консультацию",
+    modalLearnMoreDescriptionBabyjoy: "Получите подробную информацию о мебели и оставьте заявку на консультацию",
+    modalOrderButton: "Отправить заявку",
+    modalConsultationButton: "Получить консультацию",
+    modalLearnMoreButton: "Узнать подробнее",
+    modalOrderButtonEcopalma: "Заказать экологичную пальму",
+    modalOrderButtonWoodlyworld: "Заказать карту мира",
+    modalOrderButtonBabyjoy: "Заказать детскую мебель",
+    modalConsultationButtonEcopalma: "Получить консультацию по пальмам",
+    modalConsultationButtonWoodlyworld: "Получить консультацию по картам",
+    modalConsultationButtonBabyjoy: "Получить консультацию по мебели",
+    modalLearnMoreButtonEcopalma: "Узнать подробнее о пальмах",
+    modalLearnMoreButtonWoodlyworld: "Узнать подробнее о картах",
+    modalLearnMoreButtonBabyjoy: "Узнать подробнее о мебели",
+    modalOrderSuccessEcopalma: "Спасибо! Мы свяжемся с вами в ближайшее время для обсуждения деталей заказа экологичной пальмы.",
+    modalOrderSuccessWoodlyworld: "Спасибо! Мы свяжемся с вами в ближайшее время для обсуждения деталей заказа карты мира.",
+    modalOrderSuccessBabyjoy: "Спасибо! Мы свяжемся с вами в ближайшее время для обсуждения деталей заказа детской мебели.",
+    modalConsultationSuccessEcopalma: "Спасибо! Мы свяжемся с вами в ближайшее время для предоставления консультации по экологичным пальмам.",
+    modalConsultationSuccessWoodlyworld: "Спасибо! Мы свяжемся с вами в ближайшее время для предоставления консультации по картам мира.",
+    modalConsultationSuccessBabyjoy: "Спасибо! Мы свяжемся с вами в ближайшее время для предоставления консультации по детской мебели.",
+    modalLearnMoreSuccessEcopalma: "Спасибо! Мы свяжемся с вами в ближайшее время с подробной информацией о пальмах.",
+    modalLearnMoreSuccessWoodlyworld: "Спасибо! Мы свяжемся с вами в ближайшее время с подробной информацией о картах мира.",
+    modalLearnMoreSuccessBabyjoy: "Спасибо! Мы свяжемся с вами в ближайшее время с подробной информацией о мебели.",
+    modalErrorFallback: "Заявка не может быть отправлена автоматически. Пожалуйста, используйте кнопки ниже для связи с нами напрямую.",
+    modalAlternativeContact: "Или свяжитесь с нами напрямую:",
+    modalWhatsApp: "WhatsApp",
+    modalCall: "Позвонить",
+    modalPrivacyNotice: "Нажимая кнопку, вы соглашаетесь с обработкой персональных данных",
+    modalWhatsAppMessageEcopalma: "Здравствуйте! Хочу заказать экологичную пальму Ecopalma",
+    modalWhatsAppMessageWoodlyworld: "Здравствуйте! Хочу заказать карту мира Woodlyworld",
+    modalWhatsAppMessageBabyjoy: "Здравствуйте! Хочу заказать детскую мебель Babyjoy",
   },
   uz: {
     // Header
@@ -1068,6 +1182,63 @@ export const translations: Record<Language, Translations> = {
     woodenClockDesc: "Dunyo xaritasi dizaynida zamonaviy yog'och soat.",
     pushPinFlags: "Barcha Mamlakatlarning Bosma Bayroqchalari",
     pushPinFlagsDesc: "Xaritangiz uchun dunyodagi barcha mamlakatlarning to'liq bayroqchalar to'plami.",
+    
+    // Form Modal Translations
+    yourName: "Ismingiz",
+    phoneNumber: "Telefon raqami",
+    sendRequest: "Arizani yuborish",
+    sendConsultationRequest: "Konsultatsiya olish",
+    orderChildrenFurniture: "Bolalar mebelini buyurtma qilish",
+    orderEcoPalm: "Ekologik palma buyurtma qilish",
+    orderWorldMap: "Dunyo xaritasini buyurtma qilish",
+    submitInquiry: "Arizani yuborish",
+    submittingRequest: "Arizani yuborish...",
+    submittingInquiry: "Arizani yuborish...",
+    submittingConsultation: "So'rovni yuborish...",
+    modalOrderTitle: "Buyurtma qilish",
+    modalConsultationTitle: "Konsultatsiya olish",
+    modalLearnMoreTitle: "Batafsil ma'lumot",
+    modalOrderDescription: "Buyurtma uchun ariza qoldiring",
+    modalConsultationDescription: "Bepul konsultatsiya uchun ariza qoldiring",
+    modalLearnMoreDescription: "Batafsil ma'lumot oling va konsultatsiya uchun ariza qoldiring",
+    modalOrderDescriptionEcopalma: "Interyeringiz uchun sifatli ekologik palma buyurtma qilish uchun ariza qoldiring",
+    modalOrderDescriptionWoodlyworld: "Nozik yog'och dunyo xaritasi buyurtma qilish uchun ariza qoldiring",
+    modalOrderDescriptionBabyjoy: "Bolaning muvozanatli rivojlanishi uchun sifatli bolalar mebelini buyurtma qilish uchun ariza qoldiring",
+    modalConsultationDescriptionEcopalma: "Ekologik palma tanlash bo'yicha bepul konsultatsiya uchun ariza qoldiring",
+    modalConsultationDescriptionWoodlyworld: "Dunyo xaritasi tanlash bo'yicha bepul konsultatsiya uchun ariza qoldiring",
+    modalConsultationDescriptionBabyjoy: "Bolalar mebelini tanlash bo'yicha bepul konsultatsiya uchun ariza qoldiring",
+    modalLearnMoreDescriptionEcopalma: "Palmalar haqida batafsil ma'lumot oling va konsultatsiya uchun ariza qoldiring",
+    modalLearnMoreDescriptionWoodlyworld: "Dunyo xaritalari haqida batafsil ma'lumot oling va konsultatsiya uchun ariza qoldiring",
+    modalLearnMoreDescriptionBabyjoy: "Mebel haqida batafsil ma'lumot oling va konsultatsiya uchun ariza qoldiring",
+    modalOrderButton: "Arizani yuborish",
+    modalConsultationButton: "Konsultatsiya olish",
+    modalLearnMoreButton: "Batafsil ma'lumot",
+    modalOrderButtonEcopalma: "Ekologik palma buyurtma qilish",
+    modalOrderButtonWoodlyworld: "Dunyo xaritasi buyurtma qilish",
+    modalOrderButtonBabyjoy: "Bolalar mebelini buyurtma qilish",
+    modalConsultationButtonEcopalma: "Palmalar bo'yicha konsultatsiya olish",
+    modalConsultationButtonWoodlyworld: "Xaritalar bo'yicha konsultatsiya olish",
+    modalConsultationButtonBabyjoy: "Mebel bo'yicha konsultatsiya olish",
+    modalLearnMoreButtonEcopalma: "Palmalar haqida batafsil ma'lumot",
+    modalLearnMoreButtonWoodlyworld: "Xaritalar haqida batafsil ma'lumot",
+    modalLearnMoreButtonBabyjoy: "Mebel haqida batafsil ma'lumot",
+    modalOrderSuccessEcopalma: "Rahmat! Ekologik palma buyurtmasi tafsilotlari bo'yicha tez orada siz bilan bog'lanamiz.",
+    modalOrderSuccessWoodlyworld: "Rahmat! Dunyo xaritasi buyurtmasi tafsilotlari bo'yicha tez orada siz bilan bog'lanamiz.",
+    modalOrderSuccessBabyjoy: "Rahmat! Bolalar mebelini buyurtma qilish tafsilotlari bo'yicha tez orada siz bilan bog'lanamiz.",
+    modalConsultationSuccessEcopalma: "Rahmat! Ekologik palmalar bo'yicha konsultatsiya berish uchun tez orada siz bilan bog'lanamiz.",
+    modalConsultationSuccessWoodlyworld: "Rahmat! Dunyo xaritalari bo'yicha konsultatsiya berish uchun tez orada siz bilan bog'lanamiz.",
+    modalConsultationSuccessBabyjoy: "Rahmat! Bolalar mebelini tanlash bo'yicha konsultatsiya berish uchun tez orada siz bilan bog'lanamiz.",
+    modalLearnMoreSuccessEcopalma: "Rahmat! Palmalar haqida batafsil ma'lumot bilan tez orada siz bilan bog'lanamiz.",
+    modalLearnMoreSuccessWoodlyworld: "Rahmat! Dunyo xaritalari haqida batafsil ma'lumot bilan tez orada siz bilan bog'lanamiz.",
+    modalLearnMoreSuccessBabyjoy: "Rahmat! Mebel haqida batafsil ma'lumot bilan tez orada siz bilan bog'lanamiz.",
+    modalErrorFallback: "Ariza avtomatik ravishda yuborilmaydi. Iltimos, biz bilan to'g'ridan-to'g'ri bog'lanish uchun quyidagi tugmalardan foydalaning.",
+    modalAlternativeContact: "Yoki biz bilan to'g'ridan-to'g'ri bog'laning:",
+    modalWhatsApp: "WhatsApp",
+    modalCall: "Qo'ng'iroq qilish",
+    modalPrivacyNotice: "Tugmani bosish orqali siz shaxsiy ma'lumotlarni qayta ishlashga rozilik berasiz",
+    modalWhatsAppMessageEcopalma: "Salom! Ecopalma ekologik palmasini buyurtma qilmoqchiman",
+    modalWhatsAppMessageWoodlyworld: "Salom! Woodlyworld dunyo xaritasi buyurtma qilmoqchiman",
+    modalWhatsAppMessageBabyjoy: "Salom! Babyjoy bolalar mebelini buyurtma qilmoqchiman",
   }
 }
 

@@ -36,6 +36,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { useAmoForms } from "@/hooks/use-amo-forms"
+import { BabyjoyInquiryModal } from "@/components/babyjoy-inquiry-modal"
 
 
 const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -74,6 +75,8 @@ export default function BabyjoyPage() {
   const [timeLeft, setTimeLeft] = useState(getTimeLeftInMonth());
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0)
   const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0)
+  const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false)
+  const [inquiryModalVariant, setInquiryModalVariant] = useState<'default' | 'consultation' | 'learn-more'>('default')
 
   // Timer countdown to end of July
   useEffect(() => {
@@ -88,6 +91,26 @@ export default function BabyjoyPage() {
     }, 1000)
     return () => clearInterval(timer)
   }, [])
+
+  // Функции для управления модальным окном
+  const openInquiryModal = () => {
+    setInquiryModalVariant('default')
+    setIsInquiryModalOpen(true)
+  }
+
+  const openConsultationModal = () => {
+    setInquiryModalVariant('consultation')
+    setIsInquiryModalOpen(true)
+  }
+
+  const openLearnMoreModal = () => {
+    setInquiryModalVariant('learn-more')
+    setIsInquiryModalOpen(true)
+  }
+
+  const closeInquiryModal = () => {
+    setIsInquiryModalOpen(false)
+  }
 
   const furnitureItems = [
     {
@@ -406,12 +429,7 @@ export default function BabyjoyPage() {
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
-                  onClick={() => {
-                    const amoButton = document.getElementById('amoforms_action_btn');
-                    if (amoButton) {
-                      amoButton.click();
-                    }
-                  }}
+                  onClick={openInquiryModal}
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
                   {t('orderWithDiscount')}
@@ -585,12 +603,7 @@ export default function BabyjoyPage() {
 
                       <Button
                         className="w-full bg-purple-300 hover:bg-purple-400 text-purple-900 font-semibold"
-                        onClick={() => {
-                          const amoButton = document.getElementById('amoforms_action_btn');
-                          if (amoButton) {
-                            amoButton.click();
-                          }
-                        }}
+                        onClick={openLearnMoreModal}
                       >
                         {t('orderWithDiscount')} <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
@@ -647,10 +660,26 @@ export default function BabyjoyPage() {
                       <advantage.icon className="w-8 h-8" />
                     </div>
                     <h3 className="text-xl font-bold mb-4 text-gray-900">{advantage.title}</h3>
-                    <p className="text-gray-600">{advantage.description}</p>
+                    <p className="text-gray-600 mb-6">{advantage.description}</p>
+
                   </Card>
                 </motion.div>
               ))}
+            </div>
+            
+            {/* Call to Action */}
+            <div className="text-center mt-16">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-12 py-6 text-xl font-bold rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300"
+                onClick={openInquiryModal}
+              >
+                <Baby className="w-6 h-6 mr-3" />
+                Заказать детскую мебель
+              </Button>
+              <p className="text-gray-600 mt-4 text-lg">
+                Создайте пространство для гармоничного развития ребенка
+              </p>
             </div>
           </div>
         </section>
@@ -775,25 +804,20 @@ export default function BabyjoyPage() {
         </section>
 
         {/* Consultation Form */}
-        <section className="py-24 bg-gray-100">
+        {/* <section className="py-24 bg-gray-100">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
               <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">{t('getConsultation')}</h2>
               <Button
                 size="lg"
                 className="bg-purple-600 hover:bg-purple-700 px-12 py-4 text-lg text-white"
-                onClick={() => {
-                  const amoButton = document.getElementById('amoforms_action_btn');
-                  if (amoButton) {
-                    amoButton.click();
-                  }
-                }}
+                onClick={openConsultationModal}
               >
                 {t('leaveConsultationRequest')}
               </Button>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Gallery Slider */}
         <section className="py-24 bg-gray-50">
@@ -891,9 +915,31 @@ export default function BabyjoyPage() {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
+            
+            {/* Call to Action */}
+            <div className="text-center mt-16">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-12 py-6 text-xl font-bold rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300"
+                onClick={openConsultationModal}
+              >
+                <Baby className="w-6 h-6 mr-3" />
+                Получить консультацию
+              </Button>
+              <p className="text-gray-600 mt-4 text-lg">
+                Остались вопросы? Наши специалисты готовы помочь!
+              </p>
+            </div>
           </div>
         </section>
       </main>
+
+      {/* Inquiry Modal */}
+      <BabyjoyInquiryModal 
+        isOpen={isInquiryModalOpen} 
+        onClose={closeInquiryModal}
+        variant={inquiryModalVariant}
+      />
 
       <Footer />
     </div>

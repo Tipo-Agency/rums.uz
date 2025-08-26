@@ -32,6 +32,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { useAmoForms } from "@/hooks/use-amo-forms"
 import { useLanguage } from "@/lib/language-context"
+import { EcopalmaInquiryModal } from "@/components/ecopalma-inquiry-modal"
 
 // Добавляем типы для глобального окна
 declare global {
@@ -77,6 +78,8 @@ export default function EcopalmaPage() {
   const [timeLeft, setTimeLeft] = useState(getTimeLeftInMonth());
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0)
   const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0)
+  const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false)
+  const [inquiryModalVariant, setInquiryModalVariant] = useState<'default' | 'consultation' | 'learn-more'>('default')
 
   // Timer countdown to end of July
   useEffect(() => {
@@ -91,6 +94,26 @@ export default function EcopalmaPage() {
     }, 1000)
     return () => clearInterval(timer)
   }, [])
+
+  // Функции для управления модальным окном
+  const openInquiryModal = () => {
+    setInquiryModalVariant('default')
+    setIsInquiryModalOpen(true)
+  }
+
+  const openConsultationModal = () => {
+    setInquiryModalVariant('consultation')
+    setIsInquiryModalOpen(true)
+  }
+
+  const openLearnMoreModal = () => {
+    setInquiryModalVariant('learn-more')
+    setIsInquiryModalOpen(true)
+  }
+
+  const closeInquiryModal = () => {
+    setIsInquiryModalOpen(false)
+  }
 
   const palms = [
     {
@@ -486,11 +509,7 @@ export default function EcopalmaPage() {
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
-                  onClick={() => {
-                    if (typeof window !== 'undefined' && window.clickAmoButton) {
-                      window.clickAmoButton();
-                    }
-                  }}
+                  onClick={openInquiryModal}
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
                   {t('orderWithDiscount')}
@@ -643,11 +662,7 @@ export default function EcopalmaPage() {
                       <div className="text-2xl font-bold text-green-600 mb-4">{palm.price}</div>
                       <Button
                         className="w-full bg-green-600 hover:bg-green-700 text-white font-bold"
-                        onClick={() => {
-                          if (typeof window !== 'undefined' && window.clickAmoButton) {
-                            window.clickAmoButton();
-                          }
-                        }}
+                        onClick={openLearnMoreModal}
                       >
                         {t('learnMore')} <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
@@ -704,10 +719,25 @@ export default function EcopalmaPage() {
                       <advantage.icon className="w-8 h-8" />
                     </div>
                     <h3 className="text-xl font-bold mb-4 text-gray-900">{advantage.title}</h3>
-                    <p className="text-gray-600">{advantage.description}</p>
+                    <p className="text-gray-600 mb-6">{advantage.description}</p>
                   </Card>
                 </motion.div>
               ))}
+            </div>
+            
+            {/* Call to Action */}
+            <div className="text-center mt-16">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-12 py-6 text-xl font-bold rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300"
+                onClick={openInquiryModal}
+              >
+                <Leaf className="w-6 h-6 mr-3" />
+                Заказать экологичную пальму
+              </Button>
+              <p className="text-gray-600 mt-4 text-lg">
+                Создайте уютный интерьер с нашими экологичными пальмами
+              </p>
             </div>
           </div>
         </section>
@@ -832,24 +862,20 @@ export default function EcopalmaPage() {
         </section>
 
         {/* Consultation Form */}
-        <section className="py-24 bg-gray-100">
+        {/* <section className="py-24 bg-gray-100">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
               <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">{t('getConsultation')}</h2>
               <Button
                 size="lg"
                 className="bg-green-600 hover:bg-green-700 px-12 py-4 text-lg text-white"
-                onClick={() => {
-                  if (typeof window !== 'undefined' && window.clickAmoButton) {
-                    window.clickAmoButton();
-                  }
-                }}
+                onClick={openConsultationModal}
               >
                 {t('requestConsultation')}
               </Button>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Gallery Slider */}
         <section className="py-24 bg-gray-50">
@@ -939,6 +965,21 @@ export default function EcopalmaPage() {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
+            
+            {/* Call to Action */}
+            <div className="text-center mt-16">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-12 py-6 text-xl font-bold rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300"
+                onClick={openConsultationModal}
+              >
+                <Leaf className="w-6 h-6 mr-3" />
+                Получить консультацию
+              </Button>
+              <p className="text-gray-600 mt-4 text-lg">
+                Остались вопросы? Наши специалисты готовы помочь!
+              </p>
+            </div>
           </div>
         </section>
       </main>
@@ -1022,6 +1063,14 @@ export default function EcopalmaPage() {
           </div>
         </div>
       )}
+
+      {/* Inquiry Modal */}
+      <EcopalmaInquiryModal 
+        isOpen={isInquiryModalOpen} 
+        onClose={closeInquiryModal}
+        variant={inquiryModalVariant}
+      />
+
       <Footer />
     </div>
   )

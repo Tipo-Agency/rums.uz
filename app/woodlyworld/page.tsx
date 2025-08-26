@@ -29,6 +29,7 @@ import {
   Palette,
   Package,
   Headphones,
+  MapPin,
 } from "lucide-react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
@@ -36,6 +37,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { useAmoForms } from "@/hooks/use-amo-forms"
 import { useLanguage } from "@/lib/language-context"
+import { WoodlyworldInquiryModal } from "@/components/woodlyworld-inquiry-modal"
 
 
 interface MapItem {
@@ -71,45 +73,58 @@ export default function WoodlyworldPage() {
     scriptUrl: "https://forms.amocrm.ru/forms/assets/js/amoforms.js?1752885451"
   })
 
-  const getTimeLeftInMonth = () => {
-    const now = new Date();
-    const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0, 0);
-    endOfMonth.setMilliseconds(-1); // последний миллисекунда текущего месяца
-    const diff = endOfMonth.getTime() - now.getTime();
+  const getTimeLeftInMonth = useMemo(() => {
+    return () => {
+      const now = new Date();
+      const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0, 0);
+      endOfMonth.setMilliseconds(-1); // последний миллисекунда текущего месяца
+      const diff = endOfMonth.getTime() - now.getTime();
 
-    if (diff <= 0) {
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    }
+      if (diff <= 0) {
+        return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      }
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
 
-    return { days, hours, minutes, seconds };
-  };
+      return { days, hours, minutes, seconds };
+    };
+  }, []);
 
-  const [timeLeft, setTimeLeft] = useState(getTimeLeftInMonth());
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isClient, setIsClient] = useState(false);
   const [activeCategory, setActiveCategory] = useState("")
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0)
   const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0)
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false)
   const [currentProductGallery, setCurrentProductGallery] = useState<string[]>([])
   const [currentGalleryImageIndex, setCurrentGalleryImageIndex] = useState(0)
+  const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false)
+  const [inquiryModalVariant, setInquiryModalVariant] = useState<'default' | 'consultation' | 'learn-more'>('default')
 
-  // Timer countdown to end of July
+  // Timer countdown to end of month
   useEffect(() => {
+    // Устанавливаем флаг, что мы на клиенте
+    setIsClient(true);
+    
+    // Инициализируем таймер только на клиенте
+    setTimeLeft(getTimeLeftInMonth());
+    
     const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 }
-        if (prev.minutes > 0) return { ...prev, minutes: prev.minutes - 1, seconds: 59 }
-        if (prev.hours > 0) return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 }
-        if (prev.days > 0) return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 }
-        return prev
-      })
-    }, 1000)
-    return () => clearInterval(timer)
-  }, [])
+      const newTimeLeft = getTimeLeftInMonth();
+      setTimeLeft(newTimeLeft);
+      
+      // Если время истекло, останавливаем таймер
+      if (newTimeLeft.days === 0 && newTimeLeft.hours === 0 && 
+          newTimeLeft.minutes === 0 && newTimeLeft.seconds === 0) {
+        clearInterval(timer);
+      }
+    }, 1000);
+    
+    return () => clearInterval(timer);
+  }, []);
 
   const mapCategories: MapCategories = useMemo(() => ({
     [t('maps3D')]: {
@@ -626,6 +641,25 @@ export default function WoodlyworldPage() {
     setCurrentGalleryImageIndex(0)
   }
 
+  const openInquiryModal = () => {
+    setInquiryModalVariant('default')
+    setIsInquiryModalOpen(true)
+  }
+
+  const openConsultationModal = () => {
+    setInquiryModalVariant('consultation')
+    setIsInquiryModalOpen(true)
+  }
+
+  const openLearnMoreModal = () => {
+    setInquiryModalVariant('learn-more')
+    setIsInquiryModalOpen(true)
+  }
+
+  const closeInquiryModal = () => {
+    setIsInquiryModalOpen(false)
+  }
+
   const nextGalleryImage = () => {
     setCurrentGalleryImageIndex((prev) => (prev + 1) % currentProductGallery.length)
   }
@@ -784,6 +818,39 @@ export default function WoodlyworldPage() {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [isGalleryModalOpen, currentProductGallery.length])
 
+  // Form submission handler for all forms
+  useEffect(() => {
+    const forms = document.querySelectorAll('form');
+    const handleSubmit = async (e: Event) => {
+      e.preventDefault();
+      const form = e.target as HTMLFormElement;
+      
+      try {
+        // Отправляем через наш локальный API route
+        const response = await fetch('/api/woodlyworld-inquiry', {
+          method: 'POST',
+          body: new FormData(form)
+        });
+        
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success) {
+            console.log('Form submitted successfully:', result.message);
+          }
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+      }
+    };
+
+    forms.forEach(form => form.addEventListener('submit', handleSubmit));
+
+    // Cleanup function to remove event listeners
+    return () => {
+      forms.forEach(form => form.removeEventListener('submit', handleSubmit));
+    };
+  }, []);
+
   return (
     <div className="bg-white text-gray-800">
       <Header />
@@ -825,19 +892,35 @@ export default function WoodlyworldPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex flex-col items-center gap-8"
             >
-              <div className="flex justify-center space-x-2 md:space-x-4">
-                {Object.entries(timeLeft).map(([unit, value]) => (
-                  <div
-                    key={unit}
-                    className="text-center bg-white/15 backdrop-blur-md rounded-2xl p-3 md:p-4 border border-white/30 min-w-[70px] md:min-w-[90px] shadow-xl"
-                  >
-                    <div className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
-                      {value.toString().padStart(2, "0")}
+              {isClient ? (
+                <div className="flex justify-center space-x-2 md:space-x-4">
+                  {Object.entries(timeLeft).map(([unit, value]) => (
+                    <div
+                      key={unit}
+                      className="text-center bg-white/15 backdrop-blur-md rounded-2xl p-3 md:p-4 border border-white/30 min-w-[70px] md:min-w-[90px] shadow-xl"
+                    >
+                      <div className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
+                        {value.toString().padStart(2, "0")}
+                      </div>
+                      <div className="text-xs text-white/90 uppercase tracking-wider font-medium">{t(unit as keyof typeof timeLeft)}</div>
                     </div>
-                    <div className="text-xs text-white/90 uppercase tracking-wider font-medium">{t(unit as keyof typeof timeLeft)}</div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex justify-center space-x-2 md:space-x-4">
+                  {['days', 'hours', 'minutes', 'seconds'].map((unit) => (
+                    <div
+                      key={unit}
+                      className="text-center bg-white/15 backdrop-blur-md rounded-2xl p-3 md:p-4 border border-white/30 min-w-[70px] md:min-w-[90px] shadow-xl"
+                    >
+                      <div className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
+                        --
+                      </div>
+                      <div className="text-xs text-white/90 uppercase tracking-wider font-medium">{t(unit as keyof typeof timeLeft)}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button
                   size="lg"
@@ -855,6 +938,14 @@ export default function WoodlyworldPage() {
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
                   {t('showcatalogwithprice')}
+                </Button>
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
+                  onClick={openInquiryModal}
+                >
+                  <MapPin className="w-5 h-5 mr-2" />
+                  Оставить заявку
                 </Button>
                 <div id="amocrm_btn"></div>
               </div>
@@ -1131,12 +1222,7 @@ export default function WoodlyworldPage() {
 
                       <Button
                         className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs sm:text-sm md:text-base py-2 md:py-3"
-                        onClick={() => {
-                          const amoButton = document.getElementById('amoforms_action_btn');
-                          if (amoButton) {
-                            amoButton.click();
-                          }
-                        }}
+                        onClick={openLearnMoreModal}
                       >
                         {t('learnMore')} <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-2" />
                       </Button>
@@ -1145,6 +1231,21 @@ export default function WoodlyworldPage() {
                 </motion.div>
                 )
               })}
+            </div>
+            
+            {/* Call to Action */}
+            <div className="text-center mt-16">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-12 py-6 text-xl font-bold rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300"
+                onClick={openInquiryModal}
+              >
+                <MapPin className="w-6 h-6 mr-3" />
+                Оставить заявку на карту мира
+              </Button>
+              <p className="text-gray-600 mt-4 text-lg">
+                Получите бесплатную консультацию и расчет стоимости
+              </p>
             </div>
           </div>
         </section>
@@ -1194,10 +1295,31 @@ export default function WoodlyworldPage() {
                       <advantage.icon className="w-8 h-8" />
                     </div>
                     <h3 className="text-xl font-bold mb-4 text-gray-900">{advantage.title}</h3>
-                    <p className="text-gray-600">{advantage.description}</p>
+                    <p className="text-gray-600 mb-6">{advantage.description}</p>
+                    <Button
+                      className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm py-2"
+                      onClick={openLearnMoreModal}
+                    >
+                      Узнать подробнее <ArrowRight className="w-3 h-3 ml-2" />
+                    </Button>
                   </Card>
                 </motion.div>
               ))}
+            </div>
+            
+            {/* Call to Action */}
+            <div className="text-center mt-16">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-12 py-6 text-xl font-bold rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300"
+                onClick={openInquiryModal}
+              >
+                <MapPin className="w-6 h-6 mr-3" />
+                Заказать карту мира
+              </Button>
+              <p className="text-gray-600 mt-4 text-lg">
+                Создайте уникальный интерьер с нашей картой мира
+              </p>
             </div>
           </div>
         </section>
@@ -1320,26 +1442,6 @@ export default function WoodlyworldPage() {
           </div>
         </section>
 
-        {/* Consultation Form */}
-        <section className="py-24 bg-gray-100">
-          <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8 ">{t('getConsultation')}</h2>
-              <Button
-                size="lg"
-                className="bg-orange-600 hover:bg-orange-700 px-12 py-4 text-lg text-white font-semibold"
-                onClick={() => {
-                  const amoButton = document.getElementById('amoforms_action_btn');
-                  if (amoButton) {
-                    amoButton.click();
-                  }
-                }}
-              >
-                {t('requestConsultation')}
-              </Button>
-            </div>
-          </div>
-        </section>
 
         {/* Gallery Slider */}
         <section className="py-24 bg-gray-50">
@@ -1434,6 +1536,21 @@ export default function WoodlyworldPage() {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
+            
+            {/* Call to Action */}
+            <div className="text-center mt-16">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-12 py-6 text-xl font-bold rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300"
+                onClick={openConsultationModal}
+              >
+                <MapPin className="w-6 h-6 mr-3" />
+                Получить консультацию
+              </Button>
+              <p className="text-gray-600 mt-4 text-lg">
+                Остались вопросы? Наши специалисты готовы помочь!
+              </p>
+            </div>
           </div>
         </section>
       </main>
@@ -1522,6 +1639,13 @@ export default function WoodlyworldPage() {
           </div>
         </div>
       )}
+
+      {/* Inquiry Modal */}
+      <WoodlyworldInquiryModal 
+        isOpen={isInquiryModalOpen} 
+        onClose={closeInquiryModal}
+        variant={inquiryModalVariant}
+      />
 
       <Footer />
     </div>
