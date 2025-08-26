@@ -405,12 +405,12 @@ export interface Translations {
   modalLearnMoreSuccessBabyjoy: string
   modalErrorFallback: string
   modalAlternativeContact: string
-  modalWhatsApp: string
+  modalTelegram: string
   modalCall: string
   modalPrivacyNotice: string
-  modalWhatsAppMessageEcopalma: string
-  modalWhatsAppMessageWoodlyworld: string
-  modalWhatsAppMessageBabyjoy: string
+  modalTelegramMessageEcopalma: string
+  modalTelegramMessageWoodlyworld: string
+  modalTelegramMessageBabyjoy: string
 }
 
 export const translations: Record<Language, Translations> = {
@@ -820,12 +820,12 @@ export const translations: Record<Language, Translations> = {
     modalLearnMoreSuccessBabyjoy: "Спасибо! Мы свяжемся с вами в ближайшее время с подробной информацией о мебели.",
     modalErrorFallback: "Заявка не может быть отправлена автоматически. Пожалуйста, используйте кнопки ниже для связи с нами напрямую.",
     modalAlternativeContact: "Или свяжитесь с нами напрямую:",
-    modalWhatsApp: "WhatsApp",
+    modalTelegram: "Telegram",
     modalCall: "Позвонить",
     modalPrivacyNotice: "Нажимая кнопку, вы соглашаетесь с обработкой персональных данных",
-    modalWhatsAppMessageEcopalma: "Здравствуйте! Хочу заказать экологичную пальму Ecopalma",
-    modalWhatsAppMessageWoodlyworld: "Здравствуйте! Хочу заказать карту мира Woodlyworld",
-    modalWhatsAppMessageBabyjoy: "Здравствуйте! Хочу заказать детскую мебель Babyjoy",
+    modalTelegramMessageEcopalma: "Здравствуйте! Хочу заказать экологичную пальму Ecopalma",
+    modalTelegramMessageWoodlyworld: "Здравствуйте! Хочу заказать карту мира Woodlyworld",
+    modalTelegramMessageBabyjoy: "Здравствуйте! Хочу заказать детскую мебель Babyjoy",
   },
   uz: {
     // Header
@@ -1233,12 +1233,12 @@ export const translations: Record<Language, Translations> = {
     modalLearnMoreSuccessBabyjoy: "Rahmat! Mebel haqida batafsil ma'lumot bilan tez orada siz bilan bog'lanamiz.",
     modalErrorFallback: "Ariza avtomatik ravishda yuborilmaydi. Iltimos, biz bilan to'g'ridan-to'g'ri bog'lanish uchun quyidagi tugmalardan foydalaning.",
     modalAlternativeContact: "Yoki biz bilan to'g'ridan-to'g'ri bog'laning:",
-    modalWhatsApp: "WhatsApp",
+    modalTelegram: "Telegram",
     modalCall: "Qo'ng'iroq qilish",
     modalPrivacyNotice: "Tugmani bosish orqali siz shaxsiy ma'lumotlarni qayta ishlashga rozilik berasiz",
-    modalWhatsAppMessageEcopalma: "Salom! Ecopalma ekologik palmasini buyurtma qilmoqchiman",
-    modalWhatsAppMessageWoodlyworld: "Salom! Woodlyworld dunyo xaritasi buyurtma qilmoqchiman",
-    modalWhatsAppMessageBabyjoy: "Salom! Babyjoy bolalar mebelini buyurtma qilmoqchiman",
+    modalTelegramMessageEcopalma: "Salom! Ecopalma ekologik palmasini buyurtma qilmoqchiman",
+    modalTelegramMessageWoodlyworld: "Salom! Woodlyworld dunyo xaritasi buyurtma qilmoqchiman",
+    modalTelegramMessageBabyjoy: "Salom! Babyjoy bolalar mebelini buyurtma qilmoqchiman",
   }
 }
 
