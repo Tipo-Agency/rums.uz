@@ -1,7 +1,13 @@
-export const useMetaPixel = () => {
+export const useMetaPixel = (pixelId?: string) => {
   const trackEvent = (eventName: string, parameters?: Record<string, any>) => {
     if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', eventName, parameters);
+      if (pixelId) {
+        // Если указан конкретный Pixel ID, используем его
+        (window as any).fbq('track', eventName, parameters, { eventID: pixelId });
+      } else {
+        // Иначе используем стандартный способ
+        (window as any).fbq('track', eventName, parameters);
+      }
     }
   };
 

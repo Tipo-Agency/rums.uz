@@ -38,6 +38,7 @@ import { Footer } from "@/components/footer"
 import { useAmoForms } from "@/hooks/use-amo-forms"
 import { useLanguage } from "@/lib/language-context"
 import { WoodlyworldInquiryModal } from "@/components/woodlyworld-inquiry-modal"
+import { MetaPixelWoodlyworld } from "@/components/meta-pixel-woodlyworld"
 
 
 interface MapItem {
@@ -1639,6 +1640,9 @@ export default function WoodlyworldPage() {
           </div>
         </div>
       )}
+
+      {/* Meta Pixel для Woodlyworld */}
+      <MetaPixelWoodlyworld />
 
       {/* Inquiry Modal */}
       <WoodlyworldInquiryModal 

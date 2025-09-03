@@ -37,6 +37,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { useAmoForms } from "@/hooks/use-amo-forms"
 import { BabyjoyInquiryModal } from "@/components/babyjoy-inquiry-modal"
+import { MetaPixelBabyjoy } from "@/components/meta-pixel-babyjoy"
 
 
 const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -933,6 +934,9 @@ export default function BabyjoyPage() {
           </div>
         </section>
       </main>
+
+      {/* Meta Pixel для Babyjoy */}
+      <MetaPixelBabyjoy />
 
       {/* Inquiry Modal */}
       <BabyjoyInquiryModal 

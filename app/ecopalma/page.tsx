@@ -33,6 +33,7 @@ import { Footer } from "@/components/footer"
 import { useAmoForms } from "@/hooks/use-amo-forms"
 import { useLanguage } from "@/lib/language-context"
 import { EcopalmaInquiryModal } from "@/components/ecopalma-inquiry-modal"
+import { MetaPixelEcopalma } from "@/components/meta-pixel-ecopalma"
 
 // Добавляем типы для глобального окна
 declare global {
@@ -1063,6 +1064,9 @@ export default function EcopalmaPage() {
           </div>
         </div>
       )}
+
+      {/* Meta Pixel для Ecopalma */}
+      <MetaPixelEcopalma />
 
       {/* Inquiry Modal */}
       <EcopalmaInquiryModal 
