@@ -245,8 +245,8 @@ export default function WoodlyworldPage() {
         {
           name: t('mapLedAurora'),
           image: "woodyworld/map-led-1.jpeg",
-          price: `${t('from')} 1,536,000`,
-          oldPrice: "2,559,000",
+          price: `${t('from')} 3,209,000`,
+          oldPrice: "5,348,000",
           description: t('mapLedAuroraDesc'),
           gallery: [
             "woodyworld/map-led-1.jpeg",
@@ -259,8 +259,8 @@ export default function WoodlyworldPage() {
         {
           name: t('mapLedGoldenHour'),
           image: "woodyworld/map-led-2.jpeg",
-          price: `${t('from')} 1,536,000`,
-          oldPrice: "2,559,000",
+          price: `${t('from')} 2,467,000`,
+          oldPrice: "4,111,000",
           description: t('mapLedGoldenHourDesc'),
           gallery: [
             "woodyworld/map-led-2.jpeg",
@@ -273,8 +273,8 @@ export default function WoodlyworldPage() {
         {
           name: t('mapLedBlue'),
           image: "woodyworld/led/1.jpg",
-          price: `${t('from')} 1,536,000`,
-          oldPrice: "2,559,000",
+          price: `${t('from')} 3,209,000`,
+          oldPrice: "5,348,000",
           description: t('mapLedBlueDesc'),
           gallery: [
             "woodyworld/led/1.jpg",
@@ -287,8 +287,8 @@ export default function WoodlyworldPage() {
         {
           name: t('mapLedGreen'),
           image: "woodyworld/led/3.jpg",
-          price: `${t('from')} 1,536,000`,
-          oldPrice: "2,559,000",
+          price: `${t('from')} 2,467,000`,
+          oldPrice: "4,111,000",
           description: t('mapLedGreenDesc'),
           gallery: [
             "woodyworld/led/3.jpg",
@@ -301,8 +301,8 @@ export default function WoodlyworldPage() {
         {
           name: t('mapLedUnique'),
           image: "woodyworld/led/4.jpg",
-          price: `${t('from')} 1,536,000`,
-          oldPrice: "2,559,000",
+          price: `${t('from')} 3,209,000`,
+          oldPrice: "5,348,000",
           description: t('mapLedUniqueDesc'),
           gallery: [
             "woodyworld/led/4.jpg",
@@ -314,8 +314,8 @@ export default function WoodlyworldPage() {
         },        {
           name: t('mapLedNatural'),
           image: "woodyworld/led/5.jpg",
-          price: `${t('from')} 1,536,000`,
-          oldPrice: "2,559,000",
+          price: `${t('from')} 2,467,000`,
+          oldPrice: "4,111,000",
           description: t('mapLedNaturalDesc'),
           gallery: [
             "woodyworld/led/5.jpg",
@@ -396,7 +396,7 @@ export default function WoodlyworldPage() {
           name: t('flagsPremium'),
           image: "woodyworld/prin/country_tag.jpg",
           price: `${t('from')} 546,000`,
-          oldPrice: "910,000",
+          oldPrice: "657,000",
           description: t('flagsPremiumDesc'),
           gallery: [
             "woodyworld/prin/country_tag.jpg",
@@ -409,8 +409,8 @@ export default function WoodlyworldPage() {
         {
           name: t('flagsStandard'),
           image: "woodyworld/prin/1.jpg",
-          price: `${t('from')} 312,000`,
-          oldPrice: "520,000",
+          price: `${t('from')} 352,000`,
+          oldPrice: "413,000",
           description: t('flagsStandardDesc'),
           gallery: [
             "woodyworld/prin/1.jpg",
