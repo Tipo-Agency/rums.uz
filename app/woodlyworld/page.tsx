@@ -74,28 +74,6 @@ export default function WoodlyworldPage() {
     scriptUrl: "https://forms.amocrm.ru/forms/assets/js/amoforms.js?1752885451"
   })
 
-  const getTimeLeftInMonth = useMemo(() => {
-    return () => {
-      const now = new Date();
-      const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0, 0);
-      endOfMonth.setMilliseconds(-1); // последний миллисекунда текущего месяца
-      const diff = endOfMonth.getTime() - now.getTime();
-
-      if (diff <= 0) {
-        return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      return { days, hours, minutes, seconds };
-    };
-  }, []);
-
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const [isClient, setIsClient] = useState(false);
   const [activeCategory, setActiveCategory] = useState("")
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0)
   const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0)
@@ -104,28 +82,6 @@ export default function WoodlyworldPage() {
   const [currentGalleryImageIndex, setCurrentGalleryImageIndex] = useState(0)
   const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false)
   const [inquiryModalVariant, setInquiryModalVariant] = useState<'default' | 'consultation' | 'learn-more'>('default')
-
-  // Timer countdown to end of month
-  useEffect(() => {
-    // Устанавливаем флаг, что мы на клиенте
-    setIsClient(true);
-    
-    // Инициализируем таймер только на клиенте
-    setTimeLeft(getTimeLeftInMonth());
-    
-    const timer = setInterval(() => {
-      const newTimeLeft = getTimeLeftInMonth();
-      setTimeLeft(newTimeLeft);
-      
-      // Если время истекло, останавливаем таймер
-      if (newTimeLeft.days === 0 && newTimeLeft.hours === 0 && 
-          newTimeLeft.minutes === 0 && newTimeLeft.seconds === 0) {
-        clearInterval(timer);
-      }
-    }, 1000);
-    
-    return () => clearInterval(timer);
-  }, []);
 
   const mapCategories: MapCategories = useMemo(() => ({
     [t('maps3D')]: {
@@ -537,7 +493,7 @@ export default function WoodlyworldPage() {
     {
       name: "Михаил Л.",
       text: "Отлично смотрится на офисной стене, идеально вписывающейся в пространство. Качественно и хорошо упаковано!",
-      image: "woodyworld/map-3d-1.jpeg",
+      image: "reviews/mikhail_review.jpeg",
     },
     {
       name: "Шезрод А.",
@@ -547,7 +503,7 @@ export default function WoodlyworldPage() {
     {
       name: "Мафтуна",
       text: "Это такой красивый и действительно качественный продукт! Очень рекомендую ваш товар!!",
-      image: "woodyworld/map-photo-1.png",
+      image: "reviews/maftuna_review.jpeg",
     },
     {
       name: "Laylo",
@@ -660,6 +616,28 @@ export default function WoodlyworldPage() {
   const closeInquiryModal = () => {
     setIsInquiryModalOpen(false)
   }
+
+  // Автоматическое открытие модального окна "Получить консультацию" через 15 секунд
+  useEffect(() => {
+    // Проверяем, показывали ли уже модальное окно в этой сессии
+    const hasShownAutoModal = sessionStorage.getItem('woodlyworld_auto_modal_shown')
+    
+    if (hasShownAutoModal) {
+      // Если уже показывали в этой сессии, не показываем снова
+      return
+    }
+
+    const timer = setTimeout(() => {
+      // Открываем только если модальное окно еще не было открыто
+      if (!isInquiryModalOpen) {
+        openConsultationModal()
+        // Отмечаем, что показали модальное окно в этой сессии
+        sessionStorage.setItem('woodlyworld_auto_modal_shown', 'true')
+      }
+    }, 15000) // 15 секунд = 15000 миллисекунд
+
+    return () => clearTimeout(timer)
+  }, []) // Пустой массив зависимостей - срабатывает только при монтировании компонента
 
   const nextGalleryImage = () => {
     setCurrentGalleryImageIndex((prev) => (prev + 1) % currentProductGallery.length)
@@ -880,57 +858,15 @@ export default function WoodlyworldPage() {
               <h1 className="text-5xl md:text-7xl font-extrabold mb-4 leading-tight drop-shadow-2xl">
                 <span className="text-white drop-shadow-lg">Woodlyworld</span>
               </h1>
-              <p className="text-xl md:text-2xl text-orange-200 max-w-2xl mx-auto mb-8 drop-shadow-lg font-medium">
+              <p className="text-xl md:text-2xl text-orange-200 max-w-2xl mx-auto mb-6 drop-shadow-lg font-medium">
                 {t('woodenWorldMaps')}
               </p>
-            </motion.div>
-          </div>
-
-          <div className="relative z-10 w-full px-4 pb-8 md:pb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col items-center gap-8"
-            >
-              {isClient ? (
-                <div className="flex justify-center space-x-2 md:space-x-4">
-                  {Object.entries(timeLeft).map(([unit, value]) => (
-                    <div
-                      key={unit}
-                      className="text-center bg-white/15 backdrop-blur-md rounded-2xl p-3 md:p-4 border border-white/30 min-w-[70px] md:min-w-[90px] shadow-xl"
-                    >
-                      <div className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
-                        {value.toString().padStart(2, "0")}
-                      </div>
-                      <div className="text-xs text-white/90 uppercase tracking-wider font-medium">{t(unit as keyof typeof timeLeft)}</div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="flex justify-center space-x-2 md:space-x-4">
-                  {['days', 'hours', 'minutes', 'seconds'].map((unit) => (
-                    <div
-                      key={unit}
-                      className="text-center bg-white/15 backdrop-blur-md rounded-2xl p-3 md:p-4 border border-white/30 min-w-[70px] md:min-w-[90px] shadow-xl"
-                    >
-                      <div className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
-                        --
-                      </div>
-                      <div className="text-xs text-white/90 uppercase tracking-wider font-medium">{t(unit as keyof typeof timeLeft)}</div>
-                    </div>
-                  ))}
-                </div>
-              )}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
                   onClick={() => {
-                    // const amoButton = document.getElementById('amoforms_action_btn');
-                    // if (amoButton) {
-                    //   amoButton.click();
-                    // }
                     const productsCard = document.getElementById('products');
                     if (productsCard) {
                       productsCard.scrollIntoView({ behavior: 'smooth' });
@@ -978,63 +914,93 @@ export default function WoodlyworldPage() {
           </div>
         </section>
 
-        {/* Our Team Section */}
+        {/* Customer Testimonials */}
         <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-              >
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">{t('ourTeam')}</h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  {t('ourTeamDesc1')}
-                </p>
-                <p className="text-lg text-gray-600">
-                  {t('ourTeamDesc2')}
-                </p>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className="grid grid-cols-2 gap-4"
-              >
-                <Image
-                  src="woodyworld/our_team.png"
-                  alt="Наша команда"
-                  width={300}
-                  height={400}
-                  className="rounded-2xl shadow-lg w-full object-cover"
-                />
-                <Image
-                  src="woodyworld/team-2.jpg"
-                  alt="Команда Woodlyworld с упаковкой"
-                  width={300}
-                  height={400}
-                  className="rounded-2xl shadow-lg w-full object-cover"
-                />
-                <Image
-                  src="woodyworld/team-3.png"
-                  alt="Сотрудник с заказом"
-                  width={300}
-                  height={400}
-                  className="rounded-2xl shadow-lg w-full object-cover"
-                />
-                <Image
-                  src="woodyworld/team-4.png"
-                  alt="Процесс размещения фотографий на карте"
-                  width={300}
-                  height={400}
-                  className="rounded-2xl shadow-lg w-full object-cover"
-                />
-              </motion.div>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
+              {t('customerPhotoReviews')}
+            </h2>
+            <div className="relative max-w-4xl mx-auto">
+              <div className="flex justify-between items-center mb-8">
+                <Button
+                  onClick={prevTestimonial}
+                  variant="outline"
+                  size="sm"
+                  className="rounded-full w-12 h-12 p-0 bg-white"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </Button>
+                <div className="flex gap-2">
+                  {testimonials.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentTestimonialIndex(index)}
+                      className={`w-3 h-3 rounded-full transition-all ${index === currentTestimonialIndex ? "bg-orange-600 scale-125" : "bg-gray-300"
+                        }`}
+                    />
+                  ))}
+                </div>
+                <Button
+                  onClick={nextTestimonial}
+                  variant="outline"
+                  size="sm"
+                  className="rounded-full w-12 h-12 p-0 bg-white"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </Button>
+              </div>
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentTestimonialIndex}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Card className="p-8 shadow-lg bg-white">
+                    <div className="grid md:grid-cols-2 gap-8 items-center">
+                      <div>
+                        <Quote className="w-12 h-12 text-orange-600 mb-4" />
+                        <p className="text-lg text-gray-700 mb-6 italic">
+                          &ldquo;{testimonials[currentTestimonialIndex].text}&rdquo;
+                        </p>
+                        <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                            <User className="w-6 h-6 text-orange-600" />
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-lg text-gray-900">
+                              {testimonials[currentTestimonialIndex].name}
+                            </h4>
+                            <div className="flex gap-1">
+                              {[...Array(5)].map((_, i) => (
+                                <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="w-[300px] h-[300px] mx-auto flex items-center justify-center">
+                          <Image
+                            src={testimonials[currentTestimonialIndex].image || "/placeholder.svg"}
+                            alt={testimonials[currentTestimonialIndex].name}
+                            width={300}
+                            height={300}
+                            className="rounded-xl shadow-lg object-cover w-full h-full"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </section>
+
+        
 
         {/* Unique Features */}
         <section className="py-24 bg-white">
@@ -1325,89 +1291,66 @@ export default function WoodlyworldPage() {
           </div>
         </section>
 
-        {/* Customer Testimonials */}
+
+        {/* Our Team Section */}
         <section className="py-24 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
-              {t('customerPhotoReviews')}
-            </h2>
-            <div className="relative max-w-4xl mx-auto">
-              <div className="flex justify-between items-center mb-8">
-                <Button
-                  onClick={prevTestimonial}
-                  variant="outline"
-                  size="sm"
-                  className="rounded-full w-12 h-12 p-0 bg-white"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </Button>
-                <div className="flex gap-2">
-                  {testimonials.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentTestimonialIndex(index)}
-                      className={`w-3 h-3 rounded-full transition-all ${index === currentTestimonialIndex ? "bg-orange-600 scale-125" : "bg-gray-300"
-                        }`}
-                    />
-                  ))}
-                </div>
-                <Button
-                  onClick={nextTestimonial}
-                  variant="outline"
-                  size="sm"
-                  className="rounded-full w-12 h-12 p-0 bg-white"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </Button>
-              </div>
-
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentTestimonialIndex}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Card className="p-8 shadow-lg bg-white">
-                    <div className="grid md:grid-cols-2 gap-8 items-center">
-                      <div>
-                        <Quote className="w-12 h-12 text-orange-600 mb-4" />
-                        <p className="text-lg text-gray-700 mb-6 italic">
-                          &ldquo;{testimonials[currentTestimonialIndex].text}&rdquo;
-                        </p>
-                        <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                            <User className="w-6 h-6 text-orange-600" />
-                          </div>
-                          <div>
-                            <h4 className="font-bold text-lg text-gray-900">
-                              {testimonials[currentTestimonialIndex].name}
-                            </h4>
-                            <div className="flex gap-1">
-                              {[...Array(5)].map((_, i) => (
-                                <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <Image
-                          src={testimonials[currentTestimonialIndex].image || "/placeholder.svg"}
-                          alt={testimonials[currentTestimonialIndex].name}
-                          width={400}
-                          height={400}
-                          className="rounded-xl shadow-lg w-full object-cover"
-                        />
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-              </AnimatePresence>
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">{t('ourTeam')}</h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  {t('ourTeamDesc1')}
+                </p>
+                <p className="text-lg text-gray-600">
+                  {t('ourTeamDesc2')}
+                </p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="grid grid-cols-2 gap-4"
+              >
+                <Image
+                  src="woodyworld/our_team.png"
+                  alt="Наша команда"
+                  width={300}
+                  height={400}
+                  className="rounded-2xl shadow-lg w-full object-cover"
+                />
+                <Image
+                  src="woodyworld/team-2.jpg"
+                  alt="Команда Woodlyworld с упаковкой"
+                  width={300}
+                  height={400}
+                  className="rounded-2xl shadow-lg w-full object-cover"
+                />
+                <Image
+                  src="woodyworld/team-3.png"
+                  alt="Сотрудник с заказом"
+                  width={300}
+                  height={400}
+                  className="rounded-2xl shadow-lg w-full object-cover"
+                />
+                <Image
+                  src="woodyworld/team-4.png"
+                  alt="Процесс размещения фотографий на карте"
+                  width={300}
+                  height={400}
+                  className="rounded-2xl shadow-lg w-full object-cover"
+                />
+              </motion.div>
             </div>
           </div>
         </section>
+
+        
 
         {/* Social Media Section */}
         <section className="py-24 bg-gray-900 text-white">

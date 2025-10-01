@@ -577,8 +577,8 @@ export const translations: Record<Language, Translations> = {
     howToCareForPalmsAnswer: "Уход минимален. Достаточно периодически протирать листья влажной тряпкой от пыли. Никакого полива или удобрений не требуется.",
 
     // Woodlyworld Page
-    woodenWorldMaps: "Деревянные карты мира, которые превращают стены в произведения искусства со скидкой до конца июля!",
-    woodenWorldMapsSubtitle: "Деревянные карты мира, которые превращают стены в произведения искусства со скидкой до конца июля!",
+    woodenWorldMaps: "Деревянные карты мира, которые превращают стены в произведения искусства со скидкой до конца октября!",
+    woodenWorldMapsSubtitle: "Деревянные карты мира, которые превращают стены в произведения искусства со скидкой до конца октября!",
     naturalWood: "Натуральное дерево",
     naturalWoodDesc: "Используем только качественную березовую фанеру и дуб.",
     ecoFriendly: "Экологичность",
@@ -627,7 +627,7 @@ export const translations: Record<Language, Translations> = {
 
     // Babyjoy Page
     discountAndConsultation: "СКИДКА 30% + Бесплатная консультация педагога",
-    montessoriFurnitureDescription: "Мебель, которая растёт вместе с вашим ребёнком по методике Монтессори со скидкой до конца июля!",
+    montessoriFurnitureDescription: "Мебель, которая растёт вместе с вашим ребёнком по методике Монтессори со скидкой до конца октября!",
 
     // Features Babyjoy
     ecoMaterials: "Экологичные материалы",
@@ -990,8 +990,8 @@ export const translations: Record<Language, Translations> = {
     howToCareForPalmsAnswer: "Parvarish minimal. Vaqti-vaqti bilan barglarni nam latta bilan changdan artib qo'yish kifoya. Hech qanday sug'orish yoki o'g'itlash talab qilinmaydi.",
 
     // Woodlyworld Page
-    woodenWorldMaps: "Iyul oyining oxirigacha chegirma bilan devorlarni san'at asariga aylantiradigan yog'och dunyo xaritalari!",
-    woodenWorldMapsSubtitle: "Iyul oyining oxirigacha chegirma bilan devorlarni san'at asariga aylantiradigan yog'och dunyo xaritalari!",
+    woodenWorldMaps: "Oktyabr oyining oxirigacha chegirma bilan devorlarni san'at asariga aylantiradigan yog'och dunyo xaritalari!",
+    woodenWorldMapsSubtitle: "Oktyabr oyining oxirigacha chegirma bilan devorlarni san'at asariga aylantiradigan yog'och dunyo xaritalari!",
     naturalWood: "Tabiiy yog'och",
     naturalWoodDesc: "Faqat sifatli qayin fanera va eman yog'ochidan foydalanamiz.",
     ecoFriendly: "Ekologik toza",
@@ -1040,7 +1040,7 @@ export const translations: Record<Language, Translations> = {
 
     // Babyjoy Page
     discountAndConsultation: "30% CHEGIRMA + Bepul pedagog konsultatsiyasi",
-    montessoriFurnitureDescription: "Montessori metodikasi bo'yicha farzandingiz bilan birga o'sadigan mebel - iyul oxirigacha chegirma bilan!",
+    montessoriFurnitureDescription: "Montessori metodikasi bo'yicha farzandingiz bilan birga o'sadigan mebel - Oktyabr oxirigacha chegirma bilan!",
 
     // Features Babyjoy
     ecoMaterials: "Ekologik materiallar",
