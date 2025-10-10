@@ -113,27 +113,6 @@ export default function BabyjoyPage() {
     setIsInquiryModalOpen(false)
   }
 
-  // Автоматическое открытие модального окна "Получить консультацию" через 15 секунд
-  useEffect(() => {
-    // Проверяем, показывали ли уже модальное окно в этой сессии
-    const hasShownAutoModal = sessionStorage.getItem('babyjoy_auto_modal_shown')
-    
-    if (hasShownAutoModal) {
-      // Если уже показывали в этой сессии, не показываем снова
-      return
-    }
-
-    const timer = setTimeout(() => {
-      // Открываем только если модальное окно еще не было открыто
-      if (!isInquiryModalOpen) {
-        openConsultationModal()
-        // Отмечаем, что показали модальное окно в этой сессии
-        sessionStorage.setItem('babyjoy_auto_modal_shown', 'true')
-      }
-    }, 15000) // 15 секунд = 15000 миллисекунд
-
-    return () => clearTimeout(timer)
-  }, []) // Пустой массив зависимостей - срабатывает только при монтировании компонента
 
   const furnitureItems = [
     {
