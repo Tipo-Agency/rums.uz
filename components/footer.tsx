@@ -117,8 +117,19 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
-          <p>&copy; {new Date().getFullYear()} rums.uz {t('allRightsReserved')}</p>
+        <div className="border-t border-gray-800 mt-12 pt-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-gray-500">&copy; {new Date().getFullYear()} rums.uz {t('allRightsReserved')}</p>
+            <a
+              href="https://tipa.uz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 group"
+            >
+              <span className="text-gray-400 group-hover:text-white text-lg sm:text-lg">ⓒ</span>
+              <img src="/tipa_agency.svg" alt="Типа агенство" className="h-5 w-auto opacity-90 group-hover:opacity-100 transition-opacity" />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
