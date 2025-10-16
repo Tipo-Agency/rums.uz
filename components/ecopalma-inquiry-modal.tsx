@@ -9,6 +9,7 @@ import { X, Send, Leaf, Phone, User } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useLanguage } from "@/lib/language-context"
 import { useMetaPixel } from "@/hooks/use-meta-pixel"
+import { usePhoneValidation } from "@/hooks/use-phone-validation"
 import { useEffect } from "react"
 
 interface EcopalmaInquiryModalProps {
@@ -20,6 +21,7 @@ interface EcopalmaInquiryModalProps {
 export function EcopalmaInquiryModal({ isOpen, onClose, variant = 'default' }: EcopalmaInquiryModalProps) {
   const { t } = useLanguage()
   const { trackLead, trackCustomEvent, trackModalOpen } = useMetaPixel()
+  const { phoneError, handlePhoneChange, isPhoneValid } = usePhoneValidation()
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -33,6 +35,12 @@ export function EcopalmaInquiryModal({ isOpen, onClose, variant = 'default' }: E
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Валидируем номер телефона перед отправкой
+    if (!isPhoneValid(phone)) {
+      return
+    }
+    
     setIsSubmitting(true)
 
     try {
@@ -162,16 +170,20 @@ export function EcopalmaInquiryModal({ isOpen, onClose, variant = 'default' }: E
                   name="phone"
                   type="tel"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => handlePhoneChange(e.target.value, setPhone)}
                   placeholder="+998 90 123 45 67"
                   required
-                  className="bg-white w-full h-12 px-4 text-lg border-2 border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 rounded-xl transition-all duration-200"
+                  className={`bg-white w-full h-12 px-4 text-lg border-2 rounded-xl transition-all duration-200 ${
+                    phoneError 
+                      ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200' 
+                      : 'border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200'
+                  }`}
                 />
               </div>
 
               <Button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !!phoneError}
                 className="w-full h-14 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white text-xl font-bold rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:transform-none"
               >
                 {isSubmitting ? (

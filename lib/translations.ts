@@ -411,6 +411,12 @@ export interface Translations {
   modalTelegramMessageEcopalma: string
   modalTelegramMessageWoodlyworld: string
   modalTelegramMessageBabyjoy: string
+  
+  // Phone validation
+  phoneValidationRequired: string
+  phoneValidationFormat: string
+  phoneValidationOperator: string
+  phoneValidationLength: string
 }
 
 export const translations: Record<Language, Translations> = {
@@ -826,6 +832,12 @@ export const translations: Record<Language, Translations> = {
     modalTelegramMessageEcopalma: "Здравствуйте! Хочу заказать экологичную пальму Ecopalma",
     modalTelegramMessageWoodlyworld: "Здравствуйте! Хочу заказать карту мира Woodlyworld",
     modalTelegramMessageBabyjoy: "Здравствуйте! Хочу заказать детскую мебель Babyjoy",
+    
+    // Phone validation
+    phoneValidationRequired: "Номер телефона обязателен",
+    phoneValidationFormat: "Номер должен начинаться с +998",
+    phoneValidationOperator: "Неверный код оператора. Используйте номера Beeline, Ucell, UzMobile, Mobiuz или Perfectum",
+    phoneValidationLength: "Номер должен содержать 9 цифр после +998",
   },
   uz: {
     // Header
@@ -1239,6 +1251,12 @@ export const translations: Record<Language, Translations> = {
     modalTelegramMessageEcopalma: "Salom! Ecopalma ekologik palmasini buyurtma qilmoqchiman",
     modalTelegramMessageWoodlyworld: "Salom! Woodlyworld dunyo xaritasi buyurtma qilmoqchiman",
     modalTelegramMessageBabyjoy: "Salom! Babyjoy bolalar mebelini buyurtma qilmoqchiman",
+    
+    // Phone validation
+    phoneValidationRequired: "Telefon raqami majburiy",
+    phoneValidationFormat: "Raqam +998 bilan boshlanishi kerak",
+    phoneValidationOperator: "Noto'g'ri operator kodi. Beeline, Ucell, UzMobile, Mobiuz yoki Perfectum raqamlarini ishlating",
+    phoneValidationLength: "Raqam +998 dan keyin 9 ta raqamdan iborat bo'lishi kerak",
   }
 }
 
