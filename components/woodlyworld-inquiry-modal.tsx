@@ -5,6 +5,13 @@ import type React from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { X, Send, MapPin, Phone, User } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useLanguage } from "@/lib/language-context"
@@ -24,6 +31,7 @@ export function WoodlyworldInquiryModal({ isOpen, onClose, variant = 'default' }
   const { phoneError, handlePhoneChange, isPhoneValid } = usePhoneValidation()
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
+  const [selectedMap, setSelectedMap] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Отслеживаем открытие модального окна
@@ -48,6 +56,9 @@ export function WoodlyworldInquiryModal({ isOpen, onClose, variant = 'default' }
       const formData = new FormData()
       formData.append('name', name)
       formData.append('phone', phone)
+      if (selectedMap) {
+        formData.append('map_type', selectedMap)
+      }
       formData.append('source', 'woodlyworld')
       formData.append('timestamp', new Date().toISOString())
 
@@ -74,6 +85,7 @@ export function WoodlyworldInquiryModal({ isOpen, onClose, variant = 'default' }
           alert(successMessage);
           setName("")
           setPhone("")
+          setSelectedMap("")
           onClose()
         } else {
           throw new Error(result.message || 'Ошибка при отправке заявки')
@@ -90,6 +102,7 @@ export function WoodlyworldInquiryModal({ isOpen, onClose, variant = 'default' }
       // В любом случае очищаем форму
       setName("")
       setPhone("")
+      setSelectedMap("")
     } finally {
       setIsSubmitting(false)
     }
@@ -144,7 +157,7 @@ export function WoodlyworldInquiryModal({ isOpen, onClose, variant = 'default' }
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="modal-name" className="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                <label htmlFor="modal-name" className="text-sm font-semibold text-gray-700 mb-2 flex items-center">
                   <User className="w-4 h-4 mr-2 text-orange-500" />
                   {t('yourName')}
                 </label>
@@ -161,7 +174,7 @@ export function WoodlyworldInquiryModal({ isOpen, onClose, variant = 'default' }
               </div>
 
               <div>
-                <label htmlFor="modal-phone" className="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                <label htmlFor="modal-phone" className="text-sm font-semibold text-gray-700 mb-2 flex items-center">
                   <Phone className="w-4 h-4 mr-2 text-orange-500" />
                   {t('phoneNumber')}
                 </label>
@@ -179,6 +192,39 @@ export function WoodlyworldInquiryModal({ isOpen, onClose, variant = 'default' }
                       : 'border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-200'
                   }`}
                 />
+              </div>
+
+              <div>
+                <label htmlFor="modal-map" className="text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                  <MapPin className="w-4 h-4 mr-2 text-orange-500" />
+                  {t('mapSelectorPlaceholder')}
+                  <span className="text-gray-400 text-xs ml-2 font-normal">{t('mapSelectorNotRequired')}</span>
+                </label>
+                <Select value={selectedMap} onValueChange={setSelectedMap}>
+                  <SelectTrigger
+                    id="modal-map"
+                    className="bg-white w-full h-12 px-4 text-lg border-2 border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 rounded-xl transition-all duration-200"
+                  >
+                    <SelectValue placeholder={t('mapSelectorPlaceholder')} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="2d-eco-no-light">
+                      {t('mapOption2DEcoNoLight')}
+                    </SelectItem>
+                    <SelectItem value="3d-eco-no-light">
+                      {t('mapOption3DEcoNoLight')}
+                    </SelectItem>
+                    <SelectItem value="3d-eco-with-light">
+                      {t('mapOption3DEcoWithLight')}
+                    </SelectItem>
+                    <SelectItem value="premium-no-light">
+                      {t('mapOptionPremiumNoLight')}
+                    </SelectItem>
+                    <SelectItem value="premium-with-light">
+                      {t('mapOptionPremiumWithLight')}
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               <Button
