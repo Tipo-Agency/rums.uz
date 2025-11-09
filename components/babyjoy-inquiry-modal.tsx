@@ -98,7 +98,7 @@ export function BabyjoyInquiryModal({ isOpen, onClose, variant = 'default' }: Ba
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="fixed inset-0 z-50 flex items-center justify-center h-fit">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}

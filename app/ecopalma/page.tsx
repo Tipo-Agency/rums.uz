@@ -987,7 +987,7 @@ export default function EcopalmaPage() {
       </main>
       {/* Gallery Modal */}
       {isGalleryModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center h-fit bg-black/90 backdrop-blur-sm">
           <div className="relative w-full h-full flex flex-col">
             {/* Close Button */}
             <button
