@@ -599,7 +599,7 @@ export default function BabyjoyPage() {
                           ))}
                         </div>
                         <div className="mt-3 p-2 bg-purple-50 rounded text-center">
-                          <p className="text-xs text-purple-800 font-medium">💰 Экономия до 15%!</p>
+                          <p className="text-xs text-purple-800 font-medium">💰 Экономия до 40%!</p>
                         </div>
                       </div>
 

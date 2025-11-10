@@ -532,7 +532,7 @@ export const translations: Record<Language, Translations> = {
     createComfortWithQualityItems: "Создаём уют и комфорт для вашего дома с помощью качественных растений и мебели.",
 
     // Ecopalma Page
-    discountAndFreeDesign: "СКИДКА 15% + Бесплатный дизайн-проект",
+    discountAndFreeDesign: "СКИДКА 40% + Бесплатный дизайн-проект",
     artOfCreatingEternalNature: "Искусство создания вечной природы в вашем экстерьере со скидкой до конца месяца!",
     orderWithDiscount: "Заказать со скидкой",
     hyperRealistic: "Гиперреалистичность",
@@ -960,7 +960,7 @@ export const translations: Record<Language, Translations> = {
     createComfortWithQualityItems: "Sifatli o'simliklar va mebel yordamida uyingizda qulaylik va farovonlik yaratamiz.",
 
     // Ecopalma Page
-    discountAndFreeDesign: "15% CHEGIRMA + Bepul dizayn loyihasi",
+    discountAndFreeDesign: "40% CHEGIRMA + Bepul dizayn loyihasi",
     artOfCreatingEternalNature: "Oyning oxirigacha chegirma bilan eksteriyeringizda abadiy tabiat yaratish san'ati!",
     orderWithDiscount: "Chegirma bilan buyurtma berish",
     hyperRealistic: "Giper-realistik",
