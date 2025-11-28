@@ -34,6 +34,7 @@ export function Header() {
     if (pathname === "/ecopalma") return "+998 77-300-78-90"
     if (pathname === "/woodlyworld") return "+998 77-300-78-90"
     if (pathname === "/babyjoy") return "+998 77-300-78-90"
+    if (pathname === "/loft-bed") return "+998 77-300-78-90"
     return "+998 77-300-78-90" // Default PalkarMe number
   }
 
@@ -41,6 +42,7 @@ export function Header() {
     if (pathname === "/ecopalma") return <Image src="logo/ecopalma.png" alt="Ecopalma" className="w-full h-full object-contain" width={90} height={90} />
     if (pathname === "/woodlyworld") return <Image src="logo/woodlyworld.png" alt="Woodlyworld" className="w-full h-full object-contain" width={60} height={60} />
     if (pathname === "/babyjoy") return <Image src="logo/babyjoy.png" alt="Babyjoy" className="w-full h-full object-contain" width={90} height={90} />
+    if (pathname === "/loft-bed") return <Image src="/loft-bed/Logo.png" alt="Loft Bed" className="w-full h-full object-contain rounded-xl" width={90} height={90} />
     return <div className="w-full h-full bg-gradient-to-br from-green-600 to-orange-500 rounded-xl flex items-center justify-center text-white font-bold text-sm">P</div>
   }
 
@@ -56,6 +58,10 @@ export function Header() {
     if (pathname === "/babyjoy") return {
       name: "Babyjoy",
       description: t('furnitureBabyjoy')
+    }
+    if (pathname === "/loft-bed") return {
+      name: "Loft Bed",
+      description: t('loftBed')
     }
     return {
       name: "RUMS.UZ",
@@ -182,6 +188,17 @@ export function Header() {
                     <div>
                       <div className="font-semibold text-gray-900">{t('childrenFurniture')}</div>
                       <div className="text-xs text-gray-500">{t('furnitureBabyjoy')}</div>
+                    </div>
+                  </Link>
+                  <Link
+                    href="/loft-bed"
+                    className="flex items-center gap-3 px-4 py-3 hover:translate-x-2 transition-all duration-300"
+                    onClick={() => setProductsOpen(false)}
+                  >
+                    <Image src="/loft-bed/Logo.png" alt="Loft Bed" width={64} height={64} className="rounded-xl" />
+                    <div>
+                      <div className="font-semibold text-gray-900">{t('loftBed')}</div>
+                      <div className="text-xs text-gray-500">{t('loftBedDescription')}</div>
                     </div>
                   </Link>
                 </div>
@@ -354,6 +371,17 @@ export function Header() {
                         <div>
                           <div className="font-semibold text-gray-900">{t('childrenFurniture')}</div>
                           <div className="text-xs text-gray-500">{t('furnitureBabyjoy')}</div>
+                        </div>
+                      </Link>
+                      <Link
+                        href="/loft-bed"
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <Image src="/loft-bed/Logo.png" alt="Loft Bed" width={64} height={64} className="rounded-xl" />
+                        <div>
+                          <div className="font-semibold text-gray-900">{t('loftBed')}</div>
+                          <div className="text-xs text-gray-500">{t('loftBedDescription')}</div>
                         </div>
                       </Link>
                     </div>

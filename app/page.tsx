@@ -21,6 +21,7 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  ShieldCheck,
 } from "lucide-react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
@@ -46,7 +47,7 @@ interface Maps {
 }
 
 export default function PalkarMePage() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   
   // Инициализируем AmoCRM для Woodlyworld секции
   useAmoForms({
@@ -162,52 +163,52 @@ export default function PalkarMePage() {
   const maps: Maps = useMemo(() => ({
     [t('maps3D')]: {
       images: [
-        "woodyworld/3d/1.jpg",
-        "woodyworld/3d/2.jpg",
-        "woodyworld/3d/3.jpg",
-        "woodyworld/3d/4.jpg",
-        "woodyworld/3d/5.jpg",
-        "woodyworld/3d/6.jpg",
-        "woodyworld/3d/7.jpg",
-        "woodyworld/3d/8.jpg",
-        "woodyworld/3d/9.jpg",
-        "woodyworld/3d/10.jpg",
-        "woodyworld/3d/11.jpg",
-        "woodyworld/3d/12.jpg",
-        "woodyworld/3d/13.jpg",
-        "woodyworld/3d/14.jpg"
+        "/woodyworld/3d/1.jpg",
+        "/woodyworld/3d/2.jpg",
+        "/woodyworld/3d/3.jpg",
+        "/woodyworld/3d/4.jpg",
+        "/woodyworld/3d/5.jpg",
+        "/woodyworld/3d/6.jpg",
+        "/woodyworld/3d/7.jpg",
+        "/woodyworld/3d/8.jpg",
+        "/woodyworld/3d/9.jpg",
+        "/woodyworld/3d/10.jpg",
+        "/woodyworld/3d/11.jpg",
+        "/woodyworld/3d/12.jpg",
+        "/woodyworld/3d/13.jpg",
+        "/woodyworld/3d/14.jpg"
       ],
       description: t('woodlyworld3DDesc'),
     },
     [t('mapsLED')]: {
       images: [
-        "woodyworld/led/1.jpg",
-        "woodyworld/led/2.jpg",
-        "woodyworld/led/3.jpg",
-        "woodyworld/led/4.jpg",
-        "woodyworld/led/5.jpg",
-        "woodyworld/led/6.jpg"
+        "/woodyworld/led/1.jpg",
+        "/woodyworld/led/2.jpg",
+        "/woodyworld/led/3.jpg",
+        "/woodyworld/led/4.jpg",
+        "/woodyworld/led/5.jpg",
+        "/woodyworld/led/6.jpg"
       ],
       description: t('woodlyworldLEDDesc'),
     },
     [t('mapsPhoto')]: {
       images: [
-        "woodyworld/photo/1.jpg",
-        "woodyworld/photo/2.jpg",
-        "woodyworld/photo/4.jpg",
-        "woodyworld/photo/5.jpg",
-        "woodyworld/photo/6.jpg"
+        "/woodyworld/photo/1.jpg",
+        "/woodyworld/photo/2.jpg",
+        "/woodyworld/photo/4.jpg",
+        "/woodyworld/photo/5.jpg",
+        "/woodyworld/photo/6.jpg"
       ],
       description: t('woodlyworldPhotoDesc'),
     },
     [t('maps2D')]: {
       images: [
-        "woodyworld/2d/1.jpg",
-        "woodyworld/2d/2.jpg"
+        "/woodyworld/2d/1.jpg",
+        "/woodyworld/2d/2.jpg"
       ],
       description: t('woodlyworld2DDesc'),
     },
-  }), [t])
+  }), [language])
 
   const [currentMapImageIndex, setCurrentMapImageIndex] = useState(0)
 
@@ -237,7 +238,7 @@ export default function PalkarMePage() {
         return prevActiveMap // Keep current selection if it's valid
       })
     }
-  }, [maps])
+  }, [language])
 
   // Furniture carousel settings
   const itemsPerPage = 4
@@ -750,6 +751,78 @@ export default function PalkarMePage() {
                   </motion.div>
                 ))}
               </AnimatePresence>
+            </div>
+          </div>
+        </section>
+
+        {/* Loft Bed Section */}
+        <section className="py-24 bg-white">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">{t('loftBedTitle')}</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">{t('loftBedDescription')}</p>
+            </motion.div>
+            <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/loft-bed/photo_2025-11-29 01.02.15.jpeg"
+                    alt={t('loftBedTitle') || "Кровать-чердак в стиле лофт"}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="space-y-6"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <ShieldCheck className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-2">{t('loftBedFeature1')}</h3>
+                      <p className="text-gray-600">{t('loftBedFeature1Desc')}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Package className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-2">{t('loftBedFeature2')}</h3>
+                      <p className="text-gray-600">{t('loftBedFeature2Desc')}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="pt-4">
+                  <Link href="/loft-bed">
+                    <Button
+                      size="lg"
+                      className="bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white w-full sm:w-auto"
+                    >
+                      {t('learnMore')}
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </Button>
+                  </Link>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>

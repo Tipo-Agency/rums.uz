@@ -275,6 +275,39 @@ export interface Translations {
       pushPinFlags: string
   pushPinFlagsDesc: string
 
+  // Loft Bed Section
+  loftBed: string
+  loftBedTitle: string
+  loftBedDescription: string
+  loftBedHeroTitle: string
+  loftBedHeroSubtitle: string
+  loftBedFeaturesTitle: string
+  loftBedFeaturesSubtitle: string
+  loftBedFeature1: string
+  loftBedFeature1Desc: string
+  loftBedFeature2: string
+  loftBedFeature2Desc: string
+  loftBedFeature3: string
+  loftBedFeature3Desc: string
+  loftBedFeature4: string
+  loftBedFeature4Desc: string
+  loftBedFAQTitle: string
+  loftBedFAQ1: string
+  loftBedFAQ1Answer: string
+  loftBedFAQ2: string
+  loftBedFAQ2Answer: string
+  loftBedFAQ3: string
+  loftBedFAQ3Answer: string
+  loftBedFAQ4: string
+  loftBedFAQ4Answer: string
+  loftBedCTATitle: string
+  loftBedCTASubtitle: string
+  loftBedCTAButton: string
+  loftBedPriceFrom: string
+  loftBedWeightCapacity: string
+  loftBedAgeSuitable: string
+  loftBedDelivery: string
+
   // Babyjoy Page
   discountAndConsultation: string
   montessoriFurnitureDescription: string
@@ -439,6 +472,7 @@ export const translations: Record<Language, Translations> = {
     artificialPalmsEcopalma: "Искусственные пальмы Ecopalma",
     woodenMapsWoodlyworld: "Деревянные карты Woodlyworld",
     furnitureBabyjoy: "Мебель Babyjoy",
+    loftBed: "Кровать-чердак в стиле лофт",
 
     // Hero Section
     limitedOffer: "Ограниченное предложение",
@@ -833,6 +867,39 @@ export const translations: Record<Language, Translations> = {
     modalLearnMoreSuccessEcopalma: "Спасибо! Мы свяжемся с вами в ближайшее время с подробной информацией о пальмах.",
     modalLearnMoreSuccessWoodlyworld: "Спасибо! Мы свяжемся с вами в ближайшее время с подробной информацией о картах мира.",
     modalLearnMoreSuccessBabyjoy: "Спасибо! Мы свяжемся с вами в ближайшее время с подробной информацией о мебели.",
+    
+    // Loft Bed Section
+    loftBedTitle: "Кровать-чердак в стиле лофт",
+    loftBedDescription: "Современная кровать-чердак из натурального дерева, которая решает проблему экономии пространства в детской комнате",
+    loftBedHeroTitle: "Кровать-чердак в стиле лофт",
+    loftBedHeroSubtitle: "Решение проблемы маленькой комнаты. Создайте идеальное пространство для вашего ребёнка",
+    loftBedFeaturesTitle: "Почему выбирают нашу кровать-чердак",
+    loftBedFeaturesSubtitle: "Каждая деталь продумана для комфорта и безопасности",
+    loftBedFeature1: "Надёжная конструкция",
+    loftBedFeature1Desc: "Выдерживает до 150 кг, прочная металлическая рама и качественное дерево",
+    loftBedFeature2: "Экономия пространства",
+    loftBedFeature2Desc: "Под кроватью можно разместить рабочую зону, игровую или гардероб",
+    loftBedFeature3: "Индивидуальный дизайн",
+    loftBedFeature3Desc: "Можно менять цвета, размеры под ваши требования",
+    loftBedFeature4: "Безопасность",
+    loftBedFeature4Desc: "Высокие бортики, прочные лестницы, закруглённые углы",
+    loftBedFAQTitle: "Часто задаваемые вопросы",
+    loftBedFAQ1: "Можно ли менять цвета?",
+    loftBedFAQ1Answer: "Да, мы предлагаем различные варианты цветов и отделки. Вы можете выбрать из палитры или заказать индивидуальный цвет.",
+    loftBedFAQ2: "Сколько выдерживает конструкция?",
+    loftBedFAQ2Answer: "Наша кровать-чердак выдерживает до 150 кг. Конструкция из прочного металла и качественного дерева обеспечивает надёжность и долговечность.",
+    loftBedFAQ3: "Подходит ли ребёнку 4/7/11/14 лет?",
+    loftBedFAQ3Answer: "Да, кровать подходит для детей от 4 лет. Для младших детей (4-6 лет) мы рекомендуем дополнительные меры безопасности. Для подростков можно увеличить высоту спального места.",
+    loftBedFAQ4: "Что по доставке в регионы?",
+    loftBedFAQ4Answer: "Доставка по Ташкенту бесплатная. В регионы доставляем транспортными компаниями. Стоимость доставки рассчитывается индивидуально в зависимости от региона.",
+    loftBedCTATitle: "Получить индивидуальный 3D-проект бесплатно",
+    loftBedCTASubtitle: "Оставьте заявку и получите бесплатный 3D-проект вашей комнаты с кроватью-чердаком",
+    loftBedCTAButton: "Получить 3D-проект бесплатно",
+    loftBedPriceFrom: "от",
+    loftBedWeightCapacity: "Выдерживает до 150 кг",
+    loftBedAgeSuitable: "Для детей от 4 лет",
+    loftBedDelivery: "Доставка по Узбекистану",
+    
     modalErrorFallback: "Заявка не может быть отправлена автоматически. Пожалуйста, используйте кнопки ниже для связи с нами напрямую.",
     modalAlternativeContact: "Или свяжитесь с нами напрямую:",
     modalTelegram: "Telegram",
@@ -867,6 +934,7 @@ export const translations: Record<Language, Translations> = {
     artificialPalmsEcopalma: "Ecopalma sun'iy palmalari",
     woodenMapsWoodlyworld: "Woodlyworld yog'och xaritalari",
     furnitureBabyjoy: "Babyjoy mebellari",
+    loftBed: "Loft uslubidagi qavatli karavot",
 
     // Hero Section
     limitedOffer: "Cheklangan taklif",
@@ -1261,6 +1329,39 @@ export const translations: Record<Language, Translations> = {
     modalLearnMoreSuccessEcopalma: "Rahmat! Palmalar haqida batafsil ma'lumot bilan tez orada siz bilan bog'lanamiz.",
     modalLearnMoreSuccessWoodlyworld: "Rahmat! Dunyo xaritalari haqida batafsil ma'lumot bilan tez orada siz bilan bog'lanamiz.",
     modalLearnMoreSuccessBabyjoy: "Rahmat! Mebel haqida batafsil ma'lumot bilan tez orada siz bilan bog'lanamiz.",
+    
+    // Loft Bed Section
+    loftBedTitle: "Loft uslubidagi qavatli karavot",
+    loftBedDescription: "Tabiiy yog'ochdan yasalgan zamonaviy qavatli karavot, bolalar xonasidagi joy muammosini hal qiladi",
+    loftBedHeroTitle: "Loft uslubidagi qavatli karavot",
+    loftBedHeroSubtitle: "Kichik xona muammosining yechimi. Bolangiz uchun mukammal makon yarating",
+    loftBedFeaturesTitle: "Nima uchun bizning qavatli karavotimizni tanlashadi",
+    loftBedFeaturesSubtitle: "Har bir detal qulaylik va xavfsizlik uchun o'ylab topilgan",
+    loftBedFeature1: "Ishonchli konstruksiya",
+    loftBedFeature1Desc: "150 kg gacha yuk ko'taradi, mustahkam metall rama va sifatli yog'och",
+    loftBedFeature2: "Joy tejash",
+    loftBedFeature2Desc: "Karavot ostida ish maydoni, o'yin maydoni yoki garderob joylashtirish mumkin",
+    loftBedFeature3: "Individual dizayn",
+    loftBedFeature3Desc: "Ranglarni, o'lchamlarni sizning talablaringizga mos ravishda o'zgartirish mumkin",
+    loftBedFeature4: "Xavfsizlik",
+    loftBedFeature4Desc: "Baland yon devorlar, mustahkam narvonlar, yumaloq burchaklar",
+    loftBedFAQTitle: "Tez-tez so'raladigan savollar",
+    loftBedFAQ1: "Ranglarni o'zgartirish mumkinmi?",
+    loftBedFAQ1Answer: "Ha, biz turli xil rang va qoplama variantlarini taklif qilamiz. Siz palitradan tanlash yoki individual rang buyurtma qilishingiz mumkin.",
+    loftBedFAQ2: "Konstruksiya qancha yuk ko'taradi?",
+    loftBedFAQ2Answer: "Bizning qavatli karavotimiz 150 kg gacha yuk ko'taradi. Mustahkam metall va sifatli yog'ochdan yasalgan konstruksiya ishonchlilik va uzoq muddatli xizmatni ta'minlaydi.",
+    loftBedFAQ3: "4/7/11/14 yoshli bolaga mos keladimi?",
+    loftBedFAQ3Answer: "Ha, karavot 4 yoshdan boshlab bolalar uchun mos. Kichik bolalar (4-6 yosh) uchun qo'shimcha xavfsizlik choralarini tavsiya qilamiz. O'smirlar uchun uxlash joyining balandligini oshirish mumkin.",
+    loftBedFAQ4: "Viloyatlarga yetkazib berish qanday?",
+    loftBedFAQ4Answer: "Toshkent bo'ylab yetkazib berish bepul. Viloyatlarga transport kompaniyalari orqali yetkazib beramiz. Yetkazib berish narxi viloyatga qarab individual ravishda hisoblanadi.",
+    loftBedCTATitle: "Individual 3D-loyihani bepul oling",
+    loftBedCTASubtitle: "Ariza qoldiring va qavatli karavot bilan xonangizning bepul 3D-loyihasini oling",
+    loftBedCTAButton: "3D-loyihani bepul olish",
+    loftBedPriceFrom: "dan",
+    loftBedWeightCapacity: "150 kg gacha yuk ko'taradi",
+    loftBedAgeSuitable: "4 yoshdan boshlab bolalar uchun",
+    loftBedDelivery: "O'zbekiston bo'ylab yetkazib berish",
+    
     modalErrorFallback: "Ariza avtomatik ravishda yuborilmaydi. Iltimos, biz bilan to'g'ridan-to'g'ri bog'lanish uchun quyidagi tugmalardan foydalaning.",
     modalAlternativeContact: "Yoki biz bilan to'g'ridan-to'g'ri bog'laning:",
     modalTelegram: "Telegram",
@@ -1269,7 +1370,7 @@ export const translations: Record<Language, Translations> = {
     modalTelegramMessageEcopalma: "Salom! Ecopalma ekologik palmasini buyurtma qilmoqchiman",
     modalTelegramMessageWoodlyworld: "Salom! Woodlyworld dunyo xaritasi buyurtma qilmoqchiman",
     modalTelegramMessageBabyjoy: "Salom! Babyjoy bolalar mebelini buyurtma qilmoqchiman",
-    
+        
     // Phone validation
     phoneValidationRequired: "Telefon raqami majburiy",
     phoneValidationFormat: "Raqam +998 bilan boshlanishi kerak",

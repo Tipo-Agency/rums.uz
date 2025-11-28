@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react'
 import { Language, getTranslation, Translations } from './translations'
 
 interface LanguageContextType {
@@ -31,9 +31,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
   }, [language])
 
-  const t = (key: keyof Translations): string => {
-    return getTranslation(key, language)
-  }
+  const t = useMemo(() => {
+    return (key: keyof Translations): string => {
+      return getTranslation(key, language)
+    }
+  }, [language])
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
