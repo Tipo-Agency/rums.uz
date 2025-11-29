@@ -30,6 +30,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { LoftBedInquiryModal } from "@/components/loft-bed-inquiry-modal"
+import { MetaPixelLoftBed } from "@/components/meta-pixel-loft-bed"
 
 const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 24 24" fill="currentColor">
@@ -253,6 +254,7 @@ export default function LoftBedPage() {
 
   return (
     <div className="bg-white text-gray-800" style={{ fontFamily: 'Montserrat, -apple-system, SF Pro Display, system-ui, sans-serif' }}>
+      <MetaPixelLoftBed />
       <Header />
       
       {/* Floating Telegram Button */}

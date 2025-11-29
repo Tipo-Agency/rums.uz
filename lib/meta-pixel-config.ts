@@ -4,6 +4,7 @@ export const META_PIXEL_IDS = {
   BABYJOY: '1987881548717998', // Замените на реальный ID
   ECOPALMA: '1427935124995647', // Замените на реальный ID  
   WOODLYWORLD: '1112607253696294', // Замените на реальный ID
+  LOFT_BED: '1528303655078663', // Pixel ID для Loft Bed
   // Общий Pixel ID (если нужен)
   DEFAULT: '1112607253696294'
 } as const;

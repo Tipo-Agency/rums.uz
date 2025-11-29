@@ -24,7 +24,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
+      <head>
+        <meta name="facebook-domain-verification" content="rvtqa0bf15yjvawgf42p7qfx6835lz" />
+      </head>
       <body suppressHydrationWarning>
         <LanguageProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
