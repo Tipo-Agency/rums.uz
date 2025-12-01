@@ -259,7 +259,7 @@ export default function LoftBedPage() {
       
       {/* Floating Telegram Button */}
       <a
-        href="https://t.me/palkarme"
+        href="https://t.me/manager_rums"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 bg-blue-500 hover:bg-blue-600 text-white rounded-full p-4 shadow-2xl transform hover:scale-110 transition-all duration-300"
