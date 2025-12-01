@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
     formData.append('ip', request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown')
 
     // Отправляем данные на внешний API
-    const response = await fetch('https://qp1-nova.ru/api/events/nova_site_market/woodlyworld.amocrm.ru/571a85c02c3/', {
+    const response = await fetch('https://qp1-nova.ru/api/events/nova_site_market/woodlyworld.amocrm.ru/5b382e211cb8/', {
       method: 'POST',
       body: formData,
       headers: {
