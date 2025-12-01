@@ -31,11 +31,11 @@ export function Header() {
 
   // Dynamic phone numbers based on current page
   const getPhoneNumber = () => {
-    if (pathname === "/ecopalma") return "+998 77-300-78-90"
-    if (pathname === "/woodlyworld") return "+998 77-300-78-90"
-    if (pathname === "/babyjoy") return "+998 77-300-78-90"
-    if (pathname === "/loft-bed") return "+998 77-300-78-90"
-    return "+998 77-300-78-90" // Default PalkarMe number
+    if (pathname === "/ecopalma") return "+998 99-810-48-80"
+    if (pathname === "/woodlyworld") return "+998 95-086-44-46"
+    if (pathname === "/babyjoy") return "+998 95-822-77-15"
+    if (pathname === "/loft-bed") return "+998 70-018-44-46"
+    return "+998 99-810-48-80" // Default PalkarMe number
   }
 
   const getLogo = () => {
