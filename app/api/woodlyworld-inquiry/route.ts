@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
     formData.append('source', 'woodlyworld')
     formData.append('timestamp', new Date().toISOString())
     formData.append('user_agent', request.headers.get('user-agent') || '')
-    formData.append('ip', request.ip || request.headers.get('x-forwarded-for') || 'unknown')
+    formData.append('ip', request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown')
 
     // Отправляем данные на внешний API
     const response = await fetch('https://qp1-nova.ru/api/events/nova_site_market/woodlyworld.amocrm.ru/9f1553ecc898/', {
