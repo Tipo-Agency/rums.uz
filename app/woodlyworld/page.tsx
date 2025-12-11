@@ -491,23 +491,23 @@ export default function WoodlyworldPage() {
 
   const testimonials = [
     {
-      name: "Михаил Л.",
-      text: "Отлично смотрится на офисной стене, идеально вписывающейся в пространство. Качественно и хорошо упаковано!",
+      name: t('woodlyworldTestimonial1Name'),
+      text: t('woodlyworldTestimonial1Text'),
       image: "reviews/mikhail_review.jpeg",
     },
     {
-      name: "Шезрод А.",
-      text: "Качественная работа, сотрудники вежливые и понимают с двух слов. Сделали за 3 дня и доставили бесплатно.",
+      name: t('woodlyworldTestimonial2Name'),
+      text: t('woodlyworldTestimonial2Text'),
       image: "woodyworld/map-led-1.jpeg",
     },
     {
-      name: "Мафтуна",
-      text: "Это такой красивый и действительно качественный продукт! Очень рекомендую ваш товар!!",
+      name: t('woodlyworldTestimonial3Name'),
+      text: t('woodlyworldTestimonial3Text'),
       image: "reviews/maftuna_review.jpeg",
     },
     {
-      name: "Laylo",
-      text: "Все супер! Карта выглядит потрясающе, LED подсветка создает невероятную атмосферу в комнате.",
+      name: t('woodlyworldTestimonial4Name'),
+      text: t('woodlyworldTestimonial4Text'),
       image: "woodyworld/map-led-2.jpeg",
     },
   ]
@@ -1178,10 +1178,10 @@ export default function WoodlyworldPage() {
                 onClick={openInquiryModal}
               >
                 <MapPin className="w-6 h-6 mr-3" />
-                Оставить заявку на карту мира
+                {t('woodlyworldSubmitInquiryButton')}
               </Button>
               <p className="text-gray-600 mt-4 text-lg">
-                Получите бесплатную консультацию и расчет стоимости
+                {t('woodlyworldSubmitInquirySubtitle')}
               </p>
             </div>
           </div>
@@ -1252,10 +1252,10 @@ export default function WoodlyworldPage() {
                 onClick={openInquiryModal}
               >
                 <MapPin className="w-6 h-6 mr-3" />
-                Заказать карту мира
+                {t('woodlyworldOrderButton')}
               </Button>
               <p className="text-gray-600 mt-4 text-lg">
-                Создайте уникальный интерьер с нашей картой мира
+                {t('woodlyworldOrderSubtitle')}
               </p>
             </div>
           </div>
@@ -1289,28 +1289,28 @@ export default function WoodlyworldPage() {
               >
                 <Image
                   src="woodyworld/our_team.png"
-                  alt="Наша команда"
+                  alt={t('woodlyworldTeamAlt1')}
                   width={300}
                   height={400}
                   className="rounded-2xl shadow-lg w-full object-cover"
                 />
                 <Image
                   src="woodyworld/team-2.jpg"
-                  alt="Команда Woodlyworld с упаковкой"
+                  alt={t('woodlyworldTeamAlt2')}
                   width={300}
                   height={400}
                   className="rounded-2xl shadow-lg w-full object-cover"
                 />
                 <Image
                   src="woodyworld/team-3.png"
-                  alt="Сотрудник с заказом"
+                  alt={t('woodlyworldTeamAlt3')}
                   width={300}
                   height={400}
                   className="rounded-2xl shadow-lg w-full object-cover"
                 />
                 <Image
                   src="woodyworld/team-4.png"
-                  alt="Процесс размещения фотографий на карте"
+                  alt={t('woodlyworldTeamAlt4')}
                   width={300}
                   height={400}
                   className="rounded-2xl shadow-lg w-full object-cover"
@@ -1459,10 +1459,10 @@ export default function WoodlyworldPage() {
                 onClick={openConsultationModal}
               >
                 <MapPin className="w-6 h-6 mr-3" />
-                Получить консультацию
+                {t('woodlyworldConsultationButton')}
               </Button>
               <p className="text-gray-600 mt-4 text-lg">
-                Остались вопросы? Наши специалисты готовы помочь!
+                {t('woodlyworldConsultationSubtitle')}
               </p>
             </div>
           </div>

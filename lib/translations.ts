@@ -307,6 +307,88 @@ export interface Translations {
   loftBedWeightCapacity: string
   loftBedAgeSuitable: string
   loftBedDelivery: string
+  
+  // Loft Bed Page - Advantages
+  loftBedAdvantagesTitle: string
+  loftBedAdvantage1Desc: string
+  loftBedAdvantage2Title: string
+  loftBedAdvantage2Desc: string
+  loftBedAdvantage3Desc: string
+  loftBedAdvantage4Desc: string
+  loftBedAdvantage5Title: string
+  loftBedAdvantage5Desc: string
+  loftBedAdvantage6Title: string
+  loftBedAdvantage6Desc: string
+  
+  // Loft Bed Page - Gallery
+  loftBedGalleryTitle: string
+  loftBedGallerySubtitle: string
+  
+  // Loft Bed Page - Testimonials
+  loftBedTestimonialsTitle: string
+  loftBedTestimonialsSubtitle: string
+  loftBedTestimonial1Name: string
+  loftBedTestimonial1Text: string
+  loftBedTestimonial2Name: string
+  loftBedTestimonial2Text: string
+  loftBedTestimonial3Name: string
+  loftBedTestimonial3Text: string
+  
+  // Loft Bed Page - Order Process
+  loftBedOrderProcessTitle: string
+  loftBedOrderProcessSubtitle: string
+  loftBedOrderStep1Title: string
+  loftBedOrderStep1Desc: string
+  loftBedOrderStep2Title: string
+  loftBedOrderStep2Desc: string
+  loftBedOrderStep3Title: string
+  loftBedOrderStep3Desc: string
+  loftBedOrderStep4Title: string
+  loftBedOrderStep4Desc: string
+  loftBedOrderStep5Title: string
+  loftBedOrderStep5Desc: string
+  loftBedOrderStep6Title: string
+  loftBedOrderStep6Desc: string
+  loftBedSendDimensions: string
+  loftBedTelegramMessage: string
+  
+  // Ecopalma Page - Additional
+  ecopalmaPhotos: string
+  ecopalmaOrderButton: string
+  ecopalmaOrderSubtitle: string
+  ecopalmaConsultationButton: string
+  ecopalmaConsultationSubtitle: string
+  
+  // Woodlyworld Page - Testimonials
+  woodlyworldTestimonial1Name: string
+  woodlyworldTestimonial1Text: string
+  woodlyworldTestimonial2Name: string
+  woodlyworldTestimonial2Text: string
+  woodlyworldTestimonial3Name: string
+  woodlyworldTestimonial3Text: string
+  woodlyworldTestimonial4Name: string
+  woodlyworldTestimonial4Text: string
+  
+  // Woodlyworld Page - Team Images
+  woodlyworldTeamAlt1: string
+  woodlyworldTeamAlt2: string
+  woodlyworldTeamAlt3: string
+  woodlyworldTeamAlt4: string
+  
+  // Woodlyworld Page - CTA Buttons
+  woodlyworldOrderButton: string
+  woodlyworldOrderSubtitle: string
+  woodlyworldConsultationButton: string
+  woodlyworldConsultationSubtitle: string
+  woodlyworldSubmitInquiryButton: string
+  woodlyworldSubmitInquirySubtitle: string
+  
+  // Babyjoy Page - CTA Buttons
+  babyjoyConsultationButton: string
+  babyjoyConsultationSubtitle: string
+  babyjoyColorsAndPrices: string
+  babyjoyOrderButton: string
+  babyjoyOrderSubtitle: string
 
   // Babyjoy Page
   discountAndConsultation: string
@@ -900,6 +982,88 @@ export const translations: Record<Language, Translations> = {
     loftBedAgeSuitable: "Для детей от 4 лет",
     loftBedDelivery: "Доставка по Узбекистану",
     
+    // Loft Bed Page - Advantages
+    loftBedAdvantagesTitle: "Преимущества",
+    loftBedAdvantage1Desc: "Прочная конструкция из металла и дерева",
+    loftBedAdvantage2Title: "Быстрое изготовление",
+    loftBedAdvantage2Desc: "От 7 до 14 дней с момента заказа",
+    loftBedAdvantage3Desc: "Подходит для детей от 4 лет и подростков",
+    loftBedAdvantage4Desc: "Доставка по всему Узбекистану",
+    loftBedAdvantage5Title: "Легкая сборка",
+    loftBedAdvantage5Desc: "Собирается за 1-2 часа без специальных инструментов",
+    loftBedAdvantage6Title: "Индивидуальный дизайн",
+    loftBedAdvantage6Desc: "Можно выбрать цвет и размер под ваши требования",
+    
+    // Loft Bed Page - Gallery
+    loftBedGalleryTitle: "Галерея",
+    loftBedGallerySubtitle: "Посмотрите нашу кровать-чердак в интерьере",
+    
+    // Loft Bed Page - Testimonials
+    loftBedTestimonialsTitle: "Отзывы наших клиентов",
+    loftBedTestimonialsSubtitle: "Что говорят родители о наших кроватях-чердаках",
+    loftBedTestimonial1Name: "Анна",
+    loftBedTestimonial1Text: "Кровать-чердак просто спасла нашу маленькую комнату! Теперь у ребенка есть и спальное место, и рабочая зона под кроватью. Качество отличное, сборка быстрая.",
+    loftBedTestimonial2Name: "Максим",
+    loftBedTestimonial2Text: "Заказали кровать для сына 7 лет. Очень довольны! Конструкция прочная, сын в восторге от своего нового пространства. Рекомендую!",
+    loftBedTestimonial3Name: "Елена",
+    loftBedTestimonial3Text: "Долго выбирали кровать-чердак и не пожалели, что остановились на этой. Отличное качество, быстрая доставка и установка. Спасибо!",
+    
+    // Loft Bed Page - Order Process
+    loftBedOrderProcessTitle: "Как проходит заказ",
+    loftBedOrderProcessSubtitle: "Простая и понятная схема от заявки до установки",
+    loftBedOrderStep1Title: "Вы отправляете размеры",
+    loftBedOrderStep1Desc: "Заполните форму с размерами комнаты или свяжитесь с нами",
+    loftBedOrderStep2Title: "Мы делаем 3D-проект",
+    loftBedOrderStep2Desc: "Бесплатно создаем 3D-визуализацию вашей комнаты с кроватью",
+    loftBedOrderStep3Title: "Вы выбираете конфигурацию и цвет",
+    loftBedOrderStep3Desc: "Подбираем оптимальную конфигурацию и цвет под ваш интерьер",
+    loftBedOrderStep4Title: "Производство 7–21 дней",
+    loftBedOrderStep4Desc: "Изготавливаем кровать из качественных материалов",
+    loftBedOrderStep5Title: "Доставка и сборка за 1–2 часа",
+    loftBedOrderStep5Desc: "Доставляем и собираем кровать на месте за 1-2 часа",
+    loftBedOrderStep6Title: "Гарантия и поддержка",
+    loftBedOrderStep6Desc: "Предоставляем гарантию и постоянную поддержку",
+    loftBedSendDimensions: "Отправить размеры",
+    loftBedTelegramMessage: "Здравствуйте! Хочу получить 3D-проект кровати-чердака",
+    
+    // Ecopalma Page - Additional
+    ecopalmaPhotos: "фото",
+    ecopalmaOrderButton: "Заказать экологичную пальму",
+    ecopalmaOrderSubtitle: "Создайте уютный интерьер с нашими экологичными пальмами",
+    ecopalmaConsultationButton: "Получить консультацию",
+    ecopalmaConsultationSubtitle: "Остались вопросы? Наши специалисты готовы помочь!",
+    
+    // Woodlyworld Page - Testimonials
+    woodlyworldTestimonial1Name: "Михаил Л.",
+    woodlyworldTestimonial1Text: "Отлично смотрится на офисной стене, идеально вписывающейся в пространство. Качественно и хорошо упаковано!",
+    woodlyworldTestimonial2Name: "Шезрод А.",
+    woodlyworldTestimonial2Text: "Качественная работа, сотрудники вежливые и понимают с двух слов. Сделали за 3 дня и доставили бесплатно.",
+    woodlyworldTestimonial3Name: "Мафтуна",
+    woodlyworldTestimonial3Text: "Это такой красивый и действительно качественный продукт! Очень рекомендую ваш товар!!",
+    woodlyworldTestimonial4Name: "Laylo",
+    woodlyworldTestimonial4Text: "Все супер! Карта выглядит потрясающе, LED подсветка создает невероятную атмосферу в комнате.",
+    
+    // Woodlyworld Page - Team Images
+    woodlyworldTeamAlt1: "Наша команда",
+    woodlyworldTeamAlt2: "Команда Woodlyworld с упаковкой",
+    woodlyworldTeamAlt3: "Сотрудник с заказом",
+    woodlyworldTeamAlt4: "Процесс размещения фотографий на карте",
+    
+    // Woodlyworld Page - CTA Buttons
+    woodlyworldOrderButton: "Заказать карту мира",
+    woodlyworldOrderSubtitle: "Создайте уникальный интерьер с нашей картой мира",
+    woodlyworldConsultationButton: "Получить консультацию",
+    woodlyworldConsultationSubtitle: "Остались вопросы? Наши специалисты готовы помочь!",
+    woodlyworldSubmitInquiryButton: "Оставить заявку на карту мира",
+    woodlyworldSubmitInquirySubtitle: "Получите бесплатную консультацию и расчет стоимости",
+    
+    // Babyjoy Page - CTA Buttons
+    babyjoyConsultationButton: "Получить консультацию",
+    babyjoyConsultationSubtitle: "Остались вопросы? Наши специалисты готовы помочь!",
+    babyjoyColorsAndPrices: "Цвета и цены:",
+    babyjoyOrderButton: "Заказать детскую мебель",
+    babyjoyOrderSubtitle: "Создайте пространство для гармоничного развития ребенка",
+    
     modalErrorFallback: "Заявка не может быть отправлена автоматически. Пожалуйста, используйте кнопки ниже для связи с нами напрямую.",
     modalAlternativeContact: "Или свяжитесь с нами напрямую:",
     modalTelegram: "Telegram",
@@ -1361,6 +1525,88 @@ export const translations: Record<Language, Translations> = {
     loftBedWeightCapacity: "150 kg gacha yuk ko'taradi",
     loftBedAgeSuitable: "4 yoshdan boshlab bolalar uchun",
     loftBedDelivery: "O'zbekiston bo'ylab yetkazib berish",
+    
+    // Loft Bed Page - Advantages
+    loftBedAdvantagesTitle: "Afzalliklar",
+    loftBedAdvantage1Desc: "Metall va yog'ochdan mustahkam konstruksiya",
+    loftBedAdvantage2Title: "Tez tayyorlash",
+    loftBedAdvantage2Desc: "Buyurtmadan 7 dan 14 kungacha",
+    loftBedAdvantage3Desc: "4 yoshdan boshlab bolalar va o'smirlar uchun mos",
+    loftBedAdvantage4Desc: "Butun O'zbekiston bo'ylab yetkazib berish",
+    loftBedAdvantage5Title: "Oson yig'ish",
+    loftBedAdvantage5Desc: "Maxsus asboblarsiz 1-2 soatda yig'iladi",
+    loftBedAdvantage6Title: "Individual dizayn",
+    loftBedAdvantage6Desc: "Talablaringizga mos rang va o'lchamni tanlash mumkin",
+    
+    // Loft Bed Page - Gallery
+    loftBedGalleryTitle: "Galereya",
+    loftBedGallerySubtitle: "Qavatli karavotimizni interyerda ko'ring",
+    
+    // Loft Bed Page - Testimonials
+    loftBedTestimonialsTitle: "Mijozlarimiz sharhlari",
+    loftBedTestimonialsSubtitle: "Ota-onalar qavatli karavotlarimiz haqida nima deyishadi",
+    loftBedTestimonial1Name: "Anna",
+    loftBedTestimonial1Text: "Qavatli karavot kichik xonamizni qutqardi! Endi bolada uxlash joyi ham, karavot ostida ish maydoni ham bor. Sifati zo'r, yig'ish tez.",
+    loftBedTestimonial2Name: "Maksim",
+    loftBedTestimonial2Text: "7 yoshli o'g'lim uchun karavot buyurtma qildik. Juda mamnunmiz! Konstruksiya mustahkam, o'g'lim yangi joyidan hayratda. Tavsiya qilaman!",
+    loftBedTestimonial3Name: "Yelena",
+    loftBedTestimonial3Text: "Qavatli karavotni uzoq tanladik va shu bilan to'xtashimizdan pushaymon emasmiz. Sifati ajoyib, yetkazib berish va o'rnatish tez. Rahmat!",
+    
+    // Loft Bed Page - Order Process
+    loftBedOrderProcessTitle: "Buyurtma qanday amalga oshadi",
+    loftBedOrderProcessSubtitle: "Arizadan o'rnatishgacha oddiy va tushunarli jarayon",
+    loftBedOrderStep1Title: "Siz o'lchamlarni yuborasiz",
+    loftBedOrderStep1Desc: "Xona o'lchamlari bilan shakl to'ldiring yoki biz bilan bog'laning",
+    loftBedOrderStep2Title: "Biz 3D-loyiha tayyorlaymiz",
+    loftBedOrderStep2Desc: "Xonangizni karavot bilan bepul 3D-vizualizatsiya qilamiz",
+    loftBedOrderStep3Title: "Siz konfiguratsiya va rangni tanlaysiz",
+    loftBedOrderStep3Desc: "Interyeringizga mos optimal konfiguratsiya va rangni tanlaymiz",
+    loftBedOrderStep4Title: "Ishlab chiqarish 7–21 kun",
+    loftBedOrderStep4Desc: "Sifatli materiallardan karavotni tayyorlaymiz",
+    loftBedOrderStep5Title: "Yetkazib berish va yig'ish 1–2 soat",
+    loftBedOrderStep5Desc: "Karavotni 1-2 soat ichida joyida yetkazib beramiz va yig'amiz",
+    loftBedOrderStep6Title: "Kafolat va qo'llab-quvvatlash",
+    loftBedOrderStep6Desc: "Kafolat va doimiy qo'llab-quvvatlashni ta'minlaymiz",
+    loftBedSendDimensions: "O'lchamlarni yuborish",
+    loftBedTelegramMessage: "Salom! Qavatli karavotning 3D-loyihasini olmoqchiman",
+    
+    // Ecopalma Page - Additional
+    ecopalmaPhotos: "surat",
+    ecopalmaOrderButton: "Ekologik palma buyurtma qilish",
+    ecopalmaOrderSubtitle: "Ekologik palmalarimiz bilan qulay interyerni yarating",
+    ecopalmaConsultationButton: "Konsultatsiya olish",
+    ecopalmaConsultationSubtitle: "Savollaringiz bormi? Mutaxassislarimiz yordam berishga tayyor!",
+    
+    // Woodlyworld Page - Testimonials
+    woodlyworldTestimonial1Name: "Mixail L.",
+    woodlyworldTestimonial1Text: "Ofis devoriga ajoyib ko'rinadi, joyga mukammal mos keladi. Sifatli va yaxshi qadoqlangan!",
+    woodlyworldTestimonial2Name: "Shezrod A.",
+    woodlyworldTestimonial2Text: "Sifatli ish, xodimlar muloyim va ikkita so'zdan tushunishadi. 3 kunda qilishdi va bepul yetkazib berishdi.",
+    woodlyworldTestimonial3Name: "Maftuna",
+    woodlyworldTestimonial3Text: "Bu juda chiroyli va haqiqatan ham sifatli mahsulot! Mahsulotingizni tavsiya qilaman!!",
+    woodlyworldTestimonial4Name: "Laylo",
+    woodlyworldTestimonial4Text: "Hammasi ajoyib! Xarita ajoyib ko'rinadi, LED yoritgich xonada ajoyib atmosfera yaratadi.",
+    
+    // Woodlyworld Page - Team Images
+    woodlyworldTeamAlt1: "Bizning jamoa",
+    woodlyworldTeamAlt2: "Woodlyworld jamoasi qadoqlash bilan",
+    woodlyworldTeamAlt3: "Buyurtma bilan xodim",
+    woodlyworldTeamAlt4: "Xaritaga suratlarni joylash jarayoni",
+    
+    // Woodlyworld Page - CTA Buttons
+    woodlyworldOrderButton: "Dunyo xaritasini buyurtma qilish",
+    woodlyworldOrderSubtitle: "Xaritamiz bilan noyob interyerni yarating",
+    woodlyworldConsultationButton: "Konsultatsiya olish",
+    woodlyworldConsultationSubtitle: "Savollaringiz bormi? Mutaxassislarimiz yordam berishga tayyor!",
+    woodlyworldSubmitInquiryButton: "Dunyo xaritasi uchun ariza qoldirish",
+    woodlyworldSubmitInquirySubtitle: "Bepul konsultatsiya va narx hisob-kitobini oling",
+    
+    // Babyjoy Page - CTA Buttons
+    babyjoyConsultationButton: "Konsultatsiya olish",
+    babyjoyConsultationSubtitle: "Savollaringiz bormi? Mutaxassislarimiz yordam berishga tayyor!",
+    babyjoyColorsAndPrices: "Ranglar va narxlar:",
+    babyjoyOrderButton: "Bolalar mebelini buyurtma qilish",
+    babyjoyOrderSubtitle: "Bolaning uyg'un rivojlanishi uchun joy yarating",
     
     modalErrorFallback: "Ariza avtomatik ravishda yuborilmaydi. Iltimos, biz bilan to'g'ridan-to'g'ri bog'lanish uchun quyidagi tugmalardan foydalaning.",
     modalAlternativeContact: "Yoki biz bilan to'g'ridan-to'g'ri bog'laning:",

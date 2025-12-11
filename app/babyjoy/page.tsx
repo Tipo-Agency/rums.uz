@@ -586,7 +586,7 @@ export default function BabyjoyPage() {
                       
                       {/* Отображение всех цен и цветов */}
                       <div className="mb-4 p-3 bg-gray-50 rounded-lg">
-                        <h4 className="text-sm font-semibold text-gray-800 mb-3">Цвета и цены:</h4>
+                        <h4 className="text-sm font-semibold text-gray-800 mb-3">{t('babyjoyColorsAndPrices')}</h4>
                         <div className="space-y-2">
                           {item.colorPrices.map((option, idx) => (
                             <div key={idx} className="flex justify-between items-center">
@@ -677,10 +677,10 @@ export default function BabyjoyPage() {
                 onClick={openInquiryModal}
               >
                 <Baby className="w-6 h-6 mr-3" />
-                Заказать детскую мебель
+                {t('babyjoyOrderButton')}
               </Button>
               <p className="text-gray-600 mt-4 text-lg">
-                Создайте пространство для гармоничного развития ребенка
+                {t('babyjoyOrderSubtitle')}
               </p>
             </div>
           </div>
@@ -926,10 +926,10 @@ export default function BabyjoyPage() {
                 onClick={openConsultationModal}
               >
                 <Baby className="w-6 h-6 mr-3" />
-                Получить консультацию
+                {t('babyjoyConsultationButton')}
               </Button>
               <p className="text-gray-600 mt-4 text-lg">
-                Остались вопросы? Наши специалисты готовы помочь!
+                {t('babyjoyConsultationSubtitle')}
               </p>
             </div>
           </div>

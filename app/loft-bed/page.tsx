@@ -114,65 +114,65 @@ export default function LoftBedPage() {
     {
       icon: CheckCircle,
       title: t('loftBedWeightCapacity'),
-      description: "Прочная конструкция из металла и дерева",
+      description: t('loftBedAdvantage1Desc'),
     },
     {
       icon: Timer,
-      title: "Быстрое изготовление",
-      description: "От 7 до 14 дней с момента заказа",
+      title: t('loftBedAdvantage2Title'),
+      description: t('loftBedAdvantage2Desc'),
     },
     {
       icon: User,
       title: t('loftBedAgeSuitable'),
-      description: "Подходит для детей от 4 лет и подростков",
+      description: t('loftBedAdvantage3Desc'),
     },
     {
       icon: Truck,
       title: t('loftBedDelivery'),
-      description: "Доставка по всему Узбекистану",
+      description: t('loftBedAdvantage4Desc'),
     },
     {
       icon: Zap,
-      title: "Легкая сборка",
-      description: "Собирается за 1-2 часа без специальных инструментов",
+      title: t('loftBedAdvantage5Title'),
+      description: t('loftBedAdvantage5Desc'),
     },
     {
       icon: Palette,
-      title: "Индивидуальный дизайн",
-      description: "Можно выбрать цвет и размер под ваши требования",
+      title: t('loftBedAdvantage6Title'),
+      description: t('loftBedAdvantage6Desc'),
     },
   ]
 
   const orderProcess = [
     {
       icon: User,
-      title: "Вы отправляете размеры",
-      description: "Заполните форму с размерами комнаты или свяжитесь с нами",
+      title: t('loftBedOrderStep1Title'),
+      description: t('loftBedOrderStep1Desc'),
     },
     {
       icon: MessageCircle,
-      title: "Мы делаем 3D-проект",
-      description: "Бесплатно создаем 3D-визуализацию вашей комнаты с кроватью",
+      title: t('loftBedOrderStep2Title'),
+      description: t('loftBedOrderStep2Desc'),
     },
     {
       icon: Palette,
-      title: "Вы выбираете конфигурацию и цвет",
-      description: "Подбираем оптимальную конфигурацию и цвет под ваш интерьер",
+      title: t('loftBedOrderStep3Title'),
+      description: t('loftBedOrderStep3Desc'),
     },
     {
       icon: Timer,
-      title: "Производство 7–21 дней",
-      description: "Изготавливаем кровать из качественных материалов",
+      title: t('loftBedOrderStep4Title'),
+      description: t('loftBedOrderStep4Desc'),
     },
     {
       icon: Truck,
-      title: "Доставка и сборка за 1–2 часа",
-      description: "Доставляем и собираем кровать на месте за 1-2 часа",
+      title: t('loftBedOrderStep5Title'),
+      description: t('loftBedOrderStep5Desc'),
     },
     {
       icon: ShieldCheck,
-      title: "Гарантия и поддержка",
-      description: "Предоставляем гарантию и постоянную поддержку",
+      title: t('loftBedOrderStep6Title'),
+      description: t('loftBedOrderStep6Desc'),
     },
   ]
 
@@ -199,18 +199,18 @@ export default function LoftBedPage() {
 
   const testimonials = [
     {
-      name: "Анна",
-      text: "Кровать-чердак просто спасла нашу маленькую комнату! Теперь у ребенка есть и спальное место, и рабочая зона под кроватью. Качество отличное, сборка быстрая.",
+      name: t('loftBedTestimonial1Name'),
+      text: t('loftBedTestimonial1Text'),
       image: images[0] || "/placeholder.jpg",
     },
     {
-      name: "Максим",
-      text: "Заказали кровать для сына 7 лет. Очень довольны! Конструкция прочная, сын в восторге от своего нового пространства. Рекомендую!",
+      name: t('loftBedTestimonial2Name'),
+      text: t('loftBedTestimonial2Text'),
       image: images[1] || "/placeholder.jpg",
     },
     {
-      name: "Елена",
-      text: "Долго выбирали кровать-чердак и не пожалели, что остановились на этой. Отличное качество, быстрая доставка и установка. Спасибо!",
+      name: t('loftBedTestimonial3Name'),
+      text: t('loftBedTestimonial3Text'),
       image: images[2] || "/placeholder.jpg",
     },
   ]
@@ -389,8 +389,8 @@ export default function LoftBedPage() {
               transition={{ duration: 0.5 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Галерея</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">Посмотрите нашу кровать-чердак в интерьере</p>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">{t('loftBedGalleryTitle')}</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t('loftBedGallerySubtitle')}</p>
             </motion.div>
 
             <div className="relative max-w-5xl mx-auto mb-16">
@@ -455,7 +455,7 @@ export default function LoftBedPage() {
         <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
-              Преимущества
+              {t('loftBedAdvantagesTitle')}
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {advantages.map((advantage, i) => (
@@ -489,8 +489,8 @@ export default function LoftBedPage() {
               transition={{ duration: 0.5 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Отзывы наших клиентов</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">Что говорят родители о наших кроватях-чердаках</p>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">{t('loftBedTestimonialsTitle')}</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t('loftBedTestimonialsSubtitle')}</p>
             </motion.div>
 
             <div className="relative">
@@ -583,8 +583,8 @@ export default function LoftBedPage() {
               transition={{ duration: 0.5 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Как проходит заказ</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">Простая и понятная схема от заявки до установки</p>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">{t('loftBedOrderProcessTitle')}</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t('loftBedOrderProcessSubtitle')}</p>
             </motion.div>
             <div className="max-w-6xl mx-auto">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
@@ -625,7 +625,7 @@ export default function LoftBedPage() {
                 onClick={openInquiryModal}
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
-                Отправить размеры
+                {t('loftBedSendDimensions')}
               </Button>
             </div>
           </div>

@@ -564,7 +564,7 @@ export default function EcopalmaPage() {
                     {palm.images && palm.images.length > 1 && (
                       <div className="absolute top-4 right-4 z-10">
                         <Badge className="bg-black/70 text-white font-bold px-3 py-1 text-sm shadow-lg backdrop-blur-md">
-                          {palm.images.length} фото
+                          {palm.images.length} {t('ecopalmaPhotos')}
                         </Badge>
                       </div>
                     )}
@@ -735,10 +735,10 @@ export default function EcopalmaPage() {
                 onClick={openInquiryModal}
               >
                 <Leaf className="w-6 h-6 mr-3" />
-                Заказать экологичную пальму
+                {t('ecopalmaOrderButton')}
               </Button>
               <p className="text-gray-600 mt-4 text-lg">
-                Создайте уютный интерьер с нашими экологичными пальмами
+                {t('ecopalmaOrderSubtitle')}
               </p>
             </div>
           </div>
@@ -976,10 +976,10 @@ export default function EcopalmaPage() {
                 onClick={openConsultationModal}
               >
                 <Leaf className="w-6 h-6 mr-3" />
-                Получить консультацию
+                {t('ecopalmaConsultationButton')}
               </Button>
               <p className="text-gray-600 mt-4 text-lg">
-                Остались вопросы? Наши специалисты готовы помочь!
+                {t('ecopalmaConsultationSubtitle')}
               </p>
             </div>
           </div>

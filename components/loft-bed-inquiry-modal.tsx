@@ -137,7 +137,7 @@ export function LoftBedInquiryModal({ isOpen, onClose }: LoftBedInquiryModalProp
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Ваше имя"
+                  placeholder={t('yourName')}
                   required
                   className="bg-white w-full h-12 px-4 text-lg border-2 border-gray-200 focus:border-green-600 focus:ring-2 focus:ring-green-200 rounded-xl transition-all duration-200"
                 />
@@ -199,7 +199,7 @@ export function LoftBedInquiryModal({ isOpen, onClose }: LoftBedInquiryModalProp
                     className="bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100"
                     onClick={() => {
                       trackCustomEvent('Contact', { method: 'telegram', source: 'loft-bed' });
-                      window.open(`https://t.me/palkarme?text=${encodeURIComponent('Здравствуйте! Хочу получить 3D-проект кровати-чердака')}`, '_blank');
+                      window.open(`https://t.me/palkarme?text=${encodeURIComponent(t('loftBedTelegramMessage'))}`, '_blank');
                     }}
                   >
                     <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
