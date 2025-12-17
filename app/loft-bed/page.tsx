@@ -78,14 +78,29 @@ export default function LoftBedPage() {
     return () => clearInterval(timer)
   }, [])
 
-  // Получаем все изображения из папки loft-bed
-  const imageNumbers = [
-    '01.02.15', '01.02.16', '01.02.18', '01.02.19',
-    '01.04.12', '01.04.14', '01.04.29', '01.04.31', '01.04.32', '01.04.33',
-    '01.04.46', '01.04.50', '01.04.54', '01.04.57', '01.05.01', '01.05.04',
-    '01.05.09', '01.05.14', '01.05.18'
+  const images = [
+    "/loft-bed/photo_2025-11-29 01.02.15.jpeg",
+    "/loft-bed/photo_2025-11-29 01.02.16.jpeg",
+    "/loft-bed/photo_2025-11-29 01.02.18.jpeg",
+    "/loft-bed/photo_2025-11-29 01.02.19.jpeg",
+    "/loft-bed/photo_2025-11-29 01.04.12.jpeg",
+    "/loft-bed/photo_2025-11-29 01.04.29.jpeg",
+    "/loft-bed/photo_2025-11-29 01.04.31.jpeg",
+    "/loft-bed/photo_2025-11-29 01.04.32.jpeg",
+    "/loft-bed/photo_2025-11-29 01.04.33.jpeg",
+    "/loft-bed/photo_2025-11-29 01.05.01.jpeg",
+    "/loft-bed/photo_2025-11-29 01.05.04.jpeg",
+    "/loft-bed/photo_2025-11-29 01.05.14.jpeg",
+    "/loft-bed/photo_2025-11-29 01.05.18.jpeg",
+
+    "/loft-bed/6.jpg",
+    "/loft-bed/11.jpg",
+    "/loft-bed/12.jpg",
+    "/loft-bed/13.jpg",
+    "/loft-bed/photo_2025-12-17_17-51-00.jpg",
+    "/loft-bed/photo_2025-12-17_17-51-06.jpg",
+    "/loft-bed/photo_2025-12-17_17-51-10.jpg",
   ]
-  const images = imageNumbers.map(num => `/loft-bed/photo_2025-11-29 ${num}.jpeg`)
 
   const features = [
     {
