@@ -4,6 +4,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { LanguageProvider } from "@/lib/language-context"
+import { OrderModalProvider } from "@/lib/order-modal-context"
 
 export const metadata: Metadata = {
   title: "RUMS",
@@ -29,10 +30,12 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning>
         <LanguageProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            {children}
-            <Toaster />
-          </ThemeProvider>
+          <OrderModalProvider>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+              {children}
+              <Toaster />
+            </ThemeProvider>
+          </OrderModalProvider>
         </LanguageProvider>
       </body>
     </html>

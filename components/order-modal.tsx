@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useLanguage } from "@/lib/language-context"
+import { useToast } from "@/hooks/use-toast"
 
 interface OrderModalProps {
   isOpen: boolean
@@ -14,6 +16,8 @@ interface OrderModalProps {
 }
 
 export function OrderModal({ isOpen, onClose }: OrderModalProps) {
+  const { t } = useLanguage()
+  const { toast } = useToast()
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -22,26 +26,23 @@ export function OrderModal({ isOpen, onClose }: OrderModalProps) {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate API call
+    // Simulate API call — here you would send to backend / Amo
     await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    // Here you would normally send the data to your backend
     console.log("Order submitted:", { name, phone })
 
     setIsSubmitting(false)
     setName("")
     setPhone("")
     onClose()
-
-    // Show success message (you could add a toast notification here)
-    alert("Спасибо! Мы свяжемся с вами в ближайшее время.")
+    toast({
+      title: t("modalMainSuccess"),
+    })
   }
 
   return (
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center h-fit">
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -49,8 +50,6 @@ export function OrderModal({ isOpen, onClose }: OrderModalProps) {
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={onClose}
           />
-
-          {/* Modal */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -63,33 +62,28 @@ export function OrderModal({ isOpen, onClose }: OrderModalProps) {
             >
               <X className="w-6 h-6" />
             </button>
-
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Оставить заявку</h2>
-              <p className="text-gray-600">
-                Есть идея или вопрос? Напишите нам! Мы свяжемся с вами в ближайшее время, чтобы обсудить все детали.
-              </p>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">{t("modalMainTitle")}</h2>
+              <p className="text-gray-600">{t("modalMainDescription")}</p>
             </div>
-
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="modal-name" className="block text-sm font-medium text-gray-700 mb-1">
-                  Ваше имя
+                  {t("modalMainNamePlaceholder")}
                 </label>
                 <Input
                   id="modal-name"
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Иван Петров"
+                  placeholder={t("modalMainNamePlaceholder")}
                   required
                   className="w-full"
                 />
               </div>
-
               <div>
                 <label htmlFor="modal-phone" className="block text-sm font-medium text-gray-700 mb-1">
-                  Номер телефона
+                  {t("modalMainPhoneLabel")}
                 </label>
                 <Input
                   id="modal-phone"
@@ -101,19 +95,15 @@ export function OrderModal({ isOpen, onClose }: OrderModalProps) {
                   className="w-full"
                 />
               </div>
-
               <Button
                 type="submit"
                 disabled={isSubmitting}
                 className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 text-lg font-semibold"
               >
-                {isSubmitting ? "Отправляем..." : "Отправить заявку"}
+                {isSubmitting ? t("modalMainSubmitting") : t("modalMainSubmit")}
               </Button>
             </form>
-
-            <p className="text-xs text-gray-500 text-center mt-4">
-              Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
-            </p>
+            <p className="text-xs text-gray-500 text-center mt-4">{t("modalMainPrivacy")}</p>
           </motion.div>
         </div>
       )}

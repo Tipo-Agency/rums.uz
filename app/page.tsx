@@ -27,7 +27,6 @@ import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { OrderModal } from "@/components/order-modal"
 import { PalmCard } from "@/components/palm-card"
 import { PalmDetailModal } from "@/components/palm-detail-modal"
 import { MapInquiryModal } from "@/components/map-inquiry-modal"
@@ -35,6 +34,7 @@ import { FurnitureCard } from "@/components/furniture-card"
 import { FurnitureInquiryModal } from "@/components/furniture-inquiry-modal"
 import { useAmoForms } from "@/hooks/use-amo-forms"
 import { useLanguage } from "@/lib/language-context"
+import { useOrderModal } from "@/lib/order-modal-context"
 
 
 interface MapData {
@@ -48,7 +48,8 @@ interface Maps {
 
 export default function PalkarMePage() {
   const { t, language } = useLanguage()
-  
+  const orderModal = useOrderModal()
+
   // Инициализируем AmoCRM для Woodlyworld секции
   useAmoForms({
     id: "1572666",
@@ -58,7 +59,6 @@ export default function PalkarMePage() {
 
   const [timeLeft, setTimeLeft] = useState({ days: 2, hours: 14, minutes: 32, seconds: 45 })
   const [activeMap, setActiveMap] = useState("")
-  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
   const [isPalmDetailModalOpen, setIsPalmDetailModalOpen] = useState(false)
   const [isMapInquiryModalOpen, setIsMapInquiryModalOpen] = useState(false)
   const [selectedPalm, setSelectedPalm] = useState<{
@@ -403,7 +403,6 @@ export default function PalkarMePage() {
   return (
     <div className="bg-gray-50 text-gray-800">
       <Header />
-      <OrderModal isOpen={isOrderModalOpen} onClose={() => setIsOrderModalOpen(false)} />
       <PalmDetailModal
         isOpen={isPalmDetailModalOpen}
         onClose={() => setIsPalmDetailModalOpen(false)}
@@ -425,74 +424,47 @@ export default function PalkarMePage() {
       />
 
       <main className="pt-[70px]">
-        {/* Hero Section */}
-        <section className="relative h-[calc(100vh-70px)] flex flex-col justify-center items-center text-white overflow-hidden">
+        {/* Hero Section — УТП + одна CTA */}
+        <section className="relative min-h-[calc(100vh-70px)] flex flex-col justify-center items-center text-white overflow-hidden py-16">
           <div className="absolute inset-0">
             <Image
               src="/hero-bg-new.jpg"
-              alt="Modern living room with large green plants"
+              alt="RUMS — мебель и декор для дома и бизнеса"
               fill
               className="object-cover"
               priority
             />
-            {/* Enhanced overlay for better text contrast */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30" />
             <div className="absolute inset-0 bg-black/20" />
           </div>
           <div className="relative z-10 text-center max-w-4xl mx-auto px-4 flex-grow flex flex-col justify-center">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-              <Badge className="mb-6 bg-white/20 text-white border-white/30 backdrop-blur-md shadow-lg">
-                <Timer className="w-4 h-4 mr-2" />
-                {t('limitedOffer')}
-              </Badge>
-              <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight drop-shadow-2xl">
-                <span className="text-white drop-shadow-lg">{t('cozyHomeItems')}</span>{" "}
-                <span className="block bg-gradient-to-r from-green-400 to-orange-400 bg-clip-text text-transparent drop-shadow-lg">
-                  {t('interior')}
-                </span>{" "}
-                <span className="text-white drop-shadow-lg text-4xl md:text-5xl">{t('withDiscount')}</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight drop-shadow-2xl text-white">
+                {t('heroUTPTitle')}
               </h1>
-              <p className="text-xl md:text-2xl text-white mb-8 max-w-2xl mx-auto drop-shadow-lg font-medium">
-                {t('createComfortForHome')}
+              <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto drop-shadow-lg">
+                {t('heroUTPSubtitle')}
               </p>
-            </motion.div>
-          </div>
-          <div className="relative z-10 w-full px-4 pb-8 md:pb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col items-center gap-8"
-            >
-              <div className="flex justify-center space-x-2 md:space-x-4">
-                {Object.entries(timeLeft).map(([unit, value]) => (
-                  <div
-                    key={unit}
-                    className="text-center bg-white/15 backdrop-blur-md rounded-2xl p-3 md:p-4 border border-white/30 min-w-[70px] md:min-w-[90px] shadow-xl"
-                  >
-                    <div className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
-                      {value.toString().padStart(2, "0")}
-                    </div>
-                    <div className="text-xs text-white/90 uppercase tracking-wider font-medium">{t(unit as keyof typeof timeLeft)}</div>
-                  </div>
-                ))}
-              </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="tel:+998773007890">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
-                >
-                  <ShoppingCart className="w-5 h-5 mr-2" />
-                  {t('contactManager')}
-                </Button>
+                {orderModal && (
+                  <Button
+                    size="lg"
+                    onClick={() => orderModal.openOrderModal()}
+                    className="bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
+                  >
+                    <Send className="w-5 h-5 mr-2" />
+                    {t('heroCTAButton')}
+                  </Button>
+                )}
+                <a href="tel:+998700184446" className="text-gray-200 hover:text-white font-medium underline underline-offset-2">
+                  +998 70-018-44-46
                 </a>
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* Ecopalma Section */}
+        {/* Что мы производим — Palmalar */}
         <section className="py-24 bg-white">
           <div className="container mx-auto px-4">
             <motion.div
@@ -501,10 +473,9 @@ export default function PalkarMePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">{t('uniquePalms')}</h2>
-              <p className="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-12">
-                {t('realisticArtificialPalms')}
-              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-2 text-gray-900">{t('whatWeProduceTitle')}</h2>
+              <h3 className="text-2xl md:text-3xl font-bold text-center mb-4 text-green-700">{t('uniquePalms')}</h3>
+              <p className="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-12">{t('realisticArtificialPalms')}</p>
             </motion.div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
               {palms.map((palm, i) => (
@@ -777,7 +748,7 @@ export default function PalkarMePage() {
               >
                 <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/loft-bed/photo_2025-11-29 01.02.15.jpeg"
+                    src="/loft-bed/photo_2025-11-29 01.02.19.jpeg"
                     alt={t('loftBedTitle') || "Кровать-чердак в стиле лофт"}
                     fill
                     className="object-cover"
@@ -824,6 +795,145 @@ export default function PalkarMePage() {
                 </div>
               </motion.div>
             </div>
+          </div>
+        </section>
+
+        {/* Почему RUMS */}
+        <section className="py-24 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t('whyRumsTitle')}</h2>
+            </motion.div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+              {[
+                { icon: Package, title: t('whyRumsOwnProduction'), desc: t('whyRumsOwnProductionDesc') },
+                { icon: Sparkles, title: t('whyRumsExperience'), desc: t('whyRumsExperienceDesc') },
+                { icon: Leaf, title: t('whyRumsQuality'), desc: t('whyRumsQualityDesc') },
+                { icon: Truck, title: t('whyRumsDelivery'), desc: t('whyRumsDeliveryDesc') },
+              ].map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="bg-white rounded-2xl p-8 shadow-md hover:shadow-lg transition-shadow text-center"
+                >
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-green-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <item.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Кейсы / Реализованные проекты */}
+        <section id="cases" className="py-24 bg-white scroll-mt-20">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t('casesTitle')}</h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">{t('casesSubtitle')}</p>
+            </motion.div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+              {[
+                { name: t('palms'), href: '/ecopalma', img: '/ecopalma/mayami/1.jpg' },
+                { name: t('maps'), href: '/woodlyworld', img: '/woodyworld/3d/1.jpg' },
+                { name: t('childrenFurniture'), href: '/babyjoy', img: '/tower-1.jpeg' },
+                { name: t('loftBed'), href: '/loft-bed', img: '/loft-bed/photo_2025-11-29 01.02.19.jpeg' },
+              ].map((item, i) => (
+                <motion.div
+                  key={item.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                >
+                  <Link href={item.href} className="block group">
+                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow">
+                      <Image src={item.img} alt={item.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
+                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors" />
+                      <div className="absolute bottom-0 left-0 right-0 p-4 text-white font-semibold text-lg">
+                        {item.name}
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Отзывы */}
+        <section className="py-24 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t('reviewsTitle')}</h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">{t('reviewsSubtitle')}</p>
+            </motion.div>
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {[
+                { name: t('loftBedTestimonial1Name'), text: t('loftBedTestimonial1Text') },
+                { name: t('loftBedTestimonial2Name'), text: t('loftBedTestimonial2Text') },
+                { name: t('loftBedTestimonial3Name'), text: t('loftBedTestimonial3Text') },
+              ].map((item, i) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="bg-white rounded-2xl p-6 shadow-md"
+                >
+                  <p className="text-gray-700 italic mb-4">&ldquo;{item.text}&rdquo;</p>
+                  <p className="font-semibold text-gray-900">{item.name}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Финальный CTA */}
+        <section className="py-24 bg-gradient-to-br from-green-700 to-green-600 text-white">
+          <div className="container mx-auto px-4 text-center max-w-3xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('finalCTATitle')}</h2>
+              <p className="text-lg md:text-xl opacity-90 mb-8">{t('finalCTASubtitle')}</p>
+              {orderModal && (
+                <Button
+                  size="lg"
+                  onClick={() => orderModal.openOrderModal()}
+                  className="bg-white text-green-700 hover:bg-gray-100 px-8 py-4 text-lg font-semibold rounded-full shadow-xl"
+                >
+                  {t('heroCTAButton')}
+                </Button>
+              )}
+            </motion.div>
           </div>
         </section>
 

@@ -5,11 +5,9 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Phone, Instagram, ChevronDown, Menu, X, Languages } from "lucide-react"
 import Image from "next/image"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { Facebook, Youtube } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
+import { useOrderModal } from "@/lib/order-modal-context"
 
 const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 24 24" fill="currentColor">
@@ -19,13 +17,14 @@ const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [isProductsOpen, setProductsOpen] = useState(false)
+  const [isCatalogOpen, setCatalogOpen] = useState(false)
   const [hoveredSocial, setHoveredSocial] = useState<"instagram" | "telegram" | null>(null)
   const [expandedSocial, setExpandedSocial] = useState<"instagram" | "telegram" | null>(null)
   const pathname = usePathname()
   const { language, setLanguage, t } = useLanguage()
+  const orderModal = useOrderModal()
 
-  const productsRef = useRef<HTMLDivElement>(null)
+  const catalogRef = useRef<HTMLDivElement>(null)
   const instagramRef = useRef<HTMLDivElement>(null)
   const telegramRef = useRef<HTMLDivElement>(null)
 
@@ -110,8 +109,8 @@ export function Header() {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node
-      if (productsRef.current && !productsRef.current.contains(target)) {
-        setProductsOpen(false)
+      if (catalogRef.current && !catalogRef.current.contains(target)) {
+        setCatalogOpen(false)
       }
       if (instagramRef.current && !instagramRef.current.contains(target)) {
         if (hoveredSocial === "instagram") setHoveredSocial(null)
@@ -143,24 +142,24 @@ export function Header() {
               <div className="text-[10px] sm:text-[11px] lg:text-[12px] text-gray-500 leading-tight truncate whitespace-nowrap">{getSiteInfo().description}</div>
             </div>
           </div>
-          <div className="hidden lg:flex items-center gap-8 mr-10">
+          <div className="hidden lg:flex items-center gap-6 mr-4">
             <Link href="/" className="text-gray-600 hover:text-green-600 font-medium text-[15px] transition-colors">
               {t('mainPage')}
             </Link>
-            <div className="relative" ref={productsRef}>
+            <div className="relative" ref={catalogRef}>
               <button
                 className="flex items-center gap-1 text-gray-600 hover:text-green-600 font-medium text-[15px] transition-colors py-2"
-                onClick={() => setProductsOpen(!isProductsOpen)}
+                onClick={() => setCatalogOpen(!isCatalogOpen)}
               >
-                {t('products')}
-                <ChevronDown className={`w-4 h-4 transition-transform ${isProductsOpen ? "rotate-180" : ""}`} />
+                {t('catalog')}
+                <ChevronDown className={`w-4 h-4 transition-transform ${isCatalogOpen ? "rotate-180" : ""}`} />
               </button>
-              {isProductsOpen && (
+              {isCatalogOpen && (
                 <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 py-4 z-50">
                   <Link
                     href="/ecopalma"
                     className="flex items-center gap-3 px-4 py-3 hover:translate-x-2 transition-all duration-300"
-                    onClick={() => setProductsOpen(false)}
+                    onClick={() => setCatalogOpen(false)}
                   >
                     <Image src="logo/ecopalma.png" alt="Ecopalma" width={64} height={64} />
                     <div>
@@ -171,7 +170,7 @@ export function Header() {
                   <Link
                     href="/woodlyworld"
                     className="flex items-center gap-3 px-4 py-3 hover:translate-x-2 transition-all duration-300"
-                    onClick={() => setProductsOpen(false)}
+                    onClick={() => setCatalogOpen(false)}
                   >
                     <Image src="logo/woodlyworld.png" alt="Woodlyworld" width={50} height={50} className="pl-3"/>
                     <div className="pl-3">
@@ -182,7 +181,7 @@ export function Header() {
                   <Link
                     href="/babyjoy"
                     className="flex items-center gap-3 px-4 py-3 hover:translate-x-2 transition-all duration-300"
-                    onClick={() => setProductsOpen(false)}
+                    onClick={() => setCatalogOpen(false)}
                   >
                     <Image src="logo/babyjoy.png" alt="Babyjoy" width={64} height={64} />
                     <div>
@@ -193,7 +192,7 @@ export function Header() {
                   <Link
                     href="/loft-bed"
                     className="flex items-center gap-3 px-4 py-3 hover:translate-x-2 transition-all duration-300"
-                    onClick={() => setProductsOpen(false)}
+                    onClick={() => setCatalogOpen(false)}
                   >
                     <Image src="/loft-bed/Logo.png" alt="Loft Bed" width={64} height={64} className="rounded-xl" />
                     <div>
@@ -204,8 +203,25 @@ export function Header() {
                 </div>
               )}
             </div>
+            <Link href="/#cases" className="text-gray-600 hover:text-green-600 font-medium text-[15px] transition-colors">
+              {t('projectsCases')}
+            </Link>
+            <Link href="/about" className="text-gray-600 hover:text-green-600 font-medium text-[15px] transition-colors">
+              {t('aboutCompany')}
+            </Link>
+            <Link href="/#contacts" className="text-gray-600 hover:text-green-600 font-medium text-[15px] transition-colors">
+              {t('contacts')}
+            </Link>
           </div>
-          <div className="lg:flex items-center gap-6">
+          <div className="lg:flex items-center gap-4">
+            {orderModal && (
+              <Button
+                onClick={() => orderModal.openOrderModal()}
+                className="hidden lg:inline-flex bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white text-sm font-semibold rounded-full px-5 py-2"
+              >
+                {t('heroCTAButton')}
+              </Button>
+            )}
             {/* Language Toggle Button */}
             <button
               onClick={() => setLanguage(language === 'ru' ? 'uz' : 'ru')}

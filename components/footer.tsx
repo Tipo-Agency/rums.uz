@@ -57,23 +57,23 @@ export function Footer() {
             <h4 className="font-bold text-lg mb-4">{t('navigation')}</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="/" className="text-gray-400 hover:text-white transition-colors">
                   {t('homePage')}
                 </a>
               </li>
               <li>
-                <a href="/ecopalma" className="text-gray-400 hover:text-white transition-colors">
-                  {t('palms')}
+                <a href="/#cases" className="text-gray-400 hover:text-white transition-colors">
+                  {t('projectsCases')}
                 </a>
               </li>
               <li>
-                <a href="/woodlyworld" className="text-gray-400 hover:text-white transition-colors">
-                  {t('maps')}
+                <a href="/about" className="text-gray-400 hover:text-white transition-colors">
+                  {t('aboutCompany')}
                 </a>
               </li>
               <li>
-                <a href="/babyjoy" className="text-gray-400 hover:text-white transition-colors">
-                  {t('childrenFurniture')}
+                <a href="/#contacts" className="text-gray-400 hover:text-white transition-colors">
+                  {t('contacts')}
                 </a>
               </li>
             </ul>
@@ -103,16 +103,16 @@ export function Footer() {
               </li>
             </ul>
           </div> */}
-          <div>
+          <div id="contacts" className="scroll-mt-20">
             <h4 className="font-bold text-lg mb-4">{t('contacts')}</h4>
             <ul className="space-y-3 text-gray-400">
               <li className="flex items-center gap-3">
-                <MapPin className="w-5 h-5 text-green-500" />
+                <MapPin className="w-5 h-5 text-green-500 flex-shrink-0" />
                 <span>Ташкент, Узбекистан</span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-green-500" />
-                <span>+998 70-018-44-46</span>
+                <Phone className="w-5 h-5 text-green-500 flex-shrink-0" />
+                <a href="tel:+998700184446" className="hover:text-white transition-colors">+998 70-018-44-46</a>
               </li>
             </ul>
           </div>

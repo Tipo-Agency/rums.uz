@@ -541,6 +541,47 @@ export interface Translations {
   mapOptionPremiumNoLight: string
   mapOptionPremiumWithLight: string
   mapSelectorNotRequired: string
+
+  // Main page — UTP & structure (RUMS TZ)
+  heroUTPTitle: string
+  heroUTPSubtitle: string
+  heroCTAButton: string
+  whatWeProduceTitle: string
+  whyRumsTitle: string
+  whyRumsOwnProduction: string
+  whyRumsOwnProductionDesc: string
+  whyRumsExperience: string
+  whyRumsExperienceDesc: string
+  whyRumsQuality: string
+  whyRumsQualityDesc: string
+  whyRumsDelivery: string
+  whyRumsDeliveryDesc: string
+  casesTitle: string
+  casesSubtitle: string
+  reviewsTitle: string
+  reviewsSubtitle: string
+  finalCTATitle: string
+  finalCTASubtitle: string
+  catalog: string
+  projectsCases: string
+  aboutCompany: string
+  aboutCompanyTitle: string
+  aboutCompanySubtitle: string
+  aboutWhoWeAre: string
+  aboutWhoWeAreDesc: string
+  aboutGeography: string
+  aboutGeographyDesc: string
+  aboutGuarantees: string
+  aboutGuaranteesDesc: string
+  // Main order modal (header & hero CTA)
+  modalMainTitle: string
+  modalMainDescription: string
+  modalMainNamePlaceholder: string
+  modalMainPhoneLabel: string
+  modalMainSubmit: string
+  modalMainSubmitting: string
+  modalMainSuccess: string
+  modalMainPrivacy: string
 }
 
 export const translations: Record<Language, Translations> = {
@@ -1087,6 +1128,46 @@ export const translations: Record<Language, Translations> = {
     mapOptionPremiumNoLight: "Премиум без подсветки — от 1.681.000 сум до 8.287.000 сум",
     mapOptionPremiumWithLight: "Премиум с подсветкой — от 3.209.000 сум до 12.387.000 сум",
     mapSelectorNotRequired: "(необязательное поле)",
+
+    // Main page — UTP & structure (RUMS TZ)
+    heroUTPTitle: "RUMS — мебель и декор для дома и бизнеса",
+    heroUTPSubtitle: "Собственное производство в Ташкенте. Пальмы, карты мира, детская мебель, кровати-чердаки. Доставка и монтаж по Узбекистану.",
+    heroCTAButton: "Получить консультацию",
+    whatWeProduceTitle: "Что мы производим",
+    whyRumsTitle: "Почему RUMS",
+    whyRumsOwnProduction: "Собственное производство",
+    whyRumsOwnProductionDesc: "Изготавливаем в Ташкенте — контроль качества и сроков на каждом этапе.",
+    whyRumsExperience: "Опыт и кейсы",
+    whyRumsExperienceDesc: "Реализованные проекты для домов, офисов, кафе и общественных пространств.",
+    whyRumsQuality: "Качество материалов",
+    whyRumsQualityDesc: "Натуральное дерево, безопасные покрытия, долговечные конструкции.",
+    whyRumsDelivery: "Доставка и монтаж",
+    whyRumsDeliveryDesc: "Доставка по Узбекистану, профессиональная сборка и установка.",
+    casesTitle: "Реализованные проекты",
+    casesSubtitle: "Примеры наших работ для клиентов",
+    reviewsTitle: "Отзывы клиентов",
+    reviewsSubtitle: "Что говорят о нас заказчики",
+    finalCTATitle: "Готовы обсудить ваш проект?",
+    finalCTASubtitle: "Оставьте заявку — мы перезвоним и подберём решение под ваши задачи.",
+    catalog: "Каталог",
+    projectsCases: "Проекты",
+    aboutCompany: "О компании",
+    aboutCompanyTitle: "О компании RUMS",
+    aboutCompanySubtitle: "Кто мы и чем отличаемся",
+    aboutWhoWeAre: "Кто мы",
+    aboutWhoWeAreDesc: "RUMS — производственная компания в Ташкенте. Мы делаем мебель и декор: искусственные пальмы, деревянные карты мира, детскую мебель и кровати-чердаки. Работаем с частными заказчиками и бизнесом.",
+    aboutGeography: "География работ",
+    aboutGeographyDesc: "Доставка по Узбекистану. Ташкент — бесплатная доставка и монтаж. Регионы — транспортными компаниями.",
+    aboutGuarantees: "Гарантии",
+    aboutGuaranteesDesc: "Гарантия на изделия. Поддержка после установки. Прозрачные сроки и условия.",
+    modalMainTitle: "Оставить заявку",
+    modalMainDescription: "Оставьте контакты — мы перезвоним и ответим на вопросы.",
+    modalMainNamePlaceholder: "Ваше имя",
+    modalMainPhoneLabel: "Номер телефона",
+    modalMainSubmit: "Отправить заявку",
+    modalMainSubmitting: "Отправляем...",
+    modalMainSuccess: "Спасибо! Мы свяжемся с вами в ближайшее время.",
+    modalMainPrivacy: "Нажимая кнопку, вы соглашаетесь с обработкой персональных данных",
   },
   uz: {
     // Header
@@ -1631,6 +1712,46 @@ export const translations: Record<Language, Translations> = {
     mapOptionPremiumNoLight: "Premium chiroqsiz — 1.681.000 so'mdan 8.287.000 so'mgacha",
     mapOptionPremiumWithLight: "Premium chiroq bilan — 3.209.000 so'mdan 12.387.000 so'mgacha",
     mapSelectorNotRequired: "(ixtiyoriy maydon)",
+
+    // Main page — UTP & structure (RUMS TZ)
+    heroUTPTitle: "RUMS — uy va biznes uchun mebel va dekor",
+    heroUTPSubtitle: "Toshkentda o'z ishlab chiqarishimiz. Palmalar, dunyo xaritalari, bolalar mebeli, qavatli karavotlar. O'zbekiston bo'ylab yetkazib berish va o'rnatish.",
+    heroCTAButton: "Konsultatsiya olish",
+    whatWeProduceTitle: "Nimani ishlab chiqaramiz",
+    whyRumsTitle: "Nima uchun RUMS",
+    whyRumsOwnProduction: "O'z ishlab chiqarish",
+    whyRumsOwnProductionDesc: "Toshkentda ishlab chiqaramiz — har bir bosqichda sifat va muddatlarni nazorat qilamiz.",
+    whyRumsExperience: "Tajriba va loyihalar",
+    whyRumsExperienceDesc: "Uylar, ofislar, kafe va jamoat joylari uchun amalga oshirilgan loyihalar.",
+    whyRumsQuality: "Materiallar sifati",
+    whyRumsQualityDesc: "Tabiiy yog'och, xavfsiz qoplamalar, uzoq muddatli konstruksiyalar.",
+    whyRumsDelivery: "Yetkazib berish va o'rnatish",
+    whyRumsDeliveryDesc: "O'zbekiston bo'ylab yetkazib berish, professional yig'ish va o'rnatish.",
+    casesTitle: "Amalga oshirilgan loyihalar",
+    casesSubtitle: "Mijozlarimiz uchun ishlarimiz namunalari",
+    reviewsTitle: "Mijozlar sharhlari",
+    reviewsSubtitle: "Buyurtmachilar biz haqimizda nima deyishadi",
+    finalCTATitle: "Loyihangizni muhokama qilishga tayyormisiz?",
+    finalCTASubtitle: "Ariza qoldiring — qayta qo'ng'iroq qilamiz va vazifalaringizga yechim tanlaymiz.",
+    catalog: "Katalog",
+    projectsCases: "Loyihalar",
+    aboutCompany: "Kompaniya haqida",
+    aboutCompanyTitle: "RUMS kompaniyasi haqida",
+    aboutCompanySubtitle: "Biz kimmiz va nima bilan farq qilamiz",
+    aboutWhoWeAre: "Biz kimmiz",
+    aboutWhoWeAreDesc: "RUMS — Toshkentdagi ishlab chiqarish kompaniyasi. Mebel va dekor yasaymiz: sun'iy palmalar, yog'och dunyo xaritalari, bolalar mebeli va qavatli karavotlar. Yakka buyurtmachilar va biznes bilan ishlaymiz.",
+    aboutGeography: "Ish geografiyasi",
+    aboutGeographyDesc: "O'zbekiston bo'ylab yetkazib berish. Toshkent — bepul yetkazib berish va o'rnatish. Viloyatlar — transport kompaniyalari orqali.",
+    aboutGuarantees: "Kafolatlar",
+    aboutGuaranteesDesc: "Mahsulotlar uchun kafolat. O'rnatishdan keyin qo'llab-quvvatlash. Shaffof muddatlar va shartlar.",
+    modalMainTitle: "Ariza qoldirish",
+    modalMainDescription: "Aloqa ma'lumotlaringizni qoldiring — qayta qo'ng'iroq qilamiz va savollaringizga javob beramiz.",
+    modalMainNamePlaceholder: "Ismingiz",
+    modalMainPhoneLabel: "Telefon raqami",
+    modalMainSubmit: "Arizani yuborish",
+    modalMainSubmitting: "Yuborilmoqda...",
+    modalMainSuccess: "Rahmat! Tez orada siz bilan bog'lanamiz.",
+    modalMainPrivacy: "Tugmani bosish orqali siz shaxsiy ma'lumotlarni qayta ishlashga rozilik berasiz",
   }
 }
 
