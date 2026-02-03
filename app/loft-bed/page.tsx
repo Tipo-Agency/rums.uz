@@ -78,7 +78,7 @@ export default function LoftBedPage() {
     return () => clearInterval(timer)
   }, [])
 
-  // Фото из public/loft-bed/ (только существующие файлы)
+  // Список должен совпадать с файлами в public/loft-bed/ (без 01.05.09 — удалён на main)
   const imageNumbers = [
     '01.02.19',
     '01.04.12', '01.04.14', '01.04.29', '01.04.31', '01.04.32', '01.04.33',

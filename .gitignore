@@ -25,3 +25,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# локальная папка с дублями фото (избегаем rename/delete конфликта с main)
+/3:1/
