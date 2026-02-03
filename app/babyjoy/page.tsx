@@ -128,10 +128,10 @@ export default function BabyjoyPage() {
       ],
       description: t('helperTowerDesc'),
       colorPrices: [
-        { color: "Деревянная", price: "705 000 сум", originalPrice: "830 000 сум" },
-        { color: "Белая", price: "940 000 сум", originalPrice: "1 107 000 сум" },
-        { color: "Белая-серая", price: "948 000 сум", originalPrice: "1 116 000 сум" },
-        { color: "Белая-деревянная", price: "905 000 сум", originalPrice: "1 065 000 сум" },
+        { color: "Деревянная", price: "775 500 сум", originalPrice: "775 500 сум" },
+        { color: "Белая", price: "1 034 000 сум", originalPrice: "1 034 000 сум" },
+        { color: "Белая-серая", price: "1 042 800 сум", originalPrice: "1 042 800 сум" },
+        { color: "Белая-деревянная", price: "995 500 сум", originalPrice: "995 500 сум" },
       ],
     },
     {
@@ -146,10 +146,8 @@ export default function BabyjoyPage() {
       ],
       description: t('growingDeskChairDesc'),
       colorPrices: [
-        { color: "Деревянная", price: "1 285 000 сум", originalPrice: "1 512 000 сум" },
-        { color: "Белая", price: "1 520 000 сум", originalPrice: "1 788 000 сум" },
-        { color: "Белая-серая", price: "1 530 000 сум", originalPrice: "1 800 000 сум" },
-        { color: "Белая-деревянная", price: "1 485 000 сум", originalPrice: "1 747 000 сум" },
+        { color: "Белый", price: "1 862 300 сум", originalPrice: "1 862 300 сум" },
+        { color: "Деревянный", price: "1 552 100 сум", originalPrice: "1 552 100 сум" },
       ],
     },
     {
@@ -165,10 +163,10 @@ export default function BabyjoyPage() {
       ],
       description: t('piklerTriangleDesc'),
       colorPrices: [
-        { color: "Деревянная", price: "680 000 сум", originalPrice: "800 000 сум" },
-        { color: "Белая", price: "890 000 сум", originalPrice: "1 047 000 сум" },
-        { color: "Белая-серая", price: "895 000 сум", originalPrice: "1 053 000 сум" },
-        { color: "Белая-деревянная", price: "850 000 сум", originalPrice: "1 000 000 сум" },
+        { color: "Треугольник Пиклер", price: "611 820 сум", originalPrice: "611 820 сум" },
+        { color: "Арка-качалка", price: "825 000 сум", originalPrice: "825 000 сум" },
+        { color: "Горка-скалодром", price: "673 200 сум", originalPrice: "673 200 сум" },
+        { color: "Горка-лестница", price: "685 080 сум", originalPrice: "685 080 сум" },
       ],
     },
     {
@@ -176,10 +174,16 @@ export default function BabyjoyPage() {
       images: ["/cart-1.jpeg", "/cart-2.jpeg", "/cart-3.jpeg"],
       description: t('childrenCartDesc'),
       colorPrices: [
-        { color: "Деревянная", price: "420 000 сум", originalPrice: "494 000 сум" },
-        { color: "Белая", price: "580 000 сум", originalPrice: "682 000 сум" },
-        { color: "Белая-серая", price: "585 000 сум", originalPrice: "688 000 сум" },
-        { color: "Белая-деревянная", price: "545 000 сум", originalPrice: "641 000 сум" },
+        { color: "Деревянный", price: "470 800 сум", originalPrice: "470 800 сум" },
+        { color: "Бело-деревянный", price: "470 800 сум", originalPrice: "470 800 сум" },
+      ],
+    },
+    {
+      name: t('drawingBoard'),
+      images: ["/desk-chair-1.jpeg", "/desk-chair-2.jpeg"],
+      description: t('drawingBoardDesc'),
+      colorPrices: [
+        { color: "2в1", price: "310 200 сум", originalPrice: "310 200 сум" },
       ],
     },
     {
@@ -593,7 +597,9 @@ export default function BabyjoyPage() {
                               <span className="text-gray-700 text-sm">✔️ {option.color}</span>
                               <div className="text-right">
                                 <div className="font-semibold text-purple-900 text-sm">{option.price}</div>
-                                <div className="text-xs text-gray-500 line-through">(вместо {option.originalPrice})</div>
+                                {option.originalPrice !== option.price && (
+                                  <div className="text-xs text-gray-500 line-through">(вместо {option.originalPrice})</div>
+                                )}
                               </div>
                             </div>
                           ))}

@@ -89,8 +89,8 @@ export default function WoodlyworldPage() {
         {
           name: t('map3dNatural'),
           image: "woodyworld/3d/1.jpg",
-          price: `${t('from')} 1,181,000`,
-          oldPrice: "1,969,000",
+          price: `${t('from')} 1 393 000`,
+          oldPrice: "7 749 000",
           description: t('map3dNaturalDesc'),
           gallery: [
             "woodyworld/3d/1.jpg",
@@ -103,8 +103,8 @@ export default function WoodlyworldPage() {
         {
           name: t('map3dBlackWitch'),
           image: "woodyworld/3d/8.jpg",
-          price: `${t('from')} 1,181,000`,
-          oldPrice: "1,969,000",
+          price: `${t('from')} 1 393 000`,
+          oldPrice: "7 749 000",
           description: t('map3dBlackWitchDesc'),
           gallery: [
             "woodyworld/3d/8.jpg",
@@ -117,8 +117,8 @@ export default function WoodlyworldPage() {
         {
           name: t('map3dMacchiato'),
           image: "woodyworld/3d/9.jpg",
-          price: `${t('from')} 1,181,000`,
-          oldPrice: "1,969,000",
+          price: `${t('from')} 1 393 000`,
+          oldPrice: "7 749 000",
           description: t('map3dMacchiatoDesc'),
           gallery: [
             "woodyworld/3d/9.jpg",
@@ -131,8 +131,8 @@ export default function WoodlyworldPage() {
         {
           name: t('map3dElegant'),
           image: "woodyworld/3d/10.jpg",
-          price: `${t('from')} 1,181,000`,
-          oldPrice: "1,969,000",
+          price: `${t('from')} 1 393 000`,
+          oldPrice: "7 749 000",
           description: t('map3dElegantDesc'),
           gallery: [
             "woodyworld/3d/10.jpg",
@@ -144,8 +144,8 @@ export default function WoodlyworldPage() {
         },        {
           name: t('map3dMarshmallow'),
           image: "woodyworld/3d/11.jpg",
-          price: `${t('from')} 1,181,000`,
-          oldPrice: "1,969,000",
+          price: `${t('from')} 1 393 000`,
+          oldPrice: "7 749 000",
           description: t('map3dMarshmallowDesc'),
           gallery: [
             "woodyworld/3d/11.jpg",
@@ -157,8 +157,8 @@ export default function WoodlyworldPage() {
         },        {
           name: t('map3dMiami'),
           image: "woodyworld/3d/12.jpg",
-          price: `${t('from')} 1,181,000`,
-          oldPrice: "1,969,000",
+          price: `${t('from')} 1 393 000`,
+          oldPrice: "7 749 000",
           description: t('map3dMiamiDesc'),
           gallery: [
             "woodyworld/3d/12.jpg",
@@ -170,8 +170,8 @@ export default function WoodlyworldPage() {
         },        {
           name: t('map3dExotic'),
           image: "woodyworld/3d/13.jpg",
-          price: `${t('from')} 1,181,000`,
-          oldPrice: "1,969,000",
+          price: `${t('from')} 1 393 000`,
+          oldPrice: "7 749 000",
           description: t('map3dExoticDesc'),
           gallery: [
             "woodyworld/3d/13.jpg",
@@ -183,8 +183,8 @@ export default function WoodlyworldPage() {
         },        {
           name: t('map3dCaramel'),
           image: "woodyworld/3d/14.jpg",
-          price: `${t('from')} 1,181,000`,
-          oldPrice: "1,969,000",
+          price: `${t('from')} 1 393 000`,
+          oldPrice: "7 749 000",
           description: t('map3dCaramelDesc'),
           gallery: [
             "woodyworld/3d/14.jpg",
@@ -201,8 +201,8 @@ export default function WoodlyworldPage() {
         {
           name: t('mapLedAurora'),
           image: "woodyworld/map-led-1.jpeg",
-          price: `${t('from')} 3,209,000`,
-          oldPrice: "5,348,000",
+          price: `${t('from')} 2 911 000`,
+          oldPrice: "11 243 000",
           description: t('mapLedAuroraDesc'),
           gallery: [
             "woodyworld/map-led-1.jpeg",
@@ -215,8 +215,8 @@ export default function WoodlyworldPage() {
         {
           name: t('mapLedGoldenHour'),
           image: "woodyworld/map-led-2.jpeg",
-          price: `${t('from')} 2,467,000`,
-          oldPrice: "4,111,000",
+          price: `${t('from')} 3 786 000`,
+          oldPrice: "14 616 000",
           description: t('mapLedGoldenHourDesc'),
           gallery: [
             "woodyworld/map-led-2.jpeg",
@@ -229,8 +229,8 @@ export default function WoodlyworldPage() {
         {
           name: t('mapLedBlue'),
           image: "woodyworld/led/1.jpg",
-          price: `${t('from')} 3,209,000`,
-          oldPrice: "5,348,000",
+          price: `${t('from')} 2 911 000`,
+          oldPrice: "11 243 000",
           description: t('mapLedBlueDesc'),
           gallery: [
             "woodyworld/led/1.jpg",
@@ -243,8 +243,8 @@ export default function WoodlyworldPage() {
         {
           name: t('mapLedGreen'),
           image: "woodyworld/led/3.jpg",
-          price: `${t('from')} 2,467,000`,
-          oldPrice: "4,111,000",
+          price: `${t('from')} 3 786 000`,
+          oldPrice: "14 616 000",
           description: t('mapLedGreenDesc'),
           gallery: [
             "woodyworld/led/3.jpg",
@@ -257,8 +257,8 @@ export default function WoodlyworldPage() {
         {
           name: t('mapLedUnique'),
           image: "woodyworld/led/4.jpg",
-          price: `${t('from')} 3,209,000`,
-          oldPrice: "5,348,000",
+          price: `${t('from')} 2 911 000`,
+          oldPrice: "11 243 000",
           description: t('mapLedUniqueDesc'),
           gallery: [
             "woodyworld/led/4.jpg",
@@ -270,8 +270,8 @@ export default function WoodlyworldPage() {
         },        {
           name: t('mapLedNatural'),
           image: "woodyworld/led/5.jpg",
-          price: `${t('from')} 2,467,000`,
-          oldPrice: "4,111,000",
+          price: `${t('from')} 3 786 000`,
+          oldPrice: "14 616 000",
           description: t('mapLedNaturalDesc'),
           gallery: [
             "woodyworld/led/5.jpg",
@@ -283,8 +283,8 @@ export default function WoodlyworldPage() {
         },        {
           name: t('mapLedBlackWitch'),
           image: "woodyworld/led/6.jpg",
-          price: `${t('from')} 1,536,000`,
-          oldPrice: "2,559,000",
+          price: `${t('from')} 1 536 000`,
+          oldPrice: "2 559 000",
           description: t('mapLedBlackWitchDesc'),
           gallery: [
             "woodyworld/led/6.jpg",
@@ -301,8 +301,8 @@ export default function WoodlyworldPage() {
         {
           name: t('mapPhotoTraveler'),
           image: "woodyworld/photo/1.jpg",
-          price: `${t('from')} 1,536,000`,
-          oldPrice: "2,559,000",
+          price: `${t('from')} 1 536 000`,
+          oldPrice: "2 559 000",
           description: t('mapPhotoTravelerDesc'),
           gallery: [
             "woodyworld/photo/1.jpg",
@@ -319,8 +319,8 @@ export default function WoodlyworldPage() {
         {
           name: t('map2dLight'),
           image: "woodyworld/2d/1.jpg",
-          price: `${t('from')} 866,250`,
-          oldPrice: "1,443,750",
+          price: `${t('from')} 1 021 000`,
+          oldPrice: "4 826 000",
           description: t('map2dLightDesc'),
           gallery: [
             "woodyworld/2d/1.jpg",
@@ -333,8 +333,8 @@ export default function WoodlyworldPage() {
         {
           name: t('map2dBlack'),
           image: "woodyworld/2d/2.jpg",
-          price: `${t('from')} 866,250`,
-          oldPrice: "1,443,750",
+          price: `${t('from')} 1 021 000`,
+          oldPrice: "4 826 000",
           description: t('map2dBlackDesc'),
           gallery: [
             "woodyworld/2d/2.jpg",
@@ -351,8 +351,8 @@ export default function WoodlyworldPage() {
         {
           name: t('flagsPremium'),
           image: "woodyworld/prin/country_tag.jpg",
-          price: `${t('from')} 546,000`,
-          oldPrice: "657,000",
+          price: `${t('from')} 700 000`,
+          oldPrice: "700 000",
           description: t('flagsPremiumDesc'),
           gallery: [
             "woodyworld/prin/country_tag.jpg",
@@ -365,8 +365,8 @@ export default function WoodlyworldPage() {
         {
           name: t('flagsStandard'),
           image: "woodyworld/prin/1.jpg",
-          price: `${t('from')} 352,000`,
-          oldPrice: "413,000",
+          price: `${t('from')} 350 000`,
+          oldPrice: "350 000",
           description: t('flagsStandardDesc'),
           gallery: [
             "woodyworld/prin/1.jpg",
@@ -378,8 +378,8 @@ export default function WoodlyworldPage() {
         },        {
           name: t('woodenClock'),
           image: "woodyworld/prin/2.jpg",
-          price: `${t('from')} 248,000`,
-          oldPrice: "413,000",
+          price: `${t('from')} 248 000`,
+          oldPrice: "413 000",
           description: t('woodenClockDesc'),
           gallery: [
             "woodyworld/prin/2.jpg",
@@ -391,8 +391,8 @@ export default function WoodlyworldPage() {
         },        {
           name: t('pushPinFlags'),
           image: "woodyworld/prin/3.jpg",
-          price: `${t('from')} 268,000`,
-          oldPrice: "440,000",
+          price: `${t('from')} 268 000`,
+          oldPrice: "440 000",
           description: t('pushPinFlagsDesc'),
           gallery: [
             "woodyworld/prin/3.jpg",

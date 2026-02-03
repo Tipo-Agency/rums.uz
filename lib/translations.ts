@@ -64,6 +64,8 @@ export interface Translations {
   childrenCartDesc: string
   bunkBed: string
   bunkBedDesc: string
+  drawingBoard: string
+  drawingBoardDesc: string
   showing: string
   of: string
 
@@ -650,6 +652,8 @@ export const translations: Record<Language, Translations> = {
     childrenCartDesc: "Идеально подходит для хранения игрушек и развития навыков самостоятельности.",
     bunkBed: "Двухэтажная кроватка",
     bunkBedDesc: "Функциональная двухэтажная кроватка с встроенными ящиками и рабочим местом.",
+    drawingBoard: "Доска для рисования и ограничитель 2в1",
+    drawingBoardDesc: "Доска для рисования и ограничитель в одном изделии.",
     showing: "Показано",
     of: "из",
 
@@ -1122,11 +1126,11 @@ export const translations: Record<Language, Translations> = {
     
     // Map selector (Woodlyworld)
     mapSelectorPlaceholder: "Какая карта вас интересует?",
-    mapOption2DEcoNoLight: "2D Eco без подсветки — от 1.000.000 сум до 4.640.000 сум",
-    mapOption3DEcoNoLight: "3D Eco без подсветки — от 1.327.000 сум до 7.091.000 сум",
-    mapOption3DEcoWithLight: "3D Eco с подсветкой — от 2.467.000 сум до 9.528.000 сум",
-    mapOptionPremiumNoLight: "Премиум без подсветки — от 1.681.000 сум до 8.287.000 сум",
-    mapOptionPremiumWithLight: "Премиум с подсветкой — от 3.209.000 сум до 12.387.000 сум",
+    mapOption2DEcoNoLight: "2D — от 1 021 000 сум до 4 826 000 сум",
+    mapOption3DEcoNoLight: "3D Eco — от 1 812 000 сум до 9 160 000 сум",
+    mapOption3DEcoWithLight: "3D Eco LED — от 3 786 000 сум до 14 616 000 сум",
+    mapOptionPremiumNoLight: "3D Премиум — от 1 393 000 сум до 7 749 000 сум",
+    mapOptionPremiumWithLight: "3D Премиум LED — от 2 911 000 сум до 11 243 000 сум",
     mapSelectorNotRequired: "(необязательное поле)",
 
     // Main page — UTP & structure (RUMS TZ)
@@ -1234,6 +1238,8 @@ export const translations: Record<Language, Translations> = {
     childrenCartDesc: "O'yinchoqlarni saqlash va mustaqillik ko'nikmalarini rivojlantirish uchun mukammal.",
     bunkBed: "Ikki qavatli kravat",
     bunkBedDesc: "O'rnatilgan tortmalar va ish joyi bilan funksional ikki qavatli kravat.",
+    drawingBoard: "Rasam va cheklovchi 2v1",
+    drawingBoardDesc: "Rasam va cheklovchi bitta mahsulotda.",
     showing: "Ko'rsatilmoqda",
     of: "dan",
 
@@ -1706,11 +1712,11 @@ export const translations: Record<Language, Translations> = {
     
     // Map selector (Woodlyworld)
     mapSelectorPlaceholder: "Qaysi xarita sizni qiziqtirdi?",
-    mapOption2DEcoNoLight: "2D Eco chiroqsiz — 1.000.000 so'mdan 4.640.000 so'mgacha",
-    mapOption3DEcoNoLight: "3D Eco chiroqsiz — 1.327.000 so'mdan 7.091.000 so'mgacha",
-    mapOption3DEcoWithLight: "3D Eco chiroq bilan — 2.467.000 so'mdan 9.528.000 so'mgacha",
-    mapOptionPremiumNoLight: "Premium chiroqsiz — 1.681.000 so'mdan 8.287.000 so'mgacha",
-    mapOptionPremiumWithLight: "Premium chiroq bilan — 3.209.000 so'mdan 12.387.000 so'mgacha",
+    mapOption2DEcoNoLight: "2D — 1 021 000 so'mdan 4 826 000 so'mgacha",
+    mapOption3DEcoNoLight: "3D Eco — 1 812 000 so'mdan 9 160 000 so'mgacha",
+    mapOption3DEcoWithLight: "3D Eco LED — 3 786 000 so'mdan 14 616 000 so'mgacha",
+    mapOptionPremiumNoLight: "3D Premium — 1 393 000 so'mdan 7 749 000 so'mgacha",
+    mapOptionPremiumWithLight: "3D Premium LED — 2 911 000 so'mdan 11 243 000 so'mgacha",
     mapSelectorNotRequired: "(ixtiyoriy maydon)",
 
     // Main page — UTP & structure (RUMS TZ)
