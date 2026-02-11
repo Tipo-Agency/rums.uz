@@ -2,15 +2,15 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import { X, Send, Leaf, Phone, User } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useLanguage } from "@/lib/language-context"
 import { useMetaPixel } from "@/hooks/use-meta-pixel"
 import { usePhoneValidation } from "@/hooks/use-phone-validation"
-import { useEffect } from "react"
 
 interface EcopalmaInquiryModalProps {
   isOpen: boolean
@@ -24,6 +24,7 @@ export function EcopalmaInquiryModal({ isOpen, onClose, variant = 'default' }: E
   const { phoneError, handlePhoneChange, isPhoneValid } = usePhoneValidation()
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
+  const [purpose, setPurpose] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Отслеживаем открытие модального окна
@@ -48,6 +49,9 @@ export function EcopalmaInquiryModal({ isOpen, onClose, variant = 'default' }: E
       const formData = new FormData()
       formData.append('name', name)
       formData.append('phone', phone)
+      if (purpose) {
+        formData.append('purpose', purpose)
+      }
       formData.append('source', 'ecopalma')
       formData.append('timestamp', new Date().toISOString())
 
@@ -74,6 +78,7 @@ export function EcopalmaInquiryModal({ isOpen, onClose, variant = 'default' }: E
           alert(successMessage);
           setName("")
           setPhone("")
+          setPurpose("")
           onClose()
         } else {
           throw new Error(result.message || 'Ошибка при отправке заявки')
@@ -130,14 +135,10 @@ export function EcopalmaInquiryModal({ isOpen, onClose, variant = 'default' }: E
                 <Leaf className="w-8 h-8 text-white" />
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-3">
-                {variant === 'consultation' ? t('modalConsultationTitle') :
-                 variant === 'learn-more' ? t('modalLearnMoreTitle') :
-                 t('orderEcoPalm')}
+                Не знаете, какая декоративная пальма вам подойдёт? Мы поможем с выбором
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed">
-                {variant === 'consultation' ? t('modalConsultationDescriptionEcopalma') :
-                 variant === 'learn-more' ? t('modalLearnMoreDescriptionEcopalma') :
-                 t('modalOrderDescriptionEcopalma')}
+                Расскажем, какие варианты есть в наличии, поможем выбрать подходящую модель и организуем доставку и установку.
               </p>
             </div>
 
@@ -178,6 +179,24 @@ export function EcopalmaInquiryModal({ isOpen, onClose, variant = 'default' }: E
                       ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200' 
                       : 'border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200'
                   }`}
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="modal-purpose"
+                  className="block text-sm font-semibold text-gray-700 mb-2 flex items-center"
+                >
+                  <Leaf className="w-4 h-4 mr-2 text-green-500" />
+                  Для чего вам нужны пальмы?
+                </label>
+                <Textarea
+                  id="modal-purpose"
+                  name="purpose"
+                  value={purpose}
+                  onChange={(e) => setPurpose(e.target.value)}
+                  placeholder="Например: для ресторана, для террасы частного дома, для офиса, для фотозоны и т.п."
+                  className="bg-white w-full min-h-[80px] px-4 py-3 text-sm border-2 border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 rounded-xl transition-all duration-200 resize-none"
                 />
               </div>
 

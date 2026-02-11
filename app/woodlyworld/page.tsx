@@ -66,7 +66,7 @@ const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
 )
 
 export default function WoodlyworldPage() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   
   // Инициализируем AmoCRM
   useAmoForms({
@@ -85,14 +85,17 @@ export default function WoodlyworldPage() {
   const [inquiryModalVariant, setInquiryModalVariant] = useState<'default' | 'consultation' | 'learn-more'>('default')
   const [isQuizModalOpen, setIsQuizModalOpen] = useState(false)
 
+  const formatFromPrice = (amount: string) =>
+    language === 'uz' ? amount : `${t('from')} ${amount}`
+
   const mapCategories: MapCategories = useMemo(() => ({
     [t('maps3D')]: {
       items: [
         {
           name: t('map3dNatural'),
           image: "woodyworld/3d/1.jpg",
-          price: `${t('from')} 1 393 000`,
-          oldPrice: "7 749 000",
+          price: formatFromPrice("1 393 000"),
+          oldPrice: "2 322 000",
           description: t('map3dNaturalDesc'),
           gallery: [
             "woodyworld/3d/1.jpg",
@@ -105,8 +108,8 @@ export default function WoodlyworldPage() {
         {
           name: t('map3dBlackWitch'),
           image: "woodyworld/3d/8.jpg",
-          price: `${t('from')} 1 393 000`,
-          oldPrice: "7 749 000",
+          price: formatFromPrice("1 393 000"),
+          oldPrice: "2 322 000",
           description: t('map3dBlackWitchDesc'),
           gallery: [
             "woodyworld/3d/8.jpg",
@@ -119,8 +122,8 @@ export default function WoodlyworldPage() {
         {
           name: t('map3dMacchiato'),
           image: "woodyworld/3d/9.jpg",
-          price: `${t('from')} 1 393 000`,
-          oldPrice: "7 749 000",
+          price: formatFromPrice("1 393 000"),
+          oldPrice: "2 322 000",
           description: t('map3dMacchiatoDesc'),
           gallery: [
             "woodyworld/3d/9.jpg",
@@ -133,8 +136,8 @@ export default function WoodlyworldPage() {
         {
           name: t('map3dElegant'),
           image: "woodyworld/3d/10.jpg",
-          price: `${t('from')} 1 393 000`,
-          oldPrice: "7 749 000",
+          price: formatFromPrice("1 393 000"),
+          oldPrice: "2 322 000",
           description: t('map3dElegantDesc'),
           gallery: [
             "woodyworld/3d/10.jpg",
@@ -146,8 +149,8 @@ export default function WoodlyworldPage() {
         },        {
           name: t('map3dMarshmallow'),
           image: "woodyworld/3d/11.jpg",
-          price: `${t('from')} 1 393 000`,
-          oldPrice: "7 749 000",
+          price: formatFromPrice("1 393 000"),
+          oldPrice: "2 322 000",
           description: t('map3dMarshmallowDesc'),
           gallery: [
             "woodyworld/3d/11.jpg",
@@ -159,8 +162,8 @@ export default function WoodlyworldPage() {
         },        {
           name: t('map3dMiami'),
           image: "woodyworld/3d/12.jpg",
-          price: `${t('from')} 1 393 000`,
-          oldPrice: "7 749 000",
+          price: formatFromPrice("1 393 000"),
+          oldPrice: "2 322 000",
           description: t('map3dMiamiDesc'),
           gallery: [
             "woodyworld/3d/12.jpg",
@@ -172,8 +175,8 @@ export default function WoodlyworldPage() {
         },        {
           name: t('map3dExotic'),
           image: "woodyworld/3d/13.jpg",
-          price: `${t('from')} 1 393 000`,
-          oldPrice: "7 749 000",
+          price: formatFromPrice("1 393 000"),
+          oldPrice: "2 322 000",
           description: t('map3dExoticDesc'),
           gallery: [
             "woodyworld/3d/13.jpg",
@@ -185,8 +188,8 @@ export default function WoodlyworldPage() {
         },        {
           name: t('map3dCaramel'),
           image: "woodyworld/3d/14.jpg",
-          price: `${t('from')} 1 393 000`,
-          oldPrice: "7 749 000",
+          price: formatFromPrice("1 393 000"),
+          oldPrice: "2 322 000",
           description: t('map3dCaramelDesc'),
           gallery: [
             "woodyworld/3d/14.jpg",
@@ -203,7 +206,7 @@ export default function WoodlyworldPage() {
         {
           name: t('mapLedAurora'),
           image: "woodyworld/map-led-1.jpeg",
-          price: `${t('from')} 2 911 000`,
+          price: formatFromPrice("2 911 000"),
           oldPrice: "11 243 000",
           description: t('mapLedAuroraDesc'),
           gallery: [
@@ -217,7 +220,7 @@ export default function WoodlyworldPage() {
         {
           name: t('mapLedGoldenHour'),
           image: "woodyworld/map-led-2.jpeg",
-          price: `${t('from')} 3 786 000`,
+          price: formatFromPrice("3 786 000"),
           oldPrice: "14 616 000",
           description: t('mapLedGoldenHourDesc'),
           gallery: [
@@ -231,7 +234,7 @@ export default function WoodlyworldPage() {
         {
           name: t('mapLedBlue'),
           image: "woodyworld/led/1.jpg",
-          price: `${t('from')} 2 911 000`,
+          price: formatFromPrice("2 911 000"),
           oldPrice: "11 243 000",
           description: t('mapLedBlueDesc'),
           gallery: [
@@ -245,7 +248,7 @@ export default function WoodlyworldPage() {
         {
           name: t('mapLedGreen'),
           image: "woodyworld/led/3.jpg",
-          price: `${t('from')} 3 786 000`,
+          price: formatFromPrice("3 786 000"),
           oldPrice: "14 616 000",
           description: t('mapLedGreenDesc'),
           gallery: [
@@ -259,7 +262,7 @@ export default function WoodlyworldPage() {
         {
           name: t('mapLedUnique'),
           image: "woodyworld/led/4.jpg",
-          price: `${t('from')} 2 911 000`,
+          price: formatFromPrice("2 911 000"),
           oldPrice: "11 243 000",
           description: t('mapLedUniqueDesc'),
           gallery: [
@@ -272,7 +275,7 @@ export default function WoodlyworldPage() {
         },        {
           name: t('mapLedNatural'),
           image: "woodyworld/led/5.jpg",
-          price: `${t('from')} 3 786 000`,
+          price: formatFromPrice("3 786 000"),
           oldPrice: "14 616 000",
           description: t('mapLedNaturalDesc'),
           gallery: [
@@ -285,7 +288,7 @@ export default function WoodlyworldPage() {
         },        {
           name: t('mapLedBlackWitch'),
           image: "woodyworld/led/6.jpg",
-          price: `${t('from')} 1 536 000`,
+          price: formatFromPrice("1 536 000"),
           oldPrice: "2 559 000",
           description: t('mapLedBlackWitchDesc'),
           gallery: [
@@ -303,7 +306,7 @@ export default function WoodlyworldPage() {
         {
           name: t('mapPhotoTraveler'),
           image: "woodyworld/photo/1.jpg",
-          price: `${t('from')} 1 536 000`,
+          price: formatFromPrice("1 536 000"),
           oldPrice: "2 559 000",
           description: t('mapPhotoTravelerDesc'),
           gallery: [
@@ -321,7 +324,7 @@ export default function WoodlyworldPage() {
         {
           name: t('map2dLight'),
           image: "woodyworld/2d/1.jpg",
-          price: `${t('from')} 1 021 000`,
+          price: formatFromPrice("1 021 000"),
           oldPrice: "4 826 000",
           description: t('map2dLightDesc'),
           gallery: [
@@ -335,7 +338,7 @@ export default function WoodlyworldPage() {
         {
           name: t('map2dBlack'),
           image: "woodyworld/2d/2.jpg",
-          price: `${t('from')} 1 021 000`,
+          price: formatFromPrice("1 021 000"),
           oldPrice: "4 826 000",
           description: t('map2dBlackDesc'),
           gallery: [
@@ -353,7 +356,7 @@ export default function WoodlyworldPage() {
         {
           name: t('flagsPremium'),
           image: "woodyworld/prin/country_tag.jpg",
-          price: `${t('from')} 700 000`,
+          price: formatFromPrice("700 000"),
           oldPrice: "700 000",
           description: t('flagsPremiumDesc'),
           gallery: [
@@ -367,7 +370,7 @@ export default function WoodlyworldPage() {
         {
           name: t('flagsStandard'),
           image: "woodyworld/prin/1.jpg",
-          price: `${t('from')} 350 000`,
+          price: formatFromPrice("350 000"),
           oldPrice: "350 000",
           description: t('flagsStandardDesc'),
           gallery: [
@@ -380,7 +383,7 @@ export default function WoodlyworldPage() {
         },        {
           name: t('woodenClock'),
           image: "woodyworld/prin/2.jpg",
-          price: `${t('from')} 248 000`,
+          price: formatFromPrice("248 000"),
           oldPrice: "413 000",
           description: t('woodenClockDesc'),
           gallery: [
@@ -393,7 +396,7 @@ export default function WoodlyworldPage() {
         },        {
           name: t('pushPinFlags'),
           image: "woodyworld/prin/3.jpg",
-          price: `${t('from')} 268 000`,
+          price: formatFromPrice("268 000"),
           oldPrice: "440 000",
           description: t('pushPinFlagsDesc'),
           gallery: [
@@ -406,7 +409,7 @@ export default function WoodlyworldPage() {
         },
       ],
     },
-  }), [t])
+  }), [t, language])
 
   // Initialize activeCategory when mapCategories is ready or language changes
   useEffect(() => {
@@ -1165,8 +1168,22 @@ export default function WoodlyworldPage() {
                       {/* Price Section */}
                       <div className="mb-4">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-lg sm:text-xl md:text-2xl font-bold text-orange-600">{item.price}</span>
-                          <span className="text-sm text-gray-500">{t('sum')}</span>
+                          {language === 'uz' ? (
+                            <>
+                              <span className="text-lg sm:text-xl md:text-2xl font-bold text-orange-600">
+                                {item.price}
+                              </span>
+                              <span className="text-sm text-gray-500">{t('sum')}</span>
+                              <span className="text-lg sm:text-xl md:text-2xl font-bold text-orange-600">{t('from')}</span>
+                            </>
+                          ) : (
+                            <>
+                              <span className="text-lg sm:text-xl md:text-2xl font-bold text-orange-600">
+                                {item.price}
+                              </span>
+                              <span className="text-sm text-gray-500">{t('sum')}</span>
+                            </>
+                          )}
                         </div>
                         <div className="flex items-center gap-2">
                           <span className="text-xs sm:text-sm md:text-lg text-gray-400 line-through">{item.oldPrice}</span>

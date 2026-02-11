@@ -65,7 +65,8 @@ export default function EcopalmaPage() {
     const diff = endOfMonth.getTime() - now.getTime();
 
     if (diff <= 0) {
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      // Если месяц закончился, показываем условные 14 дней, чтобы таймер не был на нулях
+      return { days: 14, hours: 0, minutes: 0, seconds: 0 };
     }
 
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -473,16 +474,22 @@ export default function EcopalmaPage() {
           </div>
 
           <div className="relative z-10 text-center max-w-4xl mx-auto px-4 flex-grow flex flex-col justify-center">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-              <Badge className="mb-6 bg-red-500/90 hover:bg-red-500/90 text-white border-red-400 backdrop-blur-md shadow-lg text-lg px-4 py-2">
-                <Gift className="w-5 h-5 mr-2" />
-                {t('discountAndFreeDesign')}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Badge className="mb-6 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700  text-white backdrop-blur-md shadow-lg text-lg px-4 py-2">
+                <Leaf className="w-5 h-5 mr-2" />
+                ECOPALMA
               </Badge>
-              <h1 className="text-5xl md:text-7xl font-extrabold mb-4 leading-tight drop-shadow-2xl">
-                <span className="text-white drop-shadow-lg">ECOPALMA</span>
+              <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight drop-shadow-2xl">
+                <span className="text-white drop-shadow-lg">
+                  Пальмы для дома и бизнеса — под ключ за 14 дней
+                </span>
               </h1>
               <p className="text-xl md:text-2xl text-green-200 max-w-2xl mx-auto mb-8 drop-shadow-lg font-medium">
-                {t('artOfCreatingEternalNature')}
+                30% выгоды на тропический акцент для вашего пространства
               </p>
             </motion.div>
           </div>
@@ -514,7 +521,7 @@ export default function EcopalmaPage() {
                   onClick={openInquiryModal}
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
-                  {t('orderWithDiscount')}
+                  Подобрать пальмы
                 </Button>
                 <div id="amocrm_btn"></div>
               </div>
