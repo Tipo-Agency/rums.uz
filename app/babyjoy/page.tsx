@@ -38,6 +38,7 @@ import { Footer } from "@/components/footer"
 import { useAmoForms } from "@/hooks/use-amo-forms"
 import { BabyjoyInquiryModal } from "@/components/babyjoy-inquiry-modal"
 import { MetaPixelBabyjoy } from "@/components/meta-pixel-babyjoy"
+import { BabyjoyQuizModal } from "@/components/baby-joy-quiz-modal"
 
 
 const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -47,7 +48,7 @@ const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
 )
 
 export default function BabyjoyPage() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
 
   // Инициализируем AmoCRM
   useAmoForms({
@@ -78,6 +79,7 @@ export default function BabyjoyPage() {
   const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0)
   const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false)
   const [inquiryModalVariant, setInquiryModalVariant] = useState<'default' | 'consultation' | 'learn-more'>('default')
+  const [isQuizModalOpen, setIsQuizModalOpen] = useState(false)
 
   // Timer countdown to end of July
   useEffect(() => {
@@ -91,6 +93,20 @@ export default function BabyjoyPage() {
       })
     }, 1000)
     return () => clearInterval(timer)
+  }, [])
+
+  // Автопоказ квиза при первом входе на страницу (на одну сессию)
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    try {
+      const shown = window.sessionStorage.getItem("babyjoy_quiz_shown")
+      if (!shown) {
+        setIsQuizModalOpen(true)
+        window.sessionStorage.setItem("babyjoy_quiz_shown", "true")
+      }
+    } catch {
+      setIsQuizModalOpen(true)
+    }
   }, [])
 
   // Функции для управления модальным окном
@@ -951,6 +967,23 @@ export default function BabyjoyPage() {
         onClose={closeInquiryModal}
         variant={inquiryModalVariant}
       />
+
+      {/* Entry Quiz Modal */}
+      <BabyjoyQuizModal
+        isOpen={isQuizModalOpen}
+        onClose={() => setIsQuizModalOpen(false)}
+      />
+
+      {/* Плавающая кнопка открытия квиза */}
+      <div className="fixed bottom-4 left-4 z-40">
+        <Button
+          onClick={() => setIsQuizModalOpen(true)}
+          className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-4 py-2 rounded-full shadow-lg flex items-center gap-2 text-sm md:text-base"
+        >
+          <Gift className="w-4 h-4" />
+          {language === "uz" ? "Tanlovni olish" : "Получить подбор"}
+        </Button>
+      </div>
 
       <Footer />
     </div>
