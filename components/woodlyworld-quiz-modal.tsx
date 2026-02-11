@@ -169,7 +169,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
             <div className="grid grid-cols-1 gap-3">
               <Button
                 variant={destination === "home" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setDestination("home")
                   setStep(3)
@@ -179,7 +179,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
               </Button>
               <Button
                 variant={destination === "gift" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setDestination("gift")
                   setStep(3)
@@ -189,7 +189,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
               </Button>
               <Button
                 variant={destination === "office" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setDestination("office")
                   setStep(3)
@@ -200,7 +200,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
               </Button>
               <Button
                 variant={destination === "school" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setDestination("school")
                   setStep(3)
@@ -223,7 +223,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
             <div className="grid grid-cols-1 gap-3">
               <Button
                 variant={wallWidth === "100" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setWallWidth("100")
                   setStep(4)
@@ -234,7 +234,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
               </Button>
               <Button
                 variant={wallWidth === "200" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setWallWidth("200")
                   setStep(4)
@@ -245,7 +245,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
               </Button>
               <Button
                 variant={wallWidth === "300" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setWallWidth("300")
                   setStep(4)
@@ -256,7 +256,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
               </Button>
               <Button
                 variant={wallWidth === "400" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setWallWidth("400")
                   setStep(4)
@@ -267,7 +267,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
               </Button>
               <Button
                 variant={wallWidth === "500plus" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setWallWidth("500plus")
                   setStep(4)
@@ -278,7 +278,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
               </Button>
               <Button
                 variant={wallWidth === "advice" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setWallWidth("advice")
                   setStep(4)
@@ -340,7 +340,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
             <div className="grid grid-cols-1 gap-3">
               <Button
                 variant={city === "tashkent" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setCity("tashkent")
                   setStep(6)
@@ -350,7 +350,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
               </Button>
               <Button
                 variant={city === "samarkand" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setCity("samarkand")
                   setStep(6)
@@ -360,7 +360,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
               </Button>
               <Button
                 variant={city === "andijan" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setCity("andijan")
                   setStep(6)
@@ -370,7 +370,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
               </Button>
               <Button
                 variant={city === "fergana" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setCity("fergana")
                   setStep(6)
@@ -380,7 +380,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
               </Button>
               <Button
                 variant={city === "bukhara" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setCity("bukhara")
                   setStep(6)
@@ -390,7 +390,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
               </Button>
               <Button
                 variant={city === "khorezm" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setCity("khorezm")
                   setStep(6)
@@ -400,7 +400,7 @@ export function WoodlyworldQuizModal({ isOpen, onClose }: WoodlyworldQuizModalPr
               </Button>
               <Button
                 variant={city === "other" ? "default" : "outline"}
-                className="w-full justify-between"
+                className="w-full justify-between bg-white text-gray-900 hover:bg-orange-50"
                 onClick={() => {
                   setCity("other")
                   setStep(6)
