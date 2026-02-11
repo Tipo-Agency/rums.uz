@@ -38,6 +38,7 @@ import { Footer } from "@/components/footer"
 import { useAmoForms } from "@/hooks/use-amo-forms"
 import { useLanguage } from "@/lib/language-context"
 import { WoodlyworldInquiryModal } from "@/components/woodlyworld-inquiry-modal"
+import { WoodlyworldQuizModal } from "@/components/woodlyworld-quiz-modal"
 import { MetaPixelWoodlyworld } from "@/components/meta-pixel-woodlyworld"
 
 
@@ -82,6 +83,7 @@ export default function WoodlyworldPage() {
   const [currentGalleryImageIndex, setCurrentGalleryImageIndex] = useState(0)
   const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false)
   const [inquiryModalVariant, setInquiryModalVariant] = useState<'default' | 'consultation' | 'learn-more'>('default')
+  const [isQuizModalOpen, setIsQuizModalOpen] = useState(false)
 
   const mapCategories: MapCategories = useMemo(() => ({
     [t('maps3D')]: {
@@ -414,6 +416,21 @@ export default function WoodlyworldPage() {
       setActiveCategory(categories[0])
     }
   }, [mapCategories])
+
+  // Автопоказ квиза при первом входе на страницу (на одну сессию)
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    try {
+      const shown = window.sessionStorage.getItem("woodlyworld_quiz_shown")
+      if (!shown) {
+        setIsQuizModalOpen(true)
+        window.sessionStorage.setItem("woodlyworld_quiz_shown", "true")
+      }
+    } catch (e) {
+      // если sessionStorage недоступен, просто показываем квиз
+      setIsQuizModalOpen(true)
+    }
+  }, [])
 
   const features = [
     {
@@ -1563,6 +1580,23 @@ export default function WoodlyworldPage() {
         onClose={closeInquiryModal}
         variant={inquiryModalVariant}
       />
+
+      {/* Entry Quiz Modal */}
+      <WoodlyworldQuizModal
+        isOpen={isQuizModalOpen}
+        onClose={() => setIsQuizModalOpen(false)}
+      />
+
+      {/* Плавающая кнопка открытия квиза */}
+      <div className="fixed bottom-4 left-4 z-40">
+        <Button
+          onClick={() => setIsQuizModalOpen(true)}
+          className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold px-4 py-2 rounded-full shadow-lg flex items-center gap-2 text-sm md:text-base"
+        >
+          <Gift className="w-4 h-4" />
+          Получить подарок
+        </Button>
+      </div>
 
       <Footer />
     </div>
