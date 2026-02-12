@@ -135,10 +135,10 @@ export function EcopalmaInquiryModal({ isOpen, onClose, variant = 'default' }: E
                 <Leaf className="w-8 h-8 text-white" />
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-3">
-                Не знаете, какая декоративная пальма вам подойдёт? Мы поможем с выбором
+                {t('ecopalmaInquiryTitle')}
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed">
-                Расскажем, какие варианты есть в наличии, поможем выбрать подходящую модель и организуем доставку и установку.
+                {t('ecopalmaInquiryDescription')}
               </p>
             </div>
 
@@ -155,7 +155,7 @@ export function EcopalmaInquiryModal({ isOpen, onClose, variant = 'default' }: E
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Ваше имя"
+                  placeholder={t('yourName')}
                   required
                   className="bg-white w-full h-12 px-4 text-lg border-2 border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 rounded-xl transition-all duration-200"
                 />
@@ -188,14 +188,14 @@ export function EcopalmaInquiryModal({ isOpen, onClose, variant = 'default' }: E
                   className="block text-sm font-semibold text-gray-700 mb-2 flex items-center"
                 >
                   <Leaf className="w-4 h-4 mr-2 text-green-500" />
-                  Для чего вам нужны пальмы?
+                  {t('ecopalmaInquiryPurposeLabel')}
                 </label>
                 <Textarea
                   id="modal-purpose"
                   name="purpose"
                   value={purpose}
                   onChange={(e) => setPurpose(e.target.value)}
-                  placeholder="Например: для ресторана, для террасы частного дома, для офиса, для фотозоны и т.п."
+                  placeholder={t('ecopalmaInquiryPurposePlaceholder')}
                   className="bg-white w-full min-h-[80px] px-4 py-3 text-sm border-2 border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 rounded-xl transition-all duration-200 resize-none"
                 />
               </div>

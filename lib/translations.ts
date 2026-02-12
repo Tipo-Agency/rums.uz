@@ -108,6 +108,11 @@ export interface Translations {
     ecopalmaHeroTitle: string
     ecopalmaHeroSubtitle: string
     ecopalmaSelectButton: string
+    ecopalmaInquiryTitle: string
+    ecopalmaInquiryDescription: string
+    ecopalmaInquiryDescriptionExtended: string
+    ecopalmaInquiryPurposeLabel: string
+    ecopalmaInquiryPurposePlaceholder: string
     discountAndFreeDesign: string
     artOfCreatingEternalNature: string
     orderWithDiscount: string
@@ -699,6 +704,11 @@ export const translations: Record<Language, Translations> = {
     ecopalmaHeroTitle: "Пальмы для дома и бизнеса — под ключ за 14 дней",
     ecopalmaHeroSubtitle: "30% выгоды на тропический акцент для вашего пространства",
     ecopalmaSelectButton: "Подобрать пальмы",
+    ecopalmaInquiryTitle: "Не знаете, какая декоративная пальма вам подойдёт? Мы поможем с выбором",
+    ecopalmaInquiryDescription: "Расскажем, какие варианты есть в наличии, поможем выбрать подходящую модель и организуем доставку и установку.",
+    ecopalmaInquiryDescriptionExtended: "Bizda qanday variantlar borligi xaqida malumot beramiz, va shuningdek yetkazib berish va o'rnatib berish xizmatlarini tashkillashtirib beramiz.",
+    ecopalmaInquiryPurposeLabel: "Для чего вам нужны пальмы?",
+    ecopalmaInquiryPurposePlaceholder: "Например: для ресторана, для террасы частного дома, для офиса, для фотозоны и т.п.",
     discountAndFreeDesign: "СКИДКА 40% + Бесплатный дизайн-проект",
     artOfCreatingEternalNature: "Искусство создания вечной природы в вашем экстерьере со скидкой до конца месяца!",
     orderWithDiscount: "Заказать со скидкой",
@@ -1285,9 +1295,14 @@ export const translations: Record<Language, Translations> = {
     createComfortWithQualityItems: "Sifatli o'simliklar va mebel yordamida uyingizda qulaylik va farovonlik yaratamiz.",
 
     // Ecopalma Page
-    ecopalmaHeroTitle: "Uy va biznes uchun palmalar — to'liq to'sib 14 kun ichida",
-    ecopalmaHeroSubtitle: "Sizning makoningiz uchun tropik oqsil bosmaga 30% tejash",
+    ecopalmaHeroTitle: "Uy va Biznes uchun Palmalar - 14 kun ichida tayyorlab berish",
+    ecopalmaHeroSubtitle: "30% foyda va makoningiz uchun tropik muhit",
     ecopalmaSelectButton: "Palmalarni tanlash",
+    ecopalmaInquiryTitle: "Siz uchun qanday sun'iy Palma to'g'ri kelishini bilmayabsizmi? Biz sizga yordam bera olamiz.",
+    ecopalmaInquiryDescription: "Bizda qanday variantlar borligi xaqida malumot beramiz, va shuningdek yetkazib berish va o'rnatib berish xizmatlarini tashkillashtirib beramiz.",
+    ecopalmaInquiryDescriptionExtended: "Bizda qanday variantlar borligi xaqida malumot beramiz, va shuningdek yetkazib berish va o'rnatib berish xizmatlarini tashkillashtirib beramiz.",
+    ecopalmaInquiryPurposeLabel: "Palmalar sizga nima uchun kerak",
+    ecopalmaInquiryPurposePlaceholder: "Misol uchun: Restonar uchun, terassa yoki Hovli uchun, ofis uchun, fotozona uchun....",
     discountAndFreeDesign: "40% CHEGIRMA + Bepul dizayn loyihasi",
     artOfCreatingEternalNature: "Oyning oxirigacha chegirma bilan eksteriyeringizda abadiy tabiat yaratish san'ati!",
     orderWithDiscount: "Chegirma bilan buyurtma berish",
@@ -1542,8 +1557,8 @@ export const translations: Record<Language, Translations> = {
     pushPinFlagsDesc: "Xaritangiz uchun dunyodagi barcha mamlakatlarning to'liq bayroqchalar to'plami.",
     
     // Form Modal Translations
-    yourName: "Ismingiz",
-    phoneNumber: "Telefon raqami",
+    yourName: "Sizning Ismingiz",
+    phoneNumber: "Telefon raqamingiz",
     sendRequest: "Arizani yuborish",
     sendConsultationRequest: "Konsultatsiya olish",
     orderChildrenFurniture: "Bolalar mebelini buyurtma qilish",
