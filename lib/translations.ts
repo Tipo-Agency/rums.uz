@@ -105,6 +105,9 @@ export interface Translations {
     createComfortWithQualityItems: string
 
     // Ecopalma Page
+    ecopalmaHeroTitle: string
+    ecopalmaHeroSubtitle: string
+    ecopalmaSelectButton: string
     discountAndFreeDesign: string
     artOfCreatingEternalNature: string
     orderWithDiscount: string
@@ -693,6 +696,9 @@ export const translations: Record<Language, Translations> = {
     createComfortWithQualityItems: "Создаём уют и комфорт для вашего дома с помощью качественных растений и мебели.",
 
     // Ecopalma Page
+    ecopalmaHeroTitle: "Пальмы для дома и бизнеса — под ключ за 14 дней",
+    ecopalmaHeroSubtitle: "30% выгоды на тропический акцент для вашего пространства",
+    ecopalmaSelectButton: "Подобрать пальмы",
     discountAndFreeDesign: "СКИДКА 40% + Бесплатный дизайн-проект",
     artOfCreatingEternalNature: "Искусство создания вечной природы в вашем экстерьере со скидкой до конца месяца!",
     orderWithDiscount: "Заказать со скидкой",
@@ -1279,6 +1285,9 @@ export const translations: Record<Language, Translations> = {
     createComfortWithQualityItems: "Sifatli o'simliklar va mebel yordamida uyingizda qulaylik va farovonlik yaratamiz.",
 
     // Ecopalma Page
+    ecopalmaHeroTitle: "Uy va biznes uchun palmalar — to'liq to'sib 14 kun ichida",
+    ecopalmaHeroSubtitle: "Sizning makoningiz uchun tropik oqsil bosmaga 30% tejash",
+    ecopalmaSelectButton: "Palmalarni tanlash",
     discountAndFreeDesign: "40% CHEGIRMA + Bepul dizayn loyihasi",
     artOfCreatingEternalNature: "Oyning oxirigacha chegirma bilan eksteriyeringizda abadiy tabiat yaratish san'ati!",
     orderWithDiscount: "Chegirma bilan buyurtma berish",

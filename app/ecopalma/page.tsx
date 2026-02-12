@@ -485,11 +485,11 @@ export default function EcopalmaPage() {
               </Badge>
               <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight drop-shadow-2xl">
                 <span className="text-white drop-shadow-lg">
-                  Пальмы для дома и бизнеса — под ключ за 14 дней
+                  {t('ecopalmaHeroTitle')}
                 </span>
               </h1>
               <p className="text-xl md:text-2xl text-green-200 max-w-2xl mx-auto mb-8 drop-shadow-lg font-medium">
-                30% выгоды на тропический акцент для вашего пространства
+                {t('ecopalmaHeroSubtitle')}
               </p>
             </motion.div>
           </div>
@@ -521,7 +521,7 @@ export default function EcopalmaPage() {
                   onClick={openInquiryModal}
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
-                  Подобрать пальмы
+                  {t('ecopalmaSelectButton')}
                 </Button>
                 <div id="amocrm_btn"></div>
               </div>
