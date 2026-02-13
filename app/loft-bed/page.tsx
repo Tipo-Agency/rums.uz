@@ -78,15 +78,17 @@ export default function LoftBedPage() {
     return () => clearInterval(timer)
   }, [])
 
-  // Список должен совпадать с файлами в public/loft-bed/ (без 01.05.09 — удалён на main)
-  const imageNumbers = [
-    '01.02.19',
-    '01.04.12', '01.04.14', '01.04.29', '01.04.31', '01.04.32', '01.04.33',
-    '01.04.46', '01.04.50', '01.04.54', '01.04.57',
-    '01.05.04'
-  ]
-  const images = imageNumbers.map(num => `/loft-bed/photo_2025-11-29 ${num}.jpeg`)
 
+  const images = [
+    "/loft-bed/1.jpg",
+    "/loft-bed/4.jpg",
+    "/loft-bed/5.jpg",
+    "/loft-bed/6.jpg",
+    "/loft-bed/7.jpeg",
+    "/loft-bed/8.jpeg",
+    "/loft-bed/12.jpg",
+    "/loft-bed/13.jpg",
+  ]
   const features = [
     {
       icon: ShieldCheck,
@@ -393,27 +395,40 @@ export default function LoftBedPage() {
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t('loftBedGallerySubtitle')}</p>
             </motion.div>
 
-            <div className="relative max-w-5xl mx-auto mb-16">
-              <div className="relative h-96 md:h-[600px] rounded-2xl overflow-hidden shadow-2xl cursor-pointer" onClick={openGalleryModal}>
+            <div className="relative max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto mb-16">
+              <div
+                className="relative w-full aspect-[3/4] md:aspect-[3/4] h-auto rounded-2xl overflow-hidden shadow-2xl cursor-pointer bg-gray-100"
+                onClick={openGalleryModal}
+                style={{
+                  maxHeight: '700px'
+                }}
+              >
                 <Image
                   src={images[currentImageIndex] || "/placeholder.jpg"}
                   alt={`${t('loftBedTitle') || 'Кровать-чердак'} - фото ${currentImageIndex + 1}`}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   loading="lazy"
+                  style={{ objectPosition: "center" }}
                 />
-                
+
                 {images.length > 1 && (
                   <>
                     <button
-                      onClick={(e) => { e.stopPropagation(); prevImage(); }}
-                      className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all duration-200 hover:scale-110 z-10"
+                      onClick={e => {
+                        e.stopPropagation()
+                        prevImage()
+                      }}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 md:p-3 transition-all duration-200 hover:scale-110 z-10"
                     >
                       <ChevronLeft className="w-6 h-6" />
                     </button>
                     <button
-                      onClick={(e) => { e.stopPropagation(); nextImage(); }}
-                      className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all duration-200 hover:scale-110 z-10"
+                      onClick={e => {
+                        e.stopPropagation()
+                        nextImage()
+                      }}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 md:p-3 transition-all duration-200 hover:scale-110 z-10"
                     >
                       <ChevronRight className="w-6 h-6" />
                     </button>
@@ -422,13 +437,18 @@ export default function LoftBedPage() {
 
                 {/* Image indicators */}
                 {images.length > 1 && (
-                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                     {images.map((_, index) => (
                       <button
                         key={index}
-                        onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(index); }}
+                        onClick={e => {
+                          e.stopPropagation()
+                          setCurrentImageIndex(index)
+                        }}
                         className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                          index === currentImageIndex ? "bg-white scale-125" : "bg-white/50 hover:bg-white/75"
+                          index === currentImageIndex
+                            ? "bg-white scale-125"
+                            : "bg-white/50 hover:bg-white/75"
                         }`}
                       />
                     ))}
