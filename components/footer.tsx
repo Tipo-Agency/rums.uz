@@ -120,15 +120,7 @@ export function Footer() {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-gray-500">&copy; {new Date().getFullYear()} rums.uz {t('allRightsReserved')}</p>
-            <a
-              href="https://tipa.uz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-2 group"
-            >
-              <span className="text-gray-400 group-hover:text-white text-lg sm:text-lg">ⓒ</span>
-              <img src="/tipa_agency.svg" alt="Типа агенство" className="h-5 w-auto opacity-90 group-hover:opacity-100 transition-opacity" />
-            </a>
+            <a style={{ display: "inline-flex", alignItems: "center", gap: 8, minHeight: 42, fontSize: 10, lineHeight: 1, letterSpacing: ".04em", textDecoration: "none", color: "inherit" }} href="https://tipa.uz/ru" target="_blank" rel="nofollow noopener noreferrer" aria-label="Сайт разработан агентством TIPA"><span>Сделано</span><img src="/media/tipa-agency-animated.svg" alt="TIPA" width={64} height={42} style={{ display: "block", width: 64, height: 42, objectFit: "contain" }} /></a>
           </div>
         </div>
       </div>
