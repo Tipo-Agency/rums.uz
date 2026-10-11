@@ -15,7 +15,7 @@ const InstagramIcon = (props: React.SVGProps<SVGSVGElement>) => (
 )
 
 export function Footer() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   
   return (
     <footer className="bg-gray-900 text-white">
@@ -120,7 +120,7 @@ export function Footer() {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-gray-500">&copy; {new Date().getFullYear()} rums.uz {t('allRightsReserved')}</p>
-            <a style={{ display: "inline-flex", alignItems: "center", gap: 8, minHeight: 42, fontSize: 10, lineHeight: 1, letterSpacing: ".04em", textDecoration: "none", color: "inherit" }} href="https://tipa.uz/ru" target="_blank" rel="nofollow noopener noreferrer" aria-label="Сайт разработан агентством TIPA"><span>Сделано</span><img src="/media/tipa-agency-animated.svg" alt="TIPA" width={64} height={42} style={{ display: "block", width: 64, height: 42, objectFit: "contain" }} /></a>
+            <a style={{ display: "inline-flex", alignItems: "center", gap: 8, minHeight: 42, fontSize: 10, lineHeight: 1, letterSpacing: ".04em", textDecoration: "none", color: "inherit" }} href="https://tipa.uz/ru/services/web" target="_blank" rel="noopener"><span>{language === "uz" ? "Sayt yaratish — TIPA" : "Разработка сайта — TIPA"}</span><img src="/media/tipa-agency-animated.svg" alt="" width={64} height={42} style={{ display: "block", width: 64, height: 42, objectFit: "contain" }} /></a>
           </div>
         </div>
       </div>
